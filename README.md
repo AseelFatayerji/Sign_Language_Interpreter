@@ -55,11 +55,12 @@
 
 
 ### User Screens (Mobile)
-| Login screen  | Register screen | Home screen |
-| ---| ---| ---| ---|
-| ![Landing](./readme/images/Login.png) | ![fsdaf](./readme/images/signup.png) | ![fsdaf](./readme/images/Home%20screen.png) | 
-| Learning Screen | Teaching Screen | 
-| ![Landing](./readme/images/Learning%20Screen.png) | ![fsdaf](./readme/images/Teaching%20screen.png) | 
+| Home screen  | Teacher Screen | Student Screen |
+| ---| ---| ---|
+| ![Landing](./readme/images/Home%20screen.png) | ![fsdaf](./readme/images/Teaching%20screen.png) | ![fsdaf](./readme/images/Learning%20Screen.png) |
+| Login screen  | Register Screen | Loding Screen |
+| ---| ---| ---|
+| ![Landing](./readme/images/Login.png.png) | ![fsdaf](./readme/images/signup.png.png) | ![fsdaf](./readme/images/Learning%20Screen.png) |
 
 
 <br><br>

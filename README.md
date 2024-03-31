@@ -35,7 +35,7 @@
 ### Mockups
 | Home screen  | Teacher Screen | Student Screen |
 | ---| ---| ---|
-| ![Landing](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) | ![fsdaf](./readme/demo/1440x1024.png) |
+| ![Landing](./readme/images/Home%20screen.png) | ![fsdaf](./readme/images/Teaching%20screen.png) | ![fsdaf](./readme/images/Learning%20Screen.png) |
 
 <br><br>
 
@@ -55,12 +55,11 @@
 
 
 ### User Screens (Mobile)
-| Login screen  | Register screen | Landing screen | Loading screen |
+| Login screen  | Register screen | Home screen |
 | ---| ---| ---| ---|
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
-| Home screen  | Learning Screen | Teaching Screen | Checkout Screen |
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
-
+| ![Landing](./readme/images/Login.png) | ![fsdaf](./readme/images/signup.png) | ![fsdaf](./readme/images/Home%20screen.png) | 
+| Learning Screen | Teaching Screen | 
+| ![Landing](./readme/images/Learning%20Screen.png) | ![fsdaf](./readme/images/Teaching%20screen.png) | 
 
 
 <br><br>

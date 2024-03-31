@@ -58,7 +58,8 @@
 | Login screen  | Register screen | Landing screen |
 | ---| ---| ---| ---|
 | ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
-| Home screen  | Learning Screen | Teaching Screen |
+| Home screen  | Learning screen | Teaching screen |
+| ---| ---| ---| ---|
 | ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
 
 

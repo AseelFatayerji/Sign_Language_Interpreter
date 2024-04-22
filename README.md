@@ -7,7 +7,8 @@
 
 >This mobile application enables users to upload files for sign language analysis or to receive real-time interpretation, simplifying the process of learning sign language.
 >
-> Silent Learning is designed to assist individuals eager to learn and instruct in sign language. Its live interpretation feature enables learners to monitor their advancement and receive constructive feedback for enhancement. Additionally, the app offers two distinct modes: a Learning Mode for students and a Teaching Mode for educators. The latter permits instructors to expand the app's database by incorporating new signs, ensuring the content remains current and comprehensive.
+> Silent Learning is an app that helps people learn sign language. It gives feedback to help learners improve. There are two parts: one for students to learn and one for teachers to add new signs, which keeps the app's sign language collection fresh and full.
+
 
 ### User Stories
 - As a student, I want to practice sign language and receive guidance to improve.
@@ -33,9 +34,9 @@
 
 
 ### Mockups
-| Home screen  | Teacher Screen | Student Screen |
+| Home screen  | Teacher Screen | Translating Screen | Language Screen |
 | ---| ---| ---|
-| ![Landing](./readme/images/Home%20screen.png) | ![fsdaf](./readme/images/Teaching%20screen.png) | ![fsdaf](./readme/images/Learning%20Screen.png) |
+| ![Landing](./readme/images/Home%20screen.png) | ![fsdaf](./readme/images/Teaching%20screen.png) | ![fsdaf](./readme/images/Learning%20Screen.png) |![fsdaf](./readme/images/Language%20screen.png) |
 
 <br><br>
 
@@ -58,9 +59,9 @@
 | Home screen  | Teacher Screen | Student Screen |
 | ---| ---| ---|
 | ![Landing](./readme/images/Home%20screen.png) | ![fsdaf](./readme/images/Teaching%20screen.png) | ![fsdaf](./readme/images/Learning%20Screen.png) |
-| Login screen  | Register Screen | Loding Screen |
+| Login screen  | Register Screen | Loading Screen |
 | ---| ---| ---|
-| ![Landing](./readme/images/Login.png) | ![fsdaf](./readme/images/signup.png) | ![fsdaf](./readme/images/Learning%20Screen.png) |
+| ![Landing](./readme/images/Login.png) | ![fsdaf](./readme/images/signup.png) | ![fsdaf](./readme/images/Loading%20Screen.png) |
 
 
 <br><br>

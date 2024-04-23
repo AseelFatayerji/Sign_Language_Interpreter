@@ -35,7 +35,7 @@
 
 ### Mockups
 | Home screen  | Teacher Screen | Translating Screen | Language Screen |
-| ---| ---| ---|
+| ---| ---| ---| ---|
 | ![Landing](./readme/images/Home%20screen.png) | ![fsdaf](./readme/images/Teaching%20screen.png) | ![fsdaf](./readme/images/Learning%20Screen.png) |![fsdaf](./readme/images/Language%20screen.png) |
 
 <br><br>

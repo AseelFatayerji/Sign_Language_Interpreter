@@ -45,7 +45,7 @@
 
 ###  Architecting Data Excellence: Innovative Database Design Strategies:
 
-- Insert ER Diagram here
+![fsdaf](./readme/images/mongo_database_v1.png)
 
 
 <br><br>

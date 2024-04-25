@@ -11,8 +11,9 @@
 
 
 ### User Stories
-- As a student, I want to practice sign language and receive guidance to improve.
-- As a teacher, I want to make sure that my students can practice sign language in my absence and have the most up-to-date information possible.
+- As a user, I want to easily understand sign language so that I can accommodate those with hearing and speaking disabilities.
+- As a registered teacher, I want to ensure that the app has the most up-to-date word bank so that anyone using the app can express themselves properly.
+- As a system admin, I want to manage teacher accounts so that I can ensure the smooth operation of the translation service and maintain data security.
 
 <br><br>
 <!-- Tech stack -->

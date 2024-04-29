@@ -3,16 +3,17 @@ import numpy as np
 import math
 import time
 from cvzone.HandTrackingModule import HandDetector
+from cvzone.ClassificationModule import Classifier
 
 # For webcam input:
 cap = cv2.VideoCapture(0)
 detect = HandDetector(maxHands=1)
-
+classify = Classifier("C:/Users/BOB/Desktop/Boot Camp/Sign_Language_Interpreter/frontend/model/keras_model.h5", "C:/Users/BOB/Desktop/Boot Camp/Sign_Language_Interpreter/frontend/model/labels.txt")
+labels = ['A','B','C']
 offset = 20
 image_size = 300
 count = 0
 
-folder = 'C:/Users/BOB/Desktop/Boot Camp/Sign_Language_Interpreter/frontend/data/letters/b'
 while cap.isOpened():
     success, image = cap.read()
     if not success:
@@ -33,7 +34,8 @@ while cap.isOpened():
           wGap = math.ceil((image_size - wCal)/2)
           imgResize = cv2.resize(imgRight,(wCal,image_size))
           imgWhite[:, wGap:wCal+wGap] = imgResize      
-          
+        #   prediction , index = classify.getPrediction(image)
+        #   print(prediction,index)
         else:
           k = image_size / rw 
           hCal = math.ceil(rh * k)
@@ -44,10 +46,6 @@ while cap.isOpened():
         cv2.imshow('white bgs', imgWhite) 
         cv2.imshow('MediaPipe Hands', image)  
     
-        key = cv2.waitKey(1)
-        if key == ord('s'):
-          count += 1
-          cv2.imwrite(f'{folder}/Image_{time.time()}.jpg', imgWhite)
-          print(count)
+        cv2.waitKey(1)
     
 cap.release()

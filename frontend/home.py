@@ -17,7 +17,7 @@ class MyApp(App):
         screen.add_widget(Button(text='Button 1'))      
         screen.add_widget(self.image)
         
-        nav.add_widget(Button(text=kivysome.icon('comment', 24)))  
+        # nav.add_widget(Button(text=kivysome.icon('comment', 24)))  
         nav.add_widget(Button(text='Button 3'))
         nav.add_widget(Button(text='Button 4'))
         screen.add_widget(nav)

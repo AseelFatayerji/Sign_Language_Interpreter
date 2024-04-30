@@ -8,7 +8,7 @@ from cvzone.ClassificationModule import Classifier
 # For webcam input:
 cap = cv2.VideoCapture(0)
 detect = HandDetector(maxHands=1)
-classify = Classifier("C:/Users/BOB/Desktop/Boot Camp/Sign_Language_Interpreter/frontend/model/keras_model.h5", "C:/Users/BOB/Desktop/Boot Camp/Sign_Language_Interpreter/frontend/model/labels.txt")
+classify = Classifier("model/keras_model.h5", "model/labels.txt")
 labels = ['A','B','C']
 offset = 20
 image_size = 300

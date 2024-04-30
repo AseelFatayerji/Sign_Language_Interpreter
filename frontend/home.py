@@ -1,24 +1,14 @@
-# from kivymd.app import MDApp
-from kivy.app import App
+from kivymd.app import MDApp
 from kivy.lang import Builder
-
-from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.boxlayout import BoxLayout
 # import kivysome
 # kivysome.enable( "https://kit.fontawesome.com/3466402afb.js", group=kivysome.FontGroup.REGULAR)
-class MainWindow(Screen):
+class NavBar(BoxLayout):
     pass
-
-class SecondWindow(Screen):
-    pass
-
-class WindowManager(ScreenManager):
-    pass
-
-class SilentLearning(App):
+class SilentLearning(MDApp):
 
     def build(self):
-        
-        return Builder.load_file('components/main.kv')
+        return Builder.load_file('components/navbar.kv')
 
 
 if __name__ == '__main__':

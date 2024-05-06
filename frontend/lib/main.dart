@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         bottomNavigationBar: BottomNavigationBar(
           items: const [
             BottomNavigationBarItem(
-                icon: Icon(Icons.language), label: "Set Language"),
+                icon: Icon(Icons.translate), label: "Set Language"),
             BottomNavigationBarItem(
                 icon: Icon(Icons.home), label: "Home"),
             BottomNavigationBarItem(

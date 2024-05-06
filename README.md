@@ -21,8 +21,9 @@
 
 ###  Silent Learning is built using the following technologies:
 
-- This project uses the Mediapip and OpenCV packages in Python to create a wireframe that tracks the user's hand and body movements to correctly interpret the signs being done.
-- For persistent storage (database), the app uses the MySQL package which allows the app to connect to a database containing all the signs as well as add to it.
+- This project uses the Mediapip and Tensorflow integarted with Fluuter to create a wireframe that tracks the user's hand and body movements to correctly interpret the signs being done.
+- For persistent storage (database), the app uses the MongoDB package which allows the app to connect to a database containing all the users.
+- The Tensorflow package comes equiped with Keras which allows us to load in the models and update them without the need for a deticated databse.
 
 <br><br>
 <!-- UI UX -->

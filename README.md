@@ -21,7 +21,7 @@
 
 ###  Silent Learning is built using the following technologies:
 
-- This project uses the Mediapip and Tensorflow integarted with Fluuter to create a wireframe that tracks the user's hand and body movements to correctly interpret the signs being done.
+- This project uses the Mediapipe and Tensorflow integarted with Flutter to create a wireframe that tracks the user's hand and body movements to correctly interpret the signs being done.
 - For persistent storage (database), the app uses the MongoDB package which allows the app to connect to a database containing all the users.
 - The Tensorflow package comes equiped with Keras which allows us to load in the models and update them without the need for a deticated databse.
 
@@ -58,7 +58,7 @@
 
 
 ### User Screens (Mobile)
-| Home screen  | Teacher Screen | Student Screen |
+| Home screen  | Teacher Screen | Translating Screen |
 | ---| ---| ---|
 | ![Landing](./readme/images/Home%20screen.png) | ![fsdaf](./readme/images/Teaching%20screen.png) | ![fsdaf](./readme/images/Learning%20Screen.png) |
 | Login screen  | Register Screen | Loading Screen |

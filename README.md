@@ -61,9 +61,9 @@
 | Home screen  | Teacher Screen | Translating Screen |
 | ---| ---| ---|
 | ![Landing](./readme/images/Home%20screen.png) | ![fsdaf](./readme/images/Teaching%20screen.png) | ![fsdaf](./readme/images/Learning%20Screen.png) |
-| Login screen  | Register Screen | Loading Screen |
+| Login screen  | Admin Screen | Loading Screen |
 | ---| ---| ---|
-| ![Landing](./readme/images/Login.png) | ![fsdaf](./readme/images/signup.png) | ![fsdaf](./readme/images/Loading%20Screen.png) |
+| ![Landing](./readme/images/Login.png) | ![fsdaf](./readme/images/admin.png) | ![fsdaf](./readme/images/Loading%20Screen.png) |
 
 
 <br><br>

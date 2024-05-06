@@ -11,7 +11,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Silent Learning',
-      home: const FirstPage(),
+      home: Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          items: const [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.language), label: "Set Language"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.home), label: "Home"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.video_call), label: "Translate"),
+          ],
+        ),
+      ),
     );
   }
 }

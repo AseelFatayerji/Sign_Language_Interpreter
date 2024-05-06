@@ -11,7 +11,8 @@ class FirstPage extends StatelessWidget {
       body: Center(
         child: TextButton(
           onPressed: () {},
-          child: const Text('Next'),
+          child: const Text('Start'),
+          
         ),
       ),
     );

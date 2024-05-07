@@ -6,7 +6,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-         backgroundColor: Color.fromARGB(255, 37, 35, 38),
+         backgroundColor: const Color.fromARGB(255, 37, 35, 38),
       ),
       body: Center(
         child: TextButton(

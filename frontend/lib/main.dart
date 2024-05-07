@@ -13,7 +13,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     int myIndex = 1;
-    List<Widget> pages = const [LanguagePage(),HomePage(),TranslationPage() , ];
+    List<Widget> pages = const [
+      LanguagePage(),
+      HomePage(),
+      TranslationPage(),
+    ];
     return MaterialApp(
       title: 'Silent Learning',
       home: Scaffold(
@@ -23,9 +27,8 @@ class MyApp extends StatelessWidget {
         ),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: const Color.fromARGB(255, 37, 37, 37),
-          currentIndex: myIndex,
           selectedItemColor: Colors.white,
-          unselectedItemColor: const Color.fromARGB(100, 146, 146, 146),
+          unselectedItemColor: const Color.fromARGB(255, 146, 146, 146),
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.translate),
@@ -35,10 +38,10 @@ class MyApp extends StatelessWidget {
             BottomNavigationBarItem(
                 icon: Icon(Icons.video_call), label: "Translate"),
           ],
-          type: BottomNavigationBarType.shifting,
           onTap: (int index) {
             myIndex = index;
-          },
+          },          
+          currentIndex: myIndex,
         ),
       ),
     );

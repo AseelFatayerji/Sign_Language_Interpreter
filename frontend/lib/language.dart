@@ -11,7 +11,7 @@ class TranslationPage extends StatelessWidget {
       body: Center(
         child: TextButton(
           onPressed: () {},
-          child: const Text('Translating'),
+          child: const Text('Select Language'),
           
         ),
       ),

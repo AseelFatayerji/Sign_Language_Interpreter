@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
           style: TextButton.styleFrom(
             backgroundColor: const Color.fromARGB(255, 113, 212, 204),
             padding:
-                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10.0),
           ),
           child: const Text(
             'Start',

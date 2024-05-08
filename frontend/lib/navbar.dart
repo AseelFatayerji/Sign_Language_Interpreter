@@ -42,7 +42,9 @@ class _NavbarState
                 icon: Icon(Icons.video_call), label: "Translate"),
           ],
           onTap: (int index) {
-            myIndex = index;
+            setState(() {
+              myIndex = index;
+            });
           },          
           currentIndex: myIndex,
         ),

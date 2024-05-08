@@ -10,6 +10,7 @@ class TranslationPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 37, 35, 38),
       ),
+      backgroundColor: Colors.black38,
       body: Align(
         alignment: Alignment.topCenter,
         child: Container(

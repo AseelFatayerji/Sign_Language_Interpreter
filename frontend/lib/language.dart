@@ -8,6 +8,7 @@ class LanguagePage extends StatelessWidget {
       appBar: AppBar(
          backgroundColor: const Color.fromARGB(255, 37, 35, 38),
       ),
+      backgroundColor: Colors.black38,
       body: Center(
         child: TextButton(
           onPressed: () {},

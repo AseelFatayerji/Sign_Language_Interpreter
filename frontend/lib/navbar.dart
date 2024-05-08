@@ -31,6 +31,7 @@ class _NavbarState extends State<Navbar> {
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: const Color.fromARGB(255, 37, 35, 38),
         currentIndex: _selectedIndex,
+        iconSize: 35,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(

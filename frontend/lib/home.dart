@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
             'Start',
             style: TextStyle(
               color: Colors.white,
-              fontSize: 18.0,
+              fontSize: 24.0,
             ),
           ),
         ),

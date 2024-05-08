@@ -9,12 +9,22 @@ class LanguagePage extends StatelessWidget {
          backgroundColor: const Color.fromARGB(255, 37, 35, 38),
       ),
       backgroundColor: Colors.black38,
-      body: Center(
-        child: TextButton(
-          onPressed: () {},
-          child: const Text('Select Language'),
-          
-        ),
+      body: Align(
+        alignment: Alignment.bottomCenter,
+        child: Container(
+          decoration: BoxDecoration(
+            color: const Color.fromARGB(255, 113, 212, 204),
+            border: Border.all(color: Colors.transparent),
+          ),
+          child: const Text(
+            'Test',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 18.0,
+            ),
+          ),
+
+        )
       ),
     );
   }

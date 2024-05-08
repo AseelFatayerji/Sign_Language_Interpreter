@@ -1,53 +1,63 @@
 import 'package:flutter/material.dart';
-
 import 'home.dart';
-import 'login.dart';
-import 'translate.dart';
 import 'language.dart';
+import 'translate.dart';
 
 class Navbar extends StatefulWidget {
   @override
-  _NavbarState createState() =>
-      _NavbarState();
+  _NavbarState createState() => _NavbarState();
 }
 
-class _NavbarState
-    extends State<Navbar> {
-  
+class _NavbarState extends State<Navbar> {
+  int _selectedIndex = 1;
+  final List<Widget> _screens = <Widget>[
+    const LanguagePage(),
+    const HomePage(),
+    const TranslationPage(),
+  ];
+
+  void _onItemTap(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    
-    int myIndex = 1;
-    List<Widget> pages = const [
-      LanguagePage(),
-      HomePage(),
-      TranslationPage(),
-    ];
     return Scaffold(
-        body: IndexedStack(
-          index: myIndex,
-          children: pages,
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: const Color.fromARGB(255, 37, 37, 37),
-          selectedItemColor: Colors.white,
-          unselectedItemColor: const Color.fromARGB(255, 146, 146, 146),
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.translate),
-              label: "Set Language",
+      body: Center(
+        child: _screens.elementAt(_selectedIndex),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: const Color.fromARGB(255, 37, 35, 38),
+        currentIndex: _selectedIndex,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.translate,
             ),
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.video_call), label: "Translate"),
-          ],
-          onTap: (int index) {
-            setState(() {
-              myIndex = index;
-            });
-          },          
-          currentIndex: myIndex,
-        ),
-      );
+            label: 'Language',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+            ),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.video_call,
+            ),
+            label: 'Transalte',
+          ),
+        ],
+        
+        onTap: _onItemTap,
+        selectedFontSize: 13.0,
+        selectedItemColor: Colors.white,
+        unselectedFontSize: 13.0,
+        unselectedItemColor: const Color.fromARGB(255, 144, 144, 114),
+      ),
+    );
   }
 }

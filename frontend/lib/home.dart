@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 37, 35, 38),
-      ),      
+      ),
       backgroundColor: Colors.black38,
       body: Center(
         child: TextButton(
@@ -18,6 +18,9 @@ class HomePage extends StatelessWidget {
             backgroundColor: const Color.fromARGB(255, 113, 212, 204),
             padding:
                 const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10.0),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
           ),
           child: const Text(
             'Start',

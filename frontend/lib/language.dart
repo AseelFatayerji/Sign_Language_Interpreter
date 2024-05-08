@@ -24,7 +24,7 @@ class LanguagePage extends StatelessWidget {
             ),
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: Column(
-              mainAxisSize: (MainAxisSize.min),
+              mainAxisSize: MainAxisSize.min,
               children: [
                 const Text(
                   'Select Language',

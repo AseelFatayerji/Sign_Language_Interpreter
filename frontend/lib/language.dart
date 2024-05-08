@@ -19,7 +19,7 @@ class LanguagePage extends StatelessWidget {
               border: Border.all(color: Colors.transparent),
             ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Container(
                   color: Colors.white,

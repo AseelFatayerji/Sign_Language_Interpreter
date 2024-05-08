@@ -22,19 +22,19 @@ class LanguagePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  color: Colors.red,
+                  color: Colors.white,
                   margin: const EdgeInsets.symmetric(horizontal: 20),
                   child: const Text(
                     "From",
-                    style: TextStyle(fontSize: 32),
+                    style: TextStyle(fontSize: 28),
                   ),
                 ),
                 Container(
-                  color: Colors.orange,
+                  color: Colors.white,
                   margin: const EdgeInsets.symmetric(horizontal: 10),
                   child: const Text(
                     "To",
-                    style: TextStyle(fontSize: 32),
+                    style: TextStyle(fontSize: 28),
                   ),
                 )
               ],

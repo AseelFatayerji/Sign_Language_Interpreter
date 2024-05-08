@@ -18,6 +18,7 @@ class LanguagePage extends StatelessWidget {
               color: const Color.fromARGB(255, 113, 212, 204),
               border: Border.all(color: Colors.transparent),
             ),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

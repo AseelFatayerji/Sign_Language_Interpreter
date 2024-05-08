@@ -10,18 +10,23 @@ class TranslationPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 37, 35, 38),
       ),
-      backgroundColor: Colors.black38,
       body: Align(
         alignment: Alignment.topCenter,
-        child: TextButton(
-          onPressed: () {},
-          style: TextButton.styleFrom(
-            backgroundColor: const Color.fromARGB(122, 255, 255, 255),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white54,
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(color: Colors.transparent),
           ),
-          child: const Text('Translation',style: TextStyle(
-              color: Colors.white54,
+          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
+          child: const Text(
+            'Translation',
+            style: TextStyle(
+              color: Colors.white70,
               fontSize: 18.0,
-            ),),
+            ),
+          ),
         ),
       ),
     );

@@ -25,6 +25,7 @@ class LanguagePage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: Column(
               mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 const Text(
                   'Select Language',
@@ -33,11 +34,14 @@ class LanguagePage extends StatelessWidget {
                     fontSize: 28.0,
                   ),
                 ),
+                SizedBox(
+                  height: 30,
+                ),
                 Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 20),
+                        margin: const EdgeInsets.symmetric(horizontal: 30),
                         child: TextButton(
                           onPressed: () {},
                           style: TextButton.styleFrom(
@@ -58,7 +62,7 @@ class LanguagePage extends StatelessWidget {
                         ),
                       ),
                       Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 10),
+                        margin: const EdgeInsets.symmetric(horizontal: 30),
                         child: TextButton(
                           onPressed: () {},
                           style: TextButton.styleFrom(

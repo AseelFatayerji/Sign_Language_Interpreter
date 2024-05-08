@@ -32,9 +32,10 @@ class LanguagePage extends StatelessWidget {
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 28.0,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Row(

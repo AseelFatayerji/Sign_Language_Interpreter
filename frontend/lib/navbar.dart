@@ -53,6 +53,7 @@ class _NavbarState extends State<Navbar> {
         ],
         
         onTap: _onItemTap,
+        
         selectedFontSize: 13.0,
         selectedItemColor: Colors.white,
         unselectedFontSize: 13.0,

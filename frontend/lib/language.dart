@@ -19,12 +19,13 @@ class LanguagePage extends StatelessWidget {
               border: Border.all(color: Colors.transparent),
             ),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
                   color: Colors.red,
-                  margin: const EdgeInsets.symmetric(horizontal: 10),
+                  margin: const EdgeInsets.symmetric(horizontal: 20),
                   child: const Text(
-                    "Text nest1",
+                    "From",
                     style: TextStyle(fontSize: 32),
                   ),
                 ),
@@ -32,7 +33,7 @@ class LanguagePage extends StatelessWidget {
                   color: Colors.orange,
                   margin: const EdgeInsets.symmetric(horizontal: 10),
                   child: const Text(
-                    "Text nest2",
+                    "To",
                     style: TextStyle(fontSize: 32),
                   ),
                 )

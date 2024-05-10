@@ -63,9 +63,13 @@ class HomePage extends StatelessWidget {
                     decoration: const ShapeDecoration(
                         color: Color.fromARGB(255, 238, 238, 238),
                         shape: CircleBorder()),
-                    height: 150,
-                    width: 150,
-                    // child: Image(image: AssetImage()),
+                    height: 160,
+                    width: 160,
+                    padding:
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                    child: const Image(
+                        alignment: Alignment.center,
+                        image: AssetImage("assets/logo-transparent.png"),),
                   ),
                 )
               ])),

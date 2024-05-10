@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
           splashIconSize: 200,
           centered: true,
           nextScreen: Navbar(),
-          splashTransition: SplashTransition.scaleTransition),
+          splashTransition: SplashTransition.fadeTransition),
     );
   }
 }

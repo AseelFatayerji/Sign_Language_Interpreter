@@ -11,26 +11,47 @@ class HomePage extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 37, 35, 38),
       ),
       backgroundColor: Colors.black38,
-      body: Center(
-        child: TextButton(
-          onPressed: () {},
-          style: TextButton.styleFrom(
-            backgroundColor: const Color.fromARGB(255, 113, 212, 204),
-            padding:
-                const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10.0),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
+      body: Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            decoration: BoxDecoration(
+              color: const Color.fromARGB(255, 238, 238, 238),
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(20.0),
+                topRight: Radius.circular(20.0),
+              ),
+              border: Border.all(color: Colors.transparent),
             ),
-          ),
-          child: const Text(
-            'Start',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 24.0,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            child: const Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'How to use',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Text(
+                  '1.Allow camera use.\n2.Stand in front of the camera with both hands visible.\n3.Click on the camera icon.\n4.Happy signing :).\n5.Change the selected language in the language section (Optional).',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(
+                  height: 250,
+                ),
+              ],
             ),
-          ),
-        ),
-      ),
+          )),
     );
   }
 }

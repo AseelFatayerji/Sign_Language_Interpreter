@@ -7,29 +7,30 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 37, 35, 38),
-      ),
-      backgroundColor: Colors.black38,
+      backgroundColor: Colors.white,
       body: Align(
-        alignment: Alignment.topCenter,
-        child: Container(
-          decoration: BoxDecoration(
-            color: Colors.white54,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(color: Colors.transparent),
-          ),
-          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 5),
-          child: const Text(
-            'Translation',
-            style: TextStyle(
-              color: Colors.white70,
-              fontSize: 18.0,
-            ),
-          ),
-        ),
-      ),
+          alignment: Alignment.center,
+          child: Column(
+            children: [
+              Container(
+                height: 300,
+                width: 300,
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                child: const Image(
+                  alignment: Alignment.center,
+                  image: AssetImage("assets/logo-transparent.png"),
+                ),
+              ),
+              const Text(
+                'Silent Learning',
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 20.0,
+                ),
+              )
+            ],
+          )),
     );
   }
 }

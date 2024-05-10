@@ -11,6 +11,7 @@ class SplashScreen extends StatelessWidget {
       body: Align(
           alignment: Alignment.center,
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Container(
                 height: 200,

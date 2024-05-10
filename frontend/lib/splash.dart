@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({
-    Key? key,
-  }) : super(key: key);
+class SplashScreen extends StatefulWidget {
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +28,7 @@ class SplashScreen extends StatelessWidget {
               const Text(
                 'Silent Learning',
                 style: TextStyle(
-                  color:  Color.fromARGB(255, 113, 212, 204),
+                  color: Color.fromARGB(255, 113, 212, 204),
                   fontWeight: FontWeight.bold,
                   fontSize: 22.0,
                 ),

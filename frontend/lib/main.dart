@@ -13,12 +13,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Silent Learning',
-      home: const SplashScreen() 
-      // AnimatedSplashScreen(
-      //     duration: 4000,
-      //     splash: const SplashScreen(),
-      //     nextScreen: Navbar(),
-      //     splashTransition: SplashTransition.fadeTransition),
+      home: AnimatedSplashScreen(
+          duration: 3000,
+          splash: SplashScreen(),
+          centered: true,
+          nextScreen: Navbar(),
+          splashTransition: SplashTransition.fadeTransition),
     );
   }
 }

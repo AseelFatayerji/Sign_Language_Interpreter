@@ -13,8 +13,8 @@ class SplashScreen extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                height: 300,
-                width: 300,
+                height: 200,
+                width: 200,
                 padding:
                     const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                 child: const Image(
@@ -25,8 +25,9 @@ class SplashScreen extends StatelessWidget {
               const Text(
                 'Silent Learning',
                 style: TextStyle(
-                  color: Colors.white70,
-                  fontSize: 20.0,
+                  color:  Color.fromARGB(255, 113, 212, 204),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 22.0,
                 ),
               )
             ],

@@ -7,14 +7,17 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+        alignment: Alignment.bottomCenter,
+        height: 200,
+        width: 200,
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/logo-transparent.png"),
-            fit: BoxFit.cover,
+            fit: BoxFit.contain,
           ),
         ),
         child: const Text(
-          'Silent Learning',
+          '\n\nSilent Learning',
           style: TextStyle(
             color: Color.fromARGB(255, 113, 212, 204),
             fontWeight: FontWeight.bold,

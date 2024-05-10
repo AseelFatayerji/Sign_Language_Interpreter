@@ -14,9 +14,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Silent Learning',
       home: AnimatedSplashScreen(
-          duration: 3000,
+          duration: 10000,
           splash: const SplashScreen(),
-          splashIconSize: 200,
+          splashIconSize: 300,
           centered: true,
           nextScreen: Navbar(),
           splashTransition: SplashTransition.fadeTransition),

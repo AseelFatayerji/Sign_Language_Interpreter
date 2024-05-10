@@ -15,10 +15,11 @@ class MyApp extends StatelessWidget {
       title: 'Silent Learning',
       home: AnimatedSplashScreen(
           duration: 3000,
-          splash: SplashScreen(),
+          splash: const SplashScreen(),
+          splashIconSize: 200,
           centered: true,
           nextScreen: Navbar(),
-          splashTransition: SplashTransition.fadeTransition),
+          splashTransition: SplashTransition.scaleTransition),
     );
   }
 }

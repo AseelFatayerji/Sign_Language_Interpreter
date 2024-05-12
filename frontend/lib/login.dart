@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({
-    Key? key,
-  }) : super(key: key);
+class LoginPage extends StatefulWidget {
+  @override
+  _LoginPageState createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,13 +33,13 @@ class LoginPage extends StatelessWidget {
                     ),
                     border: Border.all(color: Colors.transparent),
                   ),
-                  child: const Column(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 50,
                       ),
-                      Text(
+                      const Text(
                         'Login',
                         style: TextStyle(
                           color: Colors.black,
@@ -40,12 +47,31 @@ class LoginPage extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      // Row(
-                      //   children:[
-                      //     icon
-                      //   ]
-                      // ),
-                      SizedBox(
+                      Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            TextFormField(
+                              obscureText: true,
+                              controller: _email,
+                              decoration: const InputDecoration(
+                                  labelText: 'example@gmail.co',
+                                  // prefixIcon: Icon(Icons.),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(8)),)),
+                            ),
+                            TextFormField(
+                                obscureText: true, controller: _password,decoration: const InputDecoration(
+                                  labelText: 'password',
+                                  // prefixIcon: Icon(Icons.),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(8)),)))
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
                         height: 100,
                       ),
                     ],
@@ -59,11 +85,12 @@ class LoginPage extends StatelessWidget {
                         shape: CircleBorder()),
                     height: 160,
                     width: 160,
-                    padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 15, vertical: 15),
                     child: const Image(
-                        alignment: Alignment.center,
-                        image: AssetImage("assets/logo-transparent.png"),),
+                      alignment: Alignment.center,
+                      image: AssetImage("assets/logo-transparent.png"),
+                    ),
                   ),
                 )
               ])),

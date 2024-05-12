@@ -15,7 +15,7 @@ class _NavbarState extends State<Navbar> {
     const LanguagePage(),
     const HomePage(),
     TranslationPage(),
-    const LoginPage(),
+    LoginPage(),
   ];
 
   void _onItemTap(int index) {

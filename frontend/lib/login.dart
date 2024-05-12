@@ -54,10 +54,15 @@ class _LoginPageState extends State<LoginPage> {
                             TextFormField(
                               obscureText: true,
                               controller: _email,
-                              decoration: const InputDecoration(
-                                  labelText: 'example@gmail.co',
-                                  prefixIcon: Icon(Icons.email),
-                                  border: OutlineInputBorder(
+                              decoration: InputDecoration(
+                                  labelText: 'example@gmail.com',
+                                  prefixIcon: Container(
+                                    color: const Color.fromARGB(
+                                        255, 113, 212, 204),
+                                    child: const Icon(Icons.email,
+                                        color: Colors.white),
+                                  ),
+                                  border: const OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(8)),
                                   )),
@@ -65,10 +70,15 @@ class _LoginPageState extends State<LoginPage> {
                             TextFormField(
                                 obscureText: true,
                                 controller: _password,
-                                decoration: const InputDecoration(
+                                decoration: InputDecoration(
                                     labelText: 'password',
-                                    prefixIcon: Icon(Icons.lock),
-                                    border: OutlineInputBorder(
+                                    prefixIcon: Container(
+                                    color: const Color.fromARGB(
+                                        255, 113, 212, 204),
+                                    child: const Icon(Icons.lock,
+                                        color: Colors.white),
+                                  ),
+                                    border: const OutlineInputBorder(
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(8)),
                                     )))

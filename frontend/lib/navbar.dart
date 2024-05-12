@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'home.dart';
 import 'language.dart';
 import 'translate.dart';
+import 'login.dart';
 
 class Navbar extends StatefulWidget {
   @override
@@ -13,7 +14,8 @@ class _NavbarState extends State<Navbar> {
   final List<Widget> _screens = <Widget>[
     const LanguagePage(),
     const HomePage(),
-    const TranslationPage(),
+    TranslationPage(),
+    const LoginPage(),
   ];
 
   void _onItemTap(int index) {
@@ -25,6 +27,9 @@ class _NavbarState extends State<Navbar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 37, 35, 38),
+      ),
       body: Center(
         child: _screens.elementAt(_selectedIndex),
       ),
@@ -51,10 +56,14 @@ class _NavbarState extends State<Navbar> {
             ),
             label: 'Transalte',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.login_sharp,
+            ),
+            label: 'Login',
+          ),
         ],
-        
         onTap: _onItemTap,
-        
         selectedFontSize: 13.0,
         selectedItemColor: Colors.white,
         unselectedFontSize: 13.0,

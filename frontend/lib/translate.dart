@@ -61,9 +61,6 @@ class _TranslationPageState extends State<TranslationPage> {
       return Container();
     }
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Camera with MediaPipe Hand Tracking'),
-      ),
       body: Center(
         child: AspectRatio(
           aspectRatio: _controller.value.aspectRatio,

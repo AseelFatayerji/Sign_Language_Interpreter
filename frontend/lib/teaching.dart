@@ -7,9 +7,6 @@ class ModelUpdate extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 37, 35, 38),
-      ),
       backgroundColor: Colors.black38,
       body: Align(
         alignment: Alignment.topCenter,

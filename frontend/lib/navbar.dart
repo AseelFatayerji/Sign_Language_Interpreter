@@ -35,7 +35,10 @@ class _NavbarState extends State<Navbar> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: const Color.fromARGB(255, 37, 35, 38),
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
         currentIndex: _selectedIndex,
+        type: BottomNavigationBarType.fixed,
         iconSize: 35,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -64,7 +67,6 @@ class _NavbarState extends State<Navbar> {
           ),
         ],
         onTap: _onItemTap,
-        selectedFontSize: 13.0,
         selectedItemColor: Colors.white,
         unselectedFontSize: 13.0,
         unselectedItemColor: const Color.fromARGB(255, 144, 144, 114),

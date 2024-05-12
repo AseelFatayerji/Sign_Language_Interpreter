@@ -56,18 +56,22 @@ class _LoginPageState extends State<LoginPage> {
                               controller: _email,
                               decoration: const InputDecoration(
                                   labelText: 'example@gmail.co',
-                                  // prefixIcon: Icon(Icons.),
+                                  prefixIcon: Icon(Icons.email),
                                   border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(8)),)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8)),
+                                  )),
                             ),
                             TextFormField(
-                                obscureText: true, controller: _password,decoration: const InputDecoration(
-                                  labelText: 'password',
-                                  // prefixIcon: Icon(Icons.),
-                                  border: OutlineInputBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(8)),)))
+                                obscureText: true,
+                                controller: _password,
+                                decoration: const InputDecoration(
+                                    labelText: 'password',
+                                    prefixIcon: Icon(Icons.lock),
+                                    border: OutlineInputBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(8)),
+                                    )))
                           ],
                         ),
                       ),

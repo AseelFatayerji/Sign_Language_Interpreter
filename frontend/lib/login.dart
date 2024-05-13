@@ -91,8 +91,8 @@ class _LoginPageState extends State<LoginPage> {
                                         topLeft: Radius.circular(8.0),
                                         bottomLeft: Radius.circular(8.0),
                                       ),
-                                      child: Icon(Icons.email,
-                                          color: Colors.white),
+                                      child:
+                                          Icon(Icons.lock, color: Colors.white),
                                     ),
                                     contentPadding: EdgeInsets.all(10),
                                     enabledBorder: OutlineInputBorder(
@@ -102,7 +102,10 @@ class _LoginPageState extends State<LoginPage> {
                                           width: 2),
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(8)),
-                                    )))
+                                    ))),
+                            const SizedBox(
+                              height: 20,
+                            ),
                           ],
                         ),
                       ),

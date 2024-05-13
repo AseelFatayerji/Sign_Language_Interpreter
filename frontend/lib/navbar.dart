@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'global.dart' as global;
 import 'home.dart';
 import 'language.dart';
 import 'translate.dart';
@@ -41,28 +40,7 @@ class _NavbarState extends State<Navbar> {
         currentIndex: _selectedIndex,
         type: BottomNavigationBarType.fixed,
         iconSize: 35,
-        items: (global.isLoggedIn)
-            ? const <BottomNavigationBarItem>[
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.translate,
-                  ),
-                  label: 'Language',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.home,
-                  ),
-                  label: 'Home',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(
-                    Icons.video_call,
-                  ),
-                  label: 'Transalte',
-                ),
-              ]
-            : const <BottomNavigationBarItem>[
+        items: const <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
                   icon: Icon(
                     Icons.translate,

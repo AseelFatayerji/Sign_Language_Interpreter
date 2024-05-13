@@ -71,7 +71,7 @@ class LoginPageState extends State<LoginPage> {
                             TextFormField(
                               controller: _email,
                               decoration: InputDecoration(
-                                  labelText: 'example@gmail.com',
+                                  hintText: 'example@gmail.com',
                                   errorText:
                                       _emailValidate ? "Required Feild" : null,
                                   isDense: true,
@@ -102,7 +102,7 @@ class LoginPageState extends State<LoginPage> {
                                 obscureText: true,
                                 controller: _password,
                                 decoration: InputDecoration(
-                                    labelText: 'password',
+                                    hintText: 'password',
                                     errorText:
                                         _passValidate ? "Required Feild" : null,
                                     isDense: true,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'global.dart' as global;
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -11,11 +12,8 @@ class ProfileScreenState extends State<ProfileScreen> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _name = TextEditingController();
 
-  bool _emailValidate = false;
-  bool _nameValidate = false;
-
-  Future<void> addUser() async {
-    final resp = await http.post(Uri.parse('http://192.168.1.7:3001/auth/${_email.text}/${_name.text}'));
+  Future<void> getUser() async {
+    final resp = await http.post(Uri.parse('http://192.168.1.7:3001/user/${global.email}'));
     if (resp.statusCode == 200) {
       debugPrint(resp.body);      
     }
@@ -66,12 +64,10 @@ class ProfileScreenState extends State<ProfileScreen> {
                           children: [
                             TextFormField(
                               controller: _email,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   labelText: 'example@gmail.com',
-                                  errorText:
-                                      _emailValidate ? "Required Feild" : null,
                                   isDense: true,
-                                  prefixIcon: const Material(
+                                  prefixIcon: Material(
                                     color: Color.fromARGB(255, 113, 212, 204),
                                     borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(8.0),
@@ -81,8 +77,8 @@ class ProfileScreenState extends State<ProfileScreen> {
                                         Icon(Icons.email, color: Colors.white),
                                   ),
                                   contentPadding:
-                                      const EdgeInsets.symmetric(horizontal: 5),
-                                  enabledBorder: const OutlineInputBorder(
+                                       EdgeInsets.symmetric(horizontal: 5),
+                                  enabledBorder:  OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color:
                                             Color.fromARGB(255, 113, 212, 204),
@@ -96,12 +92,10 @@ class ProfileScreenState extends State<ProfileScreen> {
                             ),
                             TextFormField(
                                 controller: _name,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                     labelText: 'name',
-                                    errorText:
-                                        _nameValidate ? "Required Feild" : null,
                                     isDense: true,
-                                    prefixIcon: const Material(
+                                    prefixIcon: Material(
                                       color: Color.fromARGB(255, 113, 212, 204),
                                       borderRadius: BorderRadius.only(
                                         topLeft: Radius.circular(8.0),
@@ -110,9 +104,9 @@ class ProfileScreenState extends State<ProfileScreen> {
                                       child:
                                           Icon(Icons.verified_user, color: Colors.white),
                                     ),
-                                    contentPadding: const EdgeInsets.symmetric(
+                                    contentPadding:  EdgeInsets.symmetric(
                                         horizontal: 5),
-                                    enabledBorder: const OutlineInputBorder(
+                                    enabledBorder:  OutlineInputBorder(
                                       borderSide: BorderSide(
                                           color: Color.fromARGB(
                                               255, 113, 212, 204),
@@ -125,13 +119,8 @@ class ProfileScreenState extends State<ProfileScreen> {
                             ),
                             TextButton(
                               onPressed: () {
-                                setState(() {
-                                  _emailValidate = _email.text.isEmpty;
-                                  _nameValidate = _name.text.isEmpty;
-                                  if (!_emailValidate && !_nameValidate) {
-                                    addUser();
-                                  }
-                                });
+                                // setState(() {
+                                // });
                               },
                               style: TextButton.styleFrom(
                                 backgroundColor:

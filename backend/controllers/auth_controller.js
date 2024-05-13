@@ -10,7 +10,7 @@ const Login = async (req, res) => {
     if (user) {
       if (bcrypt.compare(password, user.password)) {
         const token = jwt.sign({ userId: user._id }, "your-secret-key", {
-          expiresIn: "1h",
+          expiresIn: "2h",
         });
         return res.json({ user, token });
       }
@@ -23,7 +23,7 @@ const Login = async (req, res) => {
 };
 const Signup = async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
-  const { email, name, password } = req.params;
+  const { email, name, password, admin } = req.params;
   try {
     const emailCheck = await User.findOne({ email });
     if (emailCheck) {
@@ -35,9 +35,10 @@ const Signup = async (req, res) => {
       email: email,
       name: name,
       password: hash,
+      admin: admin,
     });
     const token = jwt.sign({ userId: newUser._id }, "your-secret-key", {
-      expiresIn: "1h",
+      expiresIn: "2h",
     });
     return res.status(201).json({ newUser, token });
   } catch (err) {

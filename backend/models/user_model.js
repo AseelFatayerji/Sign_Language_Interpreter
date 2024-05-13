@@ -11,6 +11,7 @@ const userSchema = new mongoose.Schema({
     unique: true,
   },
   password: String,
+  isAdmin: Number,
 });
 
 const User = mongoose.model("User", userSchema);

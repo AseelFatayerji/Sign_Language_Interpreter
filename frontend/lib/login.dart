@@ -11,6 +11,9 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
 
+  bool _emailValidate = false;
+  bool _passValidate = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,10 +57,12 @@ class _LoginPageState extends State<LoginPage> {
                             TextFormField(
                               obscureText: true,
                               controller: _email,
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                   labelText: 'example@gmail.com',
+                                  errorText:
+                                      _emailValidate ? "Required Feild" : null,
                                   isDense: true,
-                                  prefixIcon: Material(
+                                  prefixIcon: const Material(
                                     color: Color.fromARGB(255, 113, 212, 204),
                                     borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(8.0),
@@ -67,9 +72,9 @@ class _LoginPageState extends State<LoginPage> {
                                         Icon(Icons.email, color: Colors.white),
                                   ),
                                   contentPadding:
-                                      EdgeInsets.symmetric(horizontal: 5),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderSide: BorderSide(
+                                      const EdgeInsets.symmetric(horizontal: 5),
+                                  enabledBorder: const OutlineInputBorder(
+                                    borderSide: const BorderSide(
                                         color:
                                             Color.fromARGB(255, 113, 212, 204),
                                         width: 2),
@@ -83,10 +88,12 @@ class _LoginPageState extends State<LoginPage> {
                             TextFormField(
                                 obscureText: true,
                                 controller: _password,
-                                decoration: const InputDecoration(
+                                decoration: InputDecoration(
                                     labelText: 'password',
+                                    errorText:
+                                        _passValidate ? "Required Feild" : null,
                                     isDense: true,
-                                    prefixIcon: Material(
+                                    prefixIcon: const Material(
                                       color: Color.fromARGB(255, 113, 212, 204),
                                       borderRadius: BorderRadius.only(
                                         topLeft: Radius.circular(8.0),
@@ -95,10 +102,10 @@ class _LoginPageState extends State<LoginPage> {
                                       child:
                                           Icon(Icons.lock, color: Colors.white),
                                     ),
-                                    contentPadding:
-                                        EdgeInsets.symmetric(horizontal: 5),
-                                    enabledBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
+                                    contentPadding: const EdgeInsets.symmetric(
+                                        horizontal: 5),
+                                    enabledBorder: const OutlineInputBorder(
+                                      borderSide: const BorderSide(
                                           color: Color.fromARGB(
                                               255, 113, 212, 204),
                                           width: 2),
@@ -109,7 +116,12 @@ class _LoginPageState extends State<LoginPage> {
                               height: 20,
                             ),
                             TextButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                setState(() {
+                                  _emailValidate = _email.text.isEmpty;
+                                  _passValidate = _password.text.isEmpty;
+                                });
+                              },
                               style: TextButton.styleFrom(
                                 backgroundColor:
                                     const Color.fromARGB(255, 113, 212, 204),

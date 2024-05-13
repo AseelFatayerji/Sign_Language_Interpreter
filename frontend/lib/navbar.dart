@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'global.dart' as global;
 import 'home.dart';
 import 'language.dart';
 import 'translate.dart';
@@ -40,32 +41,53 @@ class _NavbarState extends State<Navbar> {
         currentIndex: _selectedIndex,
         type: BottomNavigationBarType.fixed,
         iconSize: 35,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.translate,
-            ),
-            label: 'Language',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-            ),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.video_call,
-            ),
-            label: 'Transalte',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.login_sharp,
-            ),
-            label: 'Login',
-          ),
-        ],
+        items: (global.isLoggedIn)
+            ? const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.translate,
+                  ),
+                  label: 'Language',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.home,
+                  ),
+                  label: 'Home',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.video_call,
+                  ),
+                  label: 'Transalte',
+                ),
+              ]
+            : const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.translate,
+                  ),
+                  label: 'Language',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.home,
+                  ),
+                  label: 'Home',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.video_call,
+                  ),
+                  label: 'Transalte',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(
+                    Icons.login_sharp,
+                  ),
+                  label: 'Login',
+                ),
+              ],
         onTap: _onItemTap,
         selectedItemColor: Colors.white,
         unselectedFontSize: 13.0,

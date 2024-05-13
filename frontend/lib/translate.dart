@@ -11,7 +11,7 @@ class TranslationPage extends StatefulWidget {
 class _TranslationPageState extends State<TranslationPage> {
   CameraImage? cameraImage;
   CameraController? controller;
-  String output = '';
+  String output = 'Translation';
 
   @override
   void initState() {
@@ -70,14 +70,14 @@ class _TranslationPageState extends State<TranslationPage> {
         Text(output,
             style: const TextStyle(
               color: Colors.white60,
-              backgroundColor: Colors.white38,
+              backgroundColor: Colors.black38,
             )),
-        const SizedBox(height: 20),
+        const SizedBox(height: 10),
         Padding(
-            padding: const EdgeInsets.all(20),
+            padding: const EdgeInsets.all(10),
             child: Container(
-              height: MediaQuery.of(context).size.height * 0.7,
-              width: MediaQuery.of(context).size.width * 0.7,
+              height: MediaQuery.of(context).size.height*0.7,
+              width: MediaQuery.of(context).size.width,
               child: !controller!.value.isInitialized
                   ? Container()
                   : AspectRatio(

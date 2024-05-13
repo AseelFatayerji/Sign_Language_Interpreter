@@ -4,10 +4,10 @@ import 'global.dart' as global;
 
 class LoginPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  LoginPageState createState() => LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class LoginPageState extends State<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _email = TextEditingController();
   final TextEditingController _password = TextEditingController();
@@ -16,12 +16,14 @@ class _LoginPageState extends State<LoginPage> {
   bool _passValidate = false;
 
   Future<void> login() async {
-    final resp = await http.get(Uri.parse('http://192.168.1.7:3001/auth/${_email.text}/${_password.text}'));
+    final resp = await http.get(Uri.parse(
+        'http://192.168.1.7:3001/auth/${_email.text}/${_password.text}'));
     if (resp.statusCode == 200) {
-      global.isLoggedIn = true;
-      debugPrint(resp.body);      
-    }
-    else {
+      debugPrint(resp.body);
+      setState(() {
+        global.isLoggedIn = true;
+      });
+    } else {
       throw Exception('Incorrect email or password');
     }
   }

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class _AdminPanelState extends StatefulWidget {
+class AdminPanel extends StatefulWidget {
   @override
-  __AdminPanelStateState createState() => __AdminPanelStateState();
+  AdminPanelState createState() => AdminPanelState();
 }
 
-class __AdminPanelStateState extends State<_AdminPanelState> {
+class AdminPanelState extends State<AdminPanel> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _email = TextEditingController();
   final TextEditingController _name = TextEditingController();
@@ -15,11 +15,11 @@ class __AdminPanelStateState extends State<_AdminPanelState> {
   bool _nameValidate = false;
 
   Future<void> addUser() async {
-    final resp = await http.post(Uri.parse('http://192.168.1.7:3001/auth/${_email.text}/${_name.text}'));
+    final resp = await http.post(
+        Uri.parse('http://192.168.1.7:3001/auth/${_email.text}/${_name.text}'));
     if (resp.statusCode == 200) {
-      debugPrint(resp.body);      
-    }
-    else {
+      debugPrint(resp.body);
+    } else {
       throw Exception('User already exists');
     }
   }
@@ -107,8 +107,8 @@ class __AdminPanelStateState extends State<_AdminPanelState> {
                                         topLeft: Radius.circular(8.0),
                                         bottomLeft: Radius.circular(8.0),
                                       ),
-                                      child:
-                                          Icon(Icons.verified_user, color: Colors.white),
+                                      child: Icon(Icons.verified_user,
+                                          color: Colors.white),
                                     ),
                                     contentPadding: const EdgeInsets.symmetric(
                                         horizontal: 5),

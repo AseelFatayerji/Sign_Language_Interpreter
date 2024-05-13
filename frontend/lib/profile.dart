@@ -1,13 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({
-    Key? key,
-  }) : super(key: key);
+class ProfileScreen extends StatefulWidget {
+  @override
+  ProfileScreenState createState() => ProfileScreenState();
+}
+
+class ProfileScreenState extends State<ProfileScreen> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _name = TextEditingController();
+
+  bool _emailValidate = false;
+  bool _nameValidate = false;
+
+  Future<void> addUser() async {
+    final resp = await http.post(Uri.parse('http://192.168.1.7:3001/auth/${_email.text}/${_name.text}'));
+    if (resp.statusCode == 200) {
+      debugPrint(resp.body);      
+    }
+    else {
+      throw Exception('User already exists');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       backgroundColor: Colors.black38,
       body: Align(
           alignment: Alignment.bottomCenter,
@@ -27,29 +46,114 @@ class ProfilePage extends StatelessWidget {
                     ),
                     border: Border.all(color: Colors.transparent),
                   ),
-                  child: const Column(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 50,
                       ),
-                      Text(
-                        'Login',
+                      const Text(
+                        'Add User',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Text(
-                        '1.Allow camera use.\n2.Stand in front of the camera with both hands visible.\n3.Click on the camera icon.\n4.Happy signing :).\n5.Change the selected language in the language section (Optional).',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.bold,
+                      Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            TextFormField(
+                              controller: _email,
+                              decoration: InputDecoration(
+                                  labelText: 'example@gmail.com',
+                                  errorText:
+                                      _emailValidate ? "Required Feild" : null,
+                                  isDense: true,
+                                  prefixIcon: const Material(
+                                    color: Color.fromARGB(255, 113, 212, 204),
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(8.0),
+                                      bottomLeft: Radius.circular(8.0),
+                                    ),
+                                    child:
+                                        Icon(Icons.email, color: Colors.white),
+                                  ),
+                                  contentPadding:
+                                      const EdgeInsets.symmetric(horizontal: 5),
+                                  enabledBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color:
+                                            Color.fromARGB(255, 113, 212, 204),
+                                        width: 2),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8)),
+                                  )),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            TextFormField(
+                                controller: _name,
+                                decoration: InputDecoration(
+                                    labelText: 'name',
+                                    errorText:
+                                        _nameValidate ? "Required Feild" : null,
+                                    isDense: true,
+                                    prefixIcon: const Material(
+                                      color: Color.fromARGB(255, 113, 212, 204),
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(8.0),
+                                        bottomLeft: Radius.circular(8.0),
+                                      ),
+                                      child:
+                                          Icon(Icons.verified_user, color: Colors.white),
+                                    ),
+                                    contentPadding: const EdgeInsets.symmetric(
+                                        horizontal: 5),
+                                    enabledBorder: const OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Color.fromARGB(
+                                              255, 113, 212, 204),
+                                          width: 2),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(8)),
+                                    ))),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  _emailValidate = _email.text.isEmpty;
+                                  _nameValidate = _name.text.isEmpty;
+                                  if (!_emailValidate && !_nameValidate) {
+                                    addUser();
+                                  }
+                                });
+                              },
+                              style: TextButton.styleFrom(
+                                backgroundColor:
+                                    const Color.fromARGB(255, 113, 212, 204),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 25.0, vertical: 10.0),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                              child: const Text(
+                                'Adde User',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18.0,
+                                ),
+                              ),
+                            )
+                          ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 100,
                       ),
                     ],
@@ -63,11 +167,12 @@ class ProfilePage extends StatelessWidget {
                         shape: CircleBorder()),
                     height: 160,
                     width: 160,
-                    padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 15, vertical: 15),
                     child: const Image(
-                        alignment: Alignment.center,
-                        image: AssetImage("assets/logo-transparent.png"),),
+                      alignment: Alignment.center,
+                      image: AssetImage("assets/logo-transparent.png"),
+                    ),
                   ),
                 )
               ])),

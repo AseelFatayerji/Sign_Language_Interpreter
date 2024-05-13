@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'global.dart' as global;
+import 'admin.dart';
+import 'teaching.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -19,9 +23,17 @@ class LoginPageState extends State<LoginPage> {
     final resp = await http.get(Uri.parse(
         'http://192.168.1.7:3001/auth/${_email.text}/${_password.text}'));
     if (resp.statusCode == 200) {
-      debugPrint(resp.body);
+      final Map<String, dynamic> json = jsonDecode(resp.body);
+      debugPrint(json['email'].toString());
       setState(() {
         global.isLoggedIn = true;
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          if (global.isAdmin) {
+            return AdminPanel();
+          } else {
+            return ModelUpdate();
+          }
+        }));
       });
     } else {
       throw Exception('Incorrect email or password');

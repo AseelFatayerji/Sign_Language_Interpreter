@@ -62,7 +62,6 @@ class _LoginPageState extends State<LoginPage> {
                         child: Column(
                           children: [
                             TextFormField(
-                              obscureText: true,
                               controller: _email,
                               decoration: InputDecoration(
                                   labelText: 'example@gmail.com',

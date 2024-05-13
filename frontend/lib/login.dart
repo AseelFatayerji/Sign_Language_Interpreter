@@ -66,7 +66,8 @@ class _LoginPageState extends State<LoginPage> {
                                     child:
                                         Icon(Icons.email, color: Colors.white),
                                   ),
-                                  contentPadding: EdgeInsets.all(10),
+                                  contentPadding:
+                                      EdgeInsets.symmetric(horizontal: 5),
                                   enabledBorder: OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color:
@@ -94,7 +95,8 @@ class _LoginPageState extends State<LoginPage> {
                                       child:
                                           Icon(Icons.lock, color: Colors.white),
                                     ),
-                                    contentPadding: EdgeInsets.all(10),
+                                    contentPadding:
+                                        EdgeInsets.symmetric(horizontal: 5),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: BorderSide(
                                           color: Color.fromARGB(
@@ -106,11 +108,27 @@ class _LoginPageState extends State<LoginPage> {
                             const SizedBox(
                               height: 20,
                             ),
+                            TextButton(
+                              onPressed: () {},
+                              style: TextButton.styleFrom(
+                                backgroundColor:
+                                    const Color.fromARGB(255, 113, 212, 204),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 25.0, vertical: 10.0),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                ),
+                              ),
+                              child: const Text(
+                                'Login',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18.0,
+                                ),
+                              ),
+                            )
                           ],
                         ),
-                      ),
-                      const SizedBox(
-                        height: 100,
                       ),
                     ],
                   ),

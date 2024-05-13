@@ -54,31 +54,52 @@ class _LoginPageState extends State<LoginPage> {
                             TextFormField(
                               obscureText: true,
                               controller: _email,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   labelText: 'example@gmail.com',
-                                  prefixIcon: Container(
-                                    color: const Color.fromARGB(
-                                        255, 113, 212, 204),
-                                    child: const Icon(Icons.email,
-                                        color: Colors.white),
+                                  isDense: true,
+                                  prefixIcon: Material(
+                                    color: Color.fromARGB(255, 113, 212, 204),
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(8.0),
+                                      bottomLeft: Radius.circular(8.0),
+                                    ),
+                                    child:
+                                        Icon(Icons.email, color: Colors.white),
                                   ),
-                                  border: const OutlineInputBorder(
+                                  contentPadding: EdgeInsets.all(10),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                        color:
+                                            Color.fromARGB(255, 113, 212, 204),
+                                        width: 2),
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(8)),
                                   )),
                             ),
+                            const SizedBox(
+                              height: 20,
+                            ),
                             TextFormField(
                                 obscureText: true,
                                 controller: _password,
-                                decoration: InputDecoration(
+                                decoration: const InputDecoration(
                                     labelText: 'password',
-                                    prefixIcon: Container(
-                                    color: const Color.fromARGB(
-                                        255, 113, 212, 204),
-                                    child: const Icon(Icons.lock,
-                                        color: Colors.white),
-                                  ),
-                                    border: const OutlineInputBorder(
+                                    isDense: true,
+                                    prefixIcon: Material(
+                                      color: Color.fromARGB(255, 113, 212, 204),
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(8.0),
+                                        bottomLeft: Radius.circular(8.0),
+                                      ),
+                                      child: Icon(Icons.email,
+                                          color: Colors.white),
+                                    ),
+                                    contentPadding: EdgeInsets.all(10),
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: Color.fromARGB(
+                                              255, 113, 212, 204),
+                                          width: 2),
                                       borderRadius:
                                           BorderRadius.all(Radius.circular(8)),
                                     )))

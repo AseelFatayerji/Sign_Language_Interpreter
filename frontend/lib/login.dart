@@ -15,7 +15,7 @@ class _LoginPageState extends State<LoginPage> {
   bool _passValidate = false;
 
   Future<void> login() async {
-    final resp = await http.get(Uri.parse('http://localhost:3001/auth/${_email.text}/${_password.text}'));
+    final resp = await http.get(Uri.parse('http://192.168.1.7:3001/auth/${_email.text}/${_password.text}'));
     if (resp.statusCode == 200) {
       debugPrint(resp.body);      
     }

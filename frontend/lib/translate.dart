@@ -13,6 +13,13 @@ class _TranslationPageState extends State<TranslationPage> {
   CameraController? controller;
   String output = '';
 
+  @override
+  void initState() {
+    super.initState();
+    loadCamera();
+    loadModel();
+  }
+
   loadCamera() {
     controller = CameraController(cameras![0], ResolutionPreset.medium);
     controller!.initialize().then((value) {
@@ -57,7 +64,6 @@ class _TranslationPageState extends State<TranslationPage> {
         model: "assets/model/model.tflite", labels: "assets/model/label.txt");
   }
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(children: [

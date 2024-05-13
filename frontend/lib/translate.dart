@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
-import 'dart:async';
+import 'package:frontend/main.dart';
+import 'package:tensorflow_lite_flutter/tensorflow_lite_flutter.dart';
 
 class TranslationPage extends StatefulWidget {
   @override
@@ -8,66 +9,77 @@ class TranslationPage extends StatefulWidget {
 }
 
 class _TranslationPageState extends State<TranslationPage> {
-  late CameraController _controller;
-  late List<CameraDescription> _cameras;
-  bool _isDetecting = false;
+  CameraImage? cameraImage;
+  CameraController? controller;
+  String output = '';
 
-  @override
-  void initState() {
-    super.initState();
-    availableCameras().then((cameras) {
-      _cameras = cameras;
-      _controller = CameraController(
-        _cameras[0],
-        ResolutionPreset.medium,
-      );
-      _controller.initialize().then((_) {
-        if (!mounted) {
-          return;
-        }
-        setState(() {});
-        _startDetecting();
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  void _startDetecting() {
-    _controller.startImageStream((CameraImage image) {
-      if (!_isDetecting) {
-        _isDetecting = true;
-        processImage(image).then((result) {
-          setState(() {
-            print(result);
+  loadCamera() {
+    controller = CameraController(cameras![0], ResolutionPreset.medium);
+    controller!.initialize().then((value) {
+      if (!mounted) {
+        return;
+      } else {
+        setState(() {
+          controller!.startImageStream((ImageStream) {
+            cameraImage = ImageStream;
+            runModel();
           });
-          _isDetecting = false;
         });
       }
     });
   }
 
-  Future<String> processImage(CameraImage image) async {
-    return "Hand landmarks detected";
+  runModel() async {
+    if (cameraImage != null) {
+      var prediction = await Tflite.runModelOnFrame(
+        bytesList: cameraImage!.planes.map((plane) {
+          return plane.bytes;
+        }).toList(),
+        imageHeight: cameraImage!.height,
+        imageWidth: cameraImage!.width,
+        imageMean: 127.5,
+        imageStd: 127.5,
+        rotation: 90,
+        numResults: 2,
+        threshold: 0.1,
+        asynch: true,
+      );
+      prediction!.forEach((element) {
+        setState(() {
+          output = element['label'];
+        });
+      });
+    }
+  }
+
+  loadModel() async {
+    await Tflite.loadModel(
+        model: "assets/model/model.tflite", labels: "assets/model/label.txt");
   }
 
   @override
   Widget build(BuildContext context) {
-    if (_controller == null || !_controller.value.isInitialized) {
-      return Container();
-    }
     return Scaffold(
-      body: Center(
-        child: AspectRatio(
-          aspectRatio: _controller.value.aspectRatio,
-          child: CameraPreview(_controller),
-        ),
-      ),
+      body: Column(children: [
+        Text(output,
+            style: const TextStyle(
+              color: Colors.white60,
+              backgroundColor: Colors.white38,
+            )),
+        const SizedBox(height: 20),
+        Padding(
+            padding: const EdgeInsets.all(20),
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.7,
+              width: MediaQuery.of(context).size.width * 0.7,
+              child: !controller!.value.isInitialized
+                  ? Container()
+                  : AspectRatio(
+                      aspectRatio: controller!.value.aspectRatio,
+                      child: CameraPreview(controller!),
+                    ),
+            ))
+      ]),
     );
   }
 }
-

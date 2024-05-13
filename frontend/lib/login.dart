@@ -16,8 +16,11 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> login() async {
     final resp = await http.get(Uri.parse('http://localhost:3001/auth/${_email.text}/${_password.text}'));
-    if (resp.statusCode != 200) {
-      throw Exception('Uncorrect email or password');
+    if (resp.statusCode == 200) {
+      debugPrint(resp.body);      
+    }
+    else {
+      throw Exception('Incorrect email or password');
     }
   }
 

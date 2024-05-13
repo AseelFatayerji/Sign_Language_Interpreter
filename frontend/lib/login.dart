@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
   @override
@@ -13,6 +13,13 @@ class _LoginPageState extends State<LoginPage> {
 
   bool _emailValidate = false;
   bool _passValidate = false;
+
+  Future<void> login() async {
+    final resp = await http.get(Uri.parse('http://localhost:3001/auth/${_email.text}/${_password.text}'));
+    if (resp.statusCode != 200) {
+      throw Exception('Uncorrect email or password');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                                   contentPadding:
                                       const EdgeInsets.symmetric(horizontal: 5),
                                   enabledBorder: const OutlineInputBorder(
-                                    borderSide: const BorderSide(
+                                    borderSide: BorderSide(
                                         color:
                                             Color.fromARGB(255, 113, 212, 204),
                                         width: 2),
@@ -105,7 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                                     contentPadding: const EdgeInsets.symmetric(
                                         horizontal: 5),
                                     enabledBorder: const OutlineInputBorder(
-                                      borderSide: const BorderSide(
+                                      borderSide: BorderSide(
                                           color: Color.fromARGB(
                                               255, 113, 212, 204),
                                           width: 2),
@@ -120,6 +127,9 @@ class _LoginPageState extends State<LoginPage> {
                                 setState(() {
                                   _emailValidate = _email.text.isEmpty;
                                   _passValidate = _password.text.isEmpty;
+                                  if (!_emailValidate && !_passValidate) {
+                                    login();
+                                  }
                                 });
                               },
                               style: TextButton.styleFrom(

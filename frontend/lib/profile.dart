@@ -106,10 +106,10 @@ class ProfileScreenState extends State<ProfileScreen> {
                               height: 20,
                             ),
                             TextFormField(
-                              controller: _name,
+                              controller: _pass,
                               obscureText: true,
                               decoration: const InputDecoration(
-                                  labelText: "Unhcanged Password",
+                                  labelText: "Unchanged Password",
                                   contentPadding:
                                       EdgeInsets.symmetric(horizontal: 5),
                                   enabledBorder: OutlineInputBorder(

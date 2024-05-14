@@ -1,8 +1,8 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'global.dart' as global;
+import 'navbar.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -29,7 +29,7 @@ class ProfileScreenState extends State<ProfileScreen> {
         userEmail = json['user']['email'];
         userPass = json['user']['password'];
       });
-    } 
+    }
   }
 
   void initState() {
@@ -145,8 +145,15 @@ class ProfileScreenState extends State<ProfileScreen> {
                               ),
                               TextButton(
                                 onPressed: () {
-                                  // setState(() {
-                                  // });
+                                  setState(() {
+                                    global.isLoggedIn = false;
+                                    global.email = "";
+                                    global.isAdmin = false;
+                                    Navigator.push(context,
+                                        MaterialPageRoute(builder: (context) {
+                                      return Navbar();
+                                    }));
+                                  });
                                 },
                                 style: TextButton.styleFrom(
                                   backgroundColor:

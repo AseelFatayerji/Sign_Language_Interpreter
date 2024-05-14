@@ -11,7 +11,7 @@ class TeachNav extends StatefulWidget {
 }
 
 class _TeachNavState extends State<TeachNav> {
-  int _selectedIndex = 2;
+  int _selectedIndex = 1;
   final List<Widget> _screens = <Widget>[    
     const HomePage(),    
     ProfileScreen(),

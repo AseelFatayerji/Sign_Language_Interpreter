@@ -14,6 +14,15 @@ const setValue = (items, value) => {
     return temp;
   }
 };
+const getAll = async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  try {
+    const users = await User.find();
+    return res.json(users);
+  } catch (err) {
+    return res.status(500).send("Internal server error");
+  }
+};
 
 const getUser = async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -45,4 +54,4 @@ const deleteUser = async (req, res) => {
     return res.status(500).send(err);
   }
 };
-module.exports = { getUser, editUser, deleteUser };
+module.exports = { getUser, editUser, deleteUser, getAll };

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'global.dart' as global;
@@ -12,12 +14,21 @@ class ProfileScreenState extends State<ProfileScreen> {
   final TextEditingController _email = TextEditingController();
   final TextEditingController _name = TextEditingController();
 
+  var userName = "";
+  var userEmail = "";
+  var userPass = "";
+
   Future<void> getUser() async {
-    final resp = await http.post(Uri.parse('http://192.168.1.7:3001/user/${global.email}'));
+    final resp = await http
+        .post(Uri.parse('http://192.168.1.7:3001/user/${global.email}'));
     if (resp.statusCode == 200) {
-      debugPrint(resp.body);      
-    }
-    else {
+      final Map<String, dynamic> json = jsonDecode(resp.body);
+      setState(() {
+        userName = json['user']['name'];
+        userEmail = json['user']['email'];
+        userPass = json['user']['password'];
+      });
+    } else {
       throw Exception('User already exists');
     }
   }
@@ -50,9 +61,9 @@ class ProfileScreenState extends State<ProfileScreen> {
                       const SizedBox(
                         height: 50,
                       ),
-                      const Text(
-                        'Add User',
-                        style: TextStyle(
+                      Text(
+                        userName,
+                        style: const TextStyle(
                           color: Colors.black,
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
@@ -64,25 +75,11 @@ class ProfileScreenState extends State<ProfileScreen> {
                           children: [
                             TextFormField(
                               controller: _email,
-                              decoration: const InputDecoration(
-                                  labelText: 'example@gmail.com',
-                                  isDense: true,
-                                  prefixIcon: Material(
-                                    color: Color.fromARGB(255, 113, 212, 204),
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(8.0),
-                                      bottomLeft: Radius.circular(8.0),
-                                    ),
-                                    child:
-                                        Icon(Icons.email, color: Colors.white),
-                                  ),
+                              decoration: InputDecoration(
+                                  labelText: userEmail,
                                   contentPadding:
-                                       EdgeInsets.symmetric(horizontal: 5),
-                                  enabledBorder:  OutlineInputBorder(
-                                    borderSide: BorderSide(
-                                        color:
-                                            Color.fromARGB(255, 113, 212, 204),
-                                        width: 2),
+                                      const EdgeInsets.symmetric(horizontal: 5),
+                                  enabledBorder: const OutlineInputBorder(
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(8)),
                                   )),
@@ -90,55 +87,52 @@ class ProfileScreenState extends State<ProfileScreen> {
                             const SizedBox(
                               height: 20,
                             ),
-                            TextFormField(
-                                controller: _name,
-                                decoration: const InputDecoration(
-                                    labelText: 'name',
-                                    isDense: true,
-                                    prefixIcon: Material(
-                                      color: Color.fromARGB(255, 113, 212, 204),
-                                      borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(8.0),
-                                        bottomLeft: Radius.circular(8.0),
-                                      ),
-                                      child:
-                                          Icon(Icons.verified_user, color: Colors.white),
-                                    ),
-                                    contentPadding:  EdgeInsets.symmetric(
-                                        horizontal: 5),
-                                    enabledBorder:  OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          color: Color.fromARGB(
-                                              255, 113, 212, 204),
-                                          width: 2),
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(8)),
-                                    ))),
-                            const SizedBox(
-                              height: 20,
-                            ),
-                            TextButton(
-                              onPressed: () {
-                                // setState(() {
-                                // });
-                              },
-                              style: TextButton.styleFrom(
-                                backgroundColor:
-                                    const Color.fromARGB(255, 113, 212, 204),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 25.0, vertical: 10.0),
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
+                            Row(children: [
+                              TextButton(
+                                onPressed: () {
+                                  // setState(() {
+                                  // });
+                                },
+                                style: TextButton.styleFrom(
+                                  backgroundColor:
+                                      const Color.fromARGB(255, 212, 113, 113),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 25.0, vertical: 10.0),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
+                                ),
+                                child: const Text(
+                                  'Log out',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18.0,
+                                  ),
                                 ),
                               ),
-                              child: const Text(
-                                'Adde User',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 18.0,
+                              TextButton(
+                                onPressed: () {
+                                  // setState(() {
+                                  // });
+                                },
+                                style: TextButton.styleFrom(
+                                  backgroundColor:
+                                      const Color.fromARGB(255, 113, 212, 204),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 25.0, vertical: 10.0),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8),
+                                  ),
                                 ),
-                              ),
-                            )
+                                child: const Text(
+                                  'Save Changes',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 18.0,
+                                  ),
+                                ),
+                              )
+                            ])
                           ],
                         ),
                       ),

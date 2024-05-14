@@ -120,7 +120,8 @@ class ProfileScreenState extends State<ProfileScreen> {
                             const SizedBox(
                               height: 40,
                             ),
-                            Row(children: [
+                            Row(mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
                               TextButton(
                                 onPressed: () {
                                   // setState(() {
@@ -143,6 +144,9 @@ class ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                 ),
                               ),
+                              const SizedBox(
+                              width: 40,
+                            ),
                               TextButton(
                                 onPressed: () {
                                   setState(() {

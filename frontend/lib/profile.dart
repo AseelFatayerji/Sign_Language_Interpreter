@@ -13,6 +13,7 @@ class ProfileScreenState extends State<ProfileScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _email = TextEditingController();
   final TextEditingController _name = TextEditingController();
+  final TextEditingController _pass = TextEditingController();
 
   var userName = "";
   var userEmail = "";
@@ -28,9 +29,12 @@ class ProfileScreenState extends State<ProfileScreen> {
         userEmail = json['user']['email'];
         userPass = json['user']['password'];
       });
-    } else {
-      throw Exception('User already exists');
-    }
+    } 
+  }
+
+  void initState() {
+    super.initState();
+    getUser();
   }
 
   @override
@@ -86,6 +90,35 @@ class ProfileScreenState extends State<ProfileScreen> {
                             ),
                             const SizedBox(
                               height: 20,
+                            ),
+                            TextFormField(
+                              controller: _name,
+                              decoration: InputDecoration(
+                                  labelText: userName,
+                                  contentPadding:
+                                      const EdgeInsets.symmetric(horizontal: 5),
+                                  enabledBorder: const OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8)),
+                                  )),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            TextFormField(
+                              controller: _name,
+                              obscureText: true,
+                              decoration: const InputDecoration(
+                                  labelText: "Unhcanged Password",
+                                  contentPadding:
+                                      EdgeInsets.symmetric(horizontal: 5),
+                                  enabledBorder: OutlineInputBorder(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(8)),
+                                  )),
+                            ),
+                            const SizedBox(
+                              height: 40,
                             ),
                             Row(children: [
                               TextButton(

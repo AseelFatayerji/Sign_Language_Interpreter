@@ -24,9 +24,11 @@ class LoginPageState extends State<LoginPage> {
         'http://192.168.1.7:3001/auth/${_email.text}/${_password.text}'));
     if (resp.statusCode == 200) {
       final Map<String, dynamic> json = jsonDecode(resp.body);
+      // debugPrint(json['user']['email']);
       setState(() {
         global.isLoggedIn = true;
-        global.email = _email.text;
+        global.email = json['user']['email'];
+        global.isAdmin = (json['user']['isAdmin'] == 1)?true:false;
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           if (global.isAdmin) {
             return AdminNav();

@@ -56,7 +56,7 @@ class _TeachNavState extends State<TeachNav> {
               ),
               ListTile(
                 leading: const Icon(
-                  Icons.home,
+                  Icons.add_box_rounded,
                 ),
                 title: const Text('Add words'),
                 onTap: () {

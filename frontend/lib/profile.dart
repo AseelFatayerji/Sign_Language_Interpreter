@@ -21,23 +21,25 @@ class ProfileScreenState extends State<ProfileScreen> {
 
   Future<void> getUser() async {
     final resp = await http
-        .post(Uri.parse('http://192.168.1.7:3001/user/${global.email}'));
+        .get(Uri.parse('http://192.168.1.7:3001/user/${global.email}'));
     if (resp.statusCode == 200) {
-      final Map<String, dynamic> json = jsonDecode(resp.body);
+      final List<dynamic> json = jsonDecode(resp.body);
+      debugPrint(json[0]['name']);
       setState(() {
-        userName = json['user']['name'];
-        userEmail = json['user']['email'];
-        userPass = json['user']['password'];
+        userName = json[0]['name'];
+        userEmail = json[0]['email'];
+        userPass = json[0]['password'];
       });
     }
   }
+  
+  @override
 
   void initState() {
     super.initState();
     getUser();
   }
 
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black38,

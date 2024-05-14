@@ -25,6 +25,7 @@ class _TeachNavState extends State<TeachNav> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 37, 35, 38),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       drawer: Drawer(
           backgroundColor: Colors.white,
@@ -44,7 +45,7 @@ class _TeachNavState extends State<TeachNav> {
               ),
               ListTile(
                 leading: const Icon(
-                  Icons.verified_user,
+                  Icons.person,
                 ),
                 title: const Text('Profile'),
                 onTap: () {

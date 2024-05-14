@@ -12,19 +12,13 @@ class TeachNav extends StatefulWidget {
 
 class _TeachNavState extends State<TeachNav> {
   int _selectedIndex = 2;
-  final List<Widget> _screens = <Widget>[
-    const LanguagePage(),
-    const HomePage(),
-    TranslationPage(),
+  final List<Widget> _screens = <Widget>[    
+    const HomePage(),    
+    ProfileScreen(),
     ModelUpdate(),
-    ProfileScreen()
+    const LanguagePage(),
+    TranslationPage(),
   ];
-
-  void _onItemTap(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +27,68 @@ class _TeachNavState extends State<TeachNav> {
         backgroundColor: const Color.fromARGB(255, 37, 35, 38),
       ),
       drawer: Drawer(
-        child: SafeArea(child:Column(
-          children: [],
-        ))
-      ),
+          backgroundColor: Colors.white,
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              ListTile(
+                leading: const Icon(
+                  Icons.home,
+                ),
+                title: const Text('Home'),
+                onTap: () {
+                  setState(() {
+                    _selectedIndex = 0;
+                  });
+                },
+              ),
+              ListTile(
+                leading: const Icon(
+                  Icons.verified_user,
+                ),
+                title: const Text('Profile'),
+                onTap: () {
+                  setState(() {
+                    _selectedIndex = 1;
+                  });
+                },
+              ),
+              ListTile(
+                leading: const Icon(
+                  Icons.home,
+                ),
+                title: const Text('Add words'),
+                onTap: () {
+                  setState(() {
+                    _selectedIndex = 2;
+                  });
+                },
+              ),
+              ListTile(
+                leading: const Icon(
+                  Icons.translate,
+                ),
+                title: const Text('Language Select'),
+                onTap: () {
+                  setState(() {
+                    _selectedIndex = 3;
+                  });
+                },
+                
+              ),
+              ListTile(
+                leading: const Icon(
+                  Icons.video_call,
+                ),
+                title: const Text('Translate'),
+                onTap: () {
+                  setState(() {
+                    _selectedIndex = 4;
+                  });
+                },
+              )
+            ],
+          )),
       body: Center(
         child: _screens.elementAt(_selectedIndex),
       ),

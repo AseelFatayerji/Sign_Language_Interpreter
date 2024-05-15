@@ -87,6 +87,7 @@ class LoginPageState extends State<LoginPage> {
                           children: [
                             TextFormField(
                               controller: _email,
+                              textAlignVertical: TextAlignVertical.center,
                               decoration: InputDecoration(
                                   border: InputBorder.none,
                                   hintText: 'example@gmail.com',
@@ -103,8 +104,8 @@ class LoginPageState extends State<LoginPage> {
                                     child:
                                         Icon(Icons.email, color: Colors.white),
                                   ),
-                                  contentPadding: const EdgeInsets.symmetric(
-                                      horizontal: 10),
+                                  contentPadding:
+                                      const EdgeInsets.only(left: 10),
                                   enabledBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color:
@@ -121,6 +122,7 @@ class LoginPageState extends State<LoginPage> {
                                 obscureText: true,
                                 controller: _password,
                                 autofocus: false,
+                                textAlignVertical: TextAlignVertical.center,
                                 decoration: InputDecoration(
                                     hintText: 'password',
                                     border: InputBorder.none,

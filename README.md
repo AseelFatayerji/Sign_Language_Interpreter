@@ -114,8 +114,12 @@ Getting Started
     git clone <repository_url>
     2.Navigate to Project Directory: Move into the project directory:
     3.Running the App
-        Install Dependencies: Install the required dependencies for the project by running:
-        flutter pub get
+        Frontend Install Dependencies: Install the required dependencies for the project by running:
+            flutter pub get
+        Backend Install Node module: Install the required dependencies for the project by running:
+            npm i
+Run the backend: Navigate to Project Directory and run
+            npm start
 Run the App: Launch the app on a connected device or emulator by executing:
         flutter run
     If you have multiple devices connected, specify the device using:   

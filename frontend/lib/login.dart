@@ -18,10 +18,10 @@ class LoginPageState extends State<LoginPage> {
 
   bool _emailValidate = false;
   bool _passValidate = false;
-
+  String err = "";
   Future<void> login() async {
     final resp = await http.get(Uri.parse(
-        'http://192.168.1.7:3001/auth/${_email.text}/${_password.text}'));
+        'http://192.168.1.26:3001/auth/${_email.text}/${_password.text}'));
     if (resp.statusCode == 200) {
       final Map<String, dynamic> json = jsonDecode(resp.body);
       // debugPrint(json['user']['email']);
@@ -38,6 +38,9 @@ class LoginPageState extends State<LoginPage> {
         }));
       });
     } else {
+      setState(() {
+        err = 'Incorrect email or password';
+      });      
       throw Exception('Incorrect email or password');
     }
   }
@@ -84,7 +87,9 @@ class LoginPageState extends State<LoginPage> {
                           children: [
                             TextFormField(
                               controller: _email,
+                              autofocus: false,
                               decoration: InputDecoration(
+                                
                                   hintText: 'example@gmail.com',
                                   errorText:
                                       _emailValidate ? "Required Feild" : null,
@@ -156,7 +161,7 @@ class LoginPageState extends State<LoginPage> {
                                 backgroundColor:
                                     const Color.fromARGB(255, 113, 212, 204),
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 25.0, vertical: 10.0),
+                                    horizontal: 30.0, vertical: 12.0),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8),
                                 ),

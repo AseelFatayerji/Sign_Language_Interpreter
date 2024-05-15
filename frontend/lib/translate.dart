@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:frontend/main.dart';
 import 'package:tensorflow_lite_flutter/tensorflow_lite_flutter.dart';
+import 'package:flutter_mediapipe/flutter_mediapipe.dart';
 
 class TranslationPage extends StatefulWidget {
   @override

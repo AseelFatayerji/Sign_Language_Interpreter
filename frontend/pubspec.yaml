@@ -47,6 +47,7 @@ dependencies:
   tflite_flutter: ^0.10.4
   http: ^1.2.1
   flutter_secure_storage: ^9.1.1
+  protobuf: ^2.1.0
 
 dev_dependencies:
   flutter_test:

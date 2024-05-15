@@ -71,7 +71,7 @@ class LanguagePage extends StatelessWidget {
                         ),
                       ),
                       child: const Text(
-                        'To  ',
+                        ' To ',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16.0,

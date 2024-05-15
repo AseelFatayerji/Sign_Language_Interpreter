@@ -7,7 +7,6 @@ class LanguagePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       backgroundColor: Colors.black38,
       body: Align(
           alignment: Alignment.bottomCenter,
@@ -23,7 +22,7 @@ class LanguagePage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
                   'Select Language',
@@ -36,52 +35,51 @@ class LanguagePage extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 30),
-                        child: TextButton(
-                          onPressed: () {},
-                          style: TextButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 25.0, vertical: 10.0),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-                          child: const Text(
-                            'From',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20.0,
-                            ),
-                          ),
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 30),
+                    child: TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 30.0, vertical: 12.0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
                         ),
                       ),
-                      Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 30),
-                        child: TextButton(
-                          onPressed: () {},
-                          style: TextButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 25.0, vertical: 10.0),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                          ),
-                          child: const Text(
-                            'To',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 20.0,
-                            ),
-                          ),
+                      child: const Text(
+                        'From',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16.0,
                         ),
-                      )
-                    ])
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 30),
+                    child: TextButton(
+                      onPressed: () {},
+                      style: TextButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 30.0, vertical: 12.0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      child: const Text(
+                        'To  ',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16.0,
+                        ),
+                      ),
+                    ),
+                  )
+                ])
               ],
             ),
           )),

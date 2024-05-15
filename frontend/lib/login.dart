@@ -28,7 +28,7 @@ class LoginPageState extends State<LoginPage> {
       setState(() {
         global.isLoggedIn = true;
         global.email = json['user']['email'];
-        global.isAdmin = (json['user']['isAdmin'] == 1)?true:false;
+        global.isAdmin = (json['user']['isAdmin'] == 1) ? true : false;
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           if (global.isAdmin) {
             return AdminNav();
@@ -40,7 +40,7 @@ class LoginPageState extends State<LoginPage> {
     } else {
       setState(() {
         err = 'Incorrect email or password';
-      });      
+      });
       throw Exception('Incorrect email or password');
     }
   }
@@ -87,9 +87,8 @@ class LoginPageState extends State<LoginPage> {
                           children: [
                             TextFormField(
                               controller: _email,
-                              autofocus: false,
                               decoration: InputDecoration(
-                                
+                                focusedBorder: InputBorder.none,
                                   hintText: 'example@gmail.com',
                                   errorText:
                                       _emailValidate ? "Required Feild" : null,
@@ -104,7 +103,7 @@ class LoginPageState extends State<LoginPage> {
                                         Icon(Icons.email, color: Colors.white),
                                   ),
                                   contentPadding:
-                                      const EdgeInsets.symmetric(horizontal: 5),
+                                      const EdgeInsets.symmetric(horizontal: 10),
                                   enabledBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color:
@@ -120,6 +119,7 @@ class LoginPageState extends State<LoginPage> {
                             TextFormField(
                                 obscureText: true,
                                 controller: _password,
+                                autofocus: false,
                                 decoration: InputDecoration(
                                     hintText: 'password',
                                     errorText:
@@ -163,17 +163,26 @@ class LoginPageState extends State<LoginPage> {
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: 30.0, vertical: 12.0),
                                 shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8),
+                                  borderRadius: BorderRadius.circular(5),
                                 ),
                               ),
                               child: const Text(
                                 'Login',
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 18.0,
+                                  fontSize: 16.0,
                                 ),
                               ),
-                            )
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Text(
+                              err,
+                              style: const TextStyle(
+                                fontSize: 16.0,
+                              ),
+                            ),
                           ],
                         ),
                       ),

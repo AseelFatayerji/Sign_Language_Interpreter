@@ -68,10 +68,12 @@ class _TranslationPageState extends State<TranslationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(children: [
+        const SizedBox(height: 10),
         Text(output,
             style: const TextStyle(
               color: Colors.white60,
               backgroundColor: Colors.black38,
+              fontSize: 18,
             )),
         const SizedBox(height: 10),
         Padding(

@@ -2,6 +2,11 @@ import cv2
 import numpy as np
 import math
 import time
+import os
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+
+import tensorflow as tf
+
 from cvzone.HandTrackingModule import HandDetector
 
 # For webcam input:
@@ -9,10 +14,10 @@ cap = cv2.VideoCapture(0)
 detect = HandDetector(maxHands=1)
 
 offset = 20
-image_size = 300
+image_size = 400
 count = 0
 
-folder = 'C:/Users/BOB/Desktop/Boot Camp/Sign_Language_Interpreter/frontend/data/letters/c'
+folder = 'frontend/data/letters/a'
 while cap.isOpened():
     success, image = cap.read()
     if not success:

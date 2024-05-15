@@ -95,11 +95,14 @@ class LoginPageState extends State<LoginPage> {
                                   errorText:
                                       _emailValidate ? "Required Feild" : null,
                                   isDense: true,
-                                  prefixIcon: const Material(
-                                    color: Color.fromARGB(255, 113, 212, 204),
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(8.0),
-                                      bottomLeft: Radius.circular(8.0),
+                                  prefixIcon: Container(
+                                    margin: const EdgeInsets.only(right: 10),
+                                    decoration: const BoxDecoration(
+                                      color: Color.fromARGB(255, 113, 212, 204),
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(8.0),
+                                        bottomLeft: Radius.circular(8.0),
+                                      ),
                                     ),
                                     child:
                                         Icon(Icons.email, color: Colors.white),
@@ -130,15 +133,18 @@ class LoginPageState extends State<LoginPage> {
                                     errorText:
                                         _passValidate ? "Required Feild" : null,
                                     isDense: true,
-                                    prefixIcon: const Material(
+                                    prefixIcon: Container(
+                                    margin: const EdgeInsets.only(right: 10),
+                                    decoration: const BoxDecoration(
                                       color: Color.fromARGB(255, 113, 212, 204),
                                       borderRadius: BorderRadius.only(
                                         topLeft: Radius.circular(8.0),
                                         bottomLeft: Radius.circular(8.0),
                                       ),
-                                      child:
-                                          Icon(Icons.lock, color: Colors.white),
                                     ),
+                                    child:
+                                        Icon(Icons.lock, color: Colors.white),
+                                  ),
                                     contentPadding: const EdgeInsets.symmetric(
                                         horizontal: 5),
                                     enabledBorder: const OutlineInputBorder(

@@ -8,15 +8,37 @@ import os
 os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 
 import tensorflow as tf
+from tensorflow.keras.layers import DepthwiseConv2D # type: ignore
+from tensorflow.keras.models import load_model # type: ignore
+import numpy as np
+
+# Step 1: Define a custom DepthwiseConv2D layer
+class CustomDepthwiseConv2D(DepthwiseConv2D):
+    def __init__(self, *args, **kwargs):
+        if 'groups' in kwargs:
+            kwargs.pop('groups')
+        super(CustomDepthwiseConv2D, self).__init__(*args, **kwargs)
+
+    @classmethod
+    def from_config(cls, config):
+        if 'groups' in config:
+            config.pop('groups')
+        return cls(**config)
+
+# Step 2: Register the custom layer
+tf.keras.utils.get_custom_objects().update({'DepthwiseConv2D': CustomDepthwiseConv2D}) # type: ignore
+
+# Step 3: Load the model
+model: tf.keras.Model = load_model('frontend/model/keras_model.h5', custom_objects={'DepthwiseConv2D': CustomDepthwiseConv2D}) # type: ignore
+
 
 # For webcam input:
 cap = cv2.VideoCapture(0)
 detect = HandDetector(maxHands=1)
-classify = Classifier("frontend/model/keras_model.h5", "frontend/model/labels.txt")
+classify = Classifier(modelPath="frontend/model/keras_model.h5", labelsPath="frontend/model/labels.txt")
 labels = ['A','B','C']
 offset = 20
-image_size = 300
-count = 0
+image_size = 400
 
 while cap.isOpened():
     success, image = cap.read()
@@ -38,8 +60,11 @@ while cap.isOpened():
           wGap = math.ceil((image_size - wCal)/2)
           imgResize = cv2.resize(imgRight,(wCal,image_size))
           imgWhite[:, wGap:wCal+wGap] = imgResize      
-          prediction , index = classify.getPrediction(image)
-          print(prediction,index)
+          
+        # Make a prediction
+          input_data_resized = tf.image.resize(imgWhite, (224, 224))
+          predictions = model.predict(input_data_resized)
+          print(predictions)
         else:
           k = image_size / rw 
           hCal = math.ceil(rh * k)

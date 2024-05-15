@@ -88,8 +88,9 @@ class LoginPageState extends State<LoginPage> {
                             TextFormField(
                               controller: _email,
                               decoration: InputDecoration(
-                                focusedBorder: InputBorder.none,
+                                  border: InputBorder.none,
                                   hintText: 'example@gmail.com',
+                                  alignLabelWithHint: true,
                                   errorText:
                                       _emailValidate ? "Required Feild" : null,
                                   isDense: true,
@@ -102,8 +103,8 @@ class LoginPageState extends State<LoginPage> {
                                     child:
                                         Icon(Icons.email, color: Colors.white),
                                   ),
-                                  contentPadding:
-                                      const EdgeInsets.symmetric(horizontal: 10),
+                                  contentPadding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
                                   enabledBorder: const OutlineInputBorder(
                                     borderSide: BorderSide(
                                         color:
@@ -122,6 +123,8 @@ class LoginPageState extends State<LoginPage> {
                                 autofocus: false,
                                 decoration: InputDecoration(
                                     hintText: 'password',
+                                    border: InputBorder.none,
+                                    alignLabelWithHint: true,
                                     errorText:
                                         _passValidate ? "Required Feild" : null,
                                     isDense: true,

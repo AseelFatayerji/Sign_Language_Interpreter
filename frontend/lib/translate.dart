@@ -9,19 +9,14 @@ class TranslationPage extends StatefulWidget {
 }
 
 class _TranslationPageState extends State<TranslationPage> {
-  late final WebViewController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = WebViewController();
-    _controller.loadFlutterAsset('assets/camera.html');
-  }
+  final WebViewController _controller = WebViewController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: WebViewWidget(controller: _controller),
+      body: Container(
+        child: WebViewWidget(controller: _controller,)
+      ),
     );
   }
 }

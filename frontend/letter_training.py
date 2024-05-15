@@ -17,7 +17,7 @@ offset = 20
 image_size = 400
 count = 0
 
-folder = 'frontend/data/letters/a'
+folder = 'frontend/data/letters/b'
 while cap.isOpened():
     success, image = cap.read()
     if not success:

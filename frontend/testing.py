@@ -4,11 +4,15 @@ import math
 import time
 from cvzone.HandTrackingModule import HandDetector
 from cvzone.ClassificationModule import Classifier
+import os
+os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
+
+import tensorflow as tf
 
 # For webcam input:
 cap = cv2.VideoCapture(0)
 detect = HandDetector(maxHands=1)
-classify = Classifier("model/keras_model.h5", "model/labels.txt")
+classify = Classifier("frontend/model/keras_model.h5", "frontend/model/labels.txt")
 labels = ['A','B','C']
 offset = 20
 image_size = 300
@@ -34,8 +38,8 @@ while cap.isOpened():
           wGap = math.ceil((image_size - wCal)/2)
           imgResize = cv2.resize(imgRight,(wCal,image_size))
           imgWhite[:, wGap:wCal+wGap] = imgResize      
-        #   prediction , index = classify.getPrediction(image)
-        #   print(prediction,index)
+          prediction , index = classify.getPrediction(image)
+          print(prediction,index)
         else:
           k = image_size / rw 
           hCal = math.ceil(rh * k)

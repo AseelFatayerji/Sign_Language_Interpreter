@@ -15,8 +15,8 @@ class AdminPanelState extends State<AdminPanel> {
   bool _nameValidate = false;
 
   Future<void> addUser() async {
-    final resp = await http.post(
-        Uri.parse('http://192.168.1.26:3001/auth/${_email.text}/${_name.text}'));
+    final resp = await http.post(Uri.parse(
+        'http://192.168.1.26:3001/auth/${_email.text}/${_name.text}'));
     if (resp.statusCode == 200) {
       debugPrint(resp.body);
     } else {
@@ -66,19 +66,25 @@ class AdminPanelState extends State<AdminPanel> {
                           children: [
                             TextFormField(
                               controller: _email,
+                              textAlignVertical: TextAlignVertical.center,
                               decoration: InputDecoration(
-                                  labelText: 'example@gmail.com',
+                                  hintText: 'email@gmail.com',
+                                  border: InputBorder.none,
+                                  alignLabelWithHint: true,
                                   errorText:
                                       _emailValidate ? "Required Feild" : null,
                                   isDense: true,
-                                  prefixIcon: const Material(
-                                    color: Color.fromARGB(255, 113, 212, 204),
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(8.0),
-                                      bottomLeft: Radius.circular(8.0),
+                                  prefixIcon: Container(
+                                    margin: const EdgeInsets.only(right: 10),
+                                    decoration: const BoxDecoration(
+                                      color: Color.fromARGB(255, 113, 212, 204),
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(8.0),
+                                        bottomLeft: Radius.circular(8.0),
+                                      ),
                                     ),
                                     child:
-                                        Icon(Icons.email, color: Colors.white),
+                                        const Icon(Icons.email, color: Colors.white),
                                   ),
                                   contentPadding:
                                       const EdgeInsets.symmetric(horizontal: 5),
@@ -96,18 +102,25 @@ class AdminPanelState extends State<AdminPanel> {
                             ),
                             TextFormField(
                                 controller: _name,
+                                textAlignVertical: TextAlignVertical.center,
                                 decoration: InputDecoration(
-                                    labelText: 'name',
+                                    hintText: 'User name',
+                                    border: InputBorder.none,
+                                    alignLabelWithHint: true,
                                     errorText:
                                         _nameValidate ? "Required Feild" : null,
                                     isDense: true,
-                                    prefixIcon: const Material(
-                                      color: Color.fromARGB(255, 113, 212, 204),
-                                      borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(8.0),
-                                        bottomLeft: Radius.circular(8.0),
+                                    prefixIcon: Container(
+                                      margin: const EdgeInsets.only(right: 10),
+                                      decoration: const BoxDecoration(
+                                        color:
+                                            Color.fromARGB(255, 113, 212, 204),
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(8.0),
+                                          bottomLeft: Radius.circular(8.0),
+                                        ),
                                       ),
-                                      child: Icon(Icons.verified_user,
+                                      child: const Icon(Icons.person,
                                           color: Colors.white),
                                     ),
                                     contentPadding: const EdgeInsets.symmetric(
@@ -137,7 +150,7 @@ class AdminPanelState extends State<AdminPanel> {
                                 backgroundColor:
                                     const Color.fromARGB(255, 113, 212, 204),
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 25.0, vertical: 10.0),
+                                    horizontal: 30.0, vertical: 12.0),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8),
                                 ),
@@ -146,7 +159,7 @@ class AdminPanelState extends State<AdminPanel> {
                                 'Adde User',
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize: 18.0,
+                                  fontSize: 16.0,
                                 ),
                               ),
                             )

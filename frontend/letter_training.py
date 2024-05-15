@@ -12,7 +12,7 @@ offset = 20
 image_size = 300
 count = 0
 
-folder = 'C:/Users/BOB/Desktop/Boot Camp/Sign_Language_Interpreter/frontend/data/letters/b'
+folder = 'C:/Users/BOB/Desktop/Boot Camp/Sign_Language_Interpreter/frontend/data/letters/c'
 while cap.isOpened():
     success, image = cap.read()
     if not success:

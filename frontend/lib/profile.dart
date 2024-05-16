@@ -21,7 +21,7 @@ class ProfileScreenState extends State<ProfileScreen> {
 
   Future<void> getUser() async {
     final resp = await http
-        .get(Uri.parse('http://192.168.1.26:3001/user/${global.email}'));
+        .get(Uri.parse('http://192.168.133.13:3001/user/${global.email}'));
     if (resp.statusCode == 200) {
       final List<dynamic> json = jsonDecode(resp.body);
       debugPrint(json[0]['name']);

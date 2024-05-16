@@ -16,7 +16,7 @@ class AdminPanelState extends State<AdminPanel> {
 
   Future<void> addUser() async {
     final resp = await http.post(Uri.parse(
-        'http://192.168.1.26:3001/auth/${_email.text}/${_name.text}'));
+        'http://192.168.133.13:3001/auth/${_email.text}/${_name.text}/123e456y'));
     if (resp.statusCode == 200) {
       debugPrint(resp.body);
     } else {

@@ -21,7 +21,7 @@ class LoginPageState extends State<LoginPage> {
   String err = "";
   Future<void> login() async {
     final resp = await http.get(Uri.parse(
-        'http://192.168.1.26:3001/auth/${_email.text}/${_password.text}'));
+        'http://192.168.133.13:3001/auth/${_email.text}/${_password.text}'));
     if (resp.statusCode == 200) {
       final Map<String, dynamic> json = jsonDecode(resp.body);
       // debugPrint(json['user']['email']);

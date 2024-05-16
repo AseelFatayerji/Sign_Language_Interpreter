@@ -33,18 +33,10 @@ class UserList extends StatelessWidget {
                         height: 50,
                       ),
                       Text(
-                        'Login',
+                        'Users',
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        '1.Allow camera use.\n2.Stand in front of the camera with both hands visible.\n3.Click on the camera icon.\n4.Happy signing :).\n5.Change the selected language in the language section (Optional).',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16.0,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -62,11 +54,12 @@ class UserList extends StatelessWidget {
                         shape: CircleBorder()),
                     height: 160,
                     width: 160,
-                    padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 15, vertical: 15),
                     child: const Image(
-                        alignment: Alignment.center,
-                        image: AssetImage("assets/logo-transparent.png"),),
+                      alignment: Alignment.center,
+                      image: AssetImage("assets/logo-transparent.png"),
+                    ),
                   ),
                 )
               ])),

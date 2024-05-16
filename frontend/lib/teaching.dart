@@ -1,91 +1,65 @@
 import 'package:flutter/material.dart';
-import 'package:camera/camera.dart';
-import 'package:frontend/main.dart';
-import 'package:tensorflow_lite_flutter/tensorflow_lite_flutter.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class ModelUpdate extends StatefulWidget {
+  const ModelUpdate({super.key});
+
   @override
-  _ModelUpdateState createState() => _ModelUpdateState();
+  State<ModelUpdate> createState() => _ModelUpdateState();
 }
 
 class _ModelUpdateState extends State<ModelUpdate> {
-  CameraImage? cameraImage;
-  CameraController? controller;
-  String output = 'Translation';
+  final WebViewController _controller = WebViewController()..loadHtmlString("""<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='main.js'></script>
+</head>
+<body>
+    <!-- Copyright 2023 The MediaPipe Authors.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License. -->
+<link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+<script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
+<section id="demos" class="invisible">
+
+
+<div id="liveView" class="videoView">
+  <button id="webcamButton" class="mdc-button mdc-button--raised">
+    <span class="mdc-button__ripple"></span>
+    <span class="mdc-button__label">ENABLE WEBCAM</span>
+  </button>
+  <div style="position: relative;">
+    <video id="webcam" autoplay playsinline></video>
+    <canvas class="output_canvas" id="output_canvas" width="1280" height="720" style="position: absolute; left: 0px; top: 0px;"></canvas>
+    <p id='gesture_output' class="output">
+  </div>
+</div>
+</section>
+</body>
+</html>""");
 
   @override
-  void initState() {
-    super.initState();
-    loadCamera();
-    loadModel();
-  }
-
-  loadCamera() {
-    controller = CameraController(cameras![0], ResolutionPreset.medium);
-    controller!.initialize().then((value) {
-      if (!mounted) {
-        return;
-      } else {
-        setState(() {
-          controller!.startImageStream((ImageStream) {
-            cameraImage = ImageStream;
-            runModel();
-          });
-        });
-      }
-    });
-  }
-
-  runModel() async {
-    if (cameraImage != null) {
-      var prediction = await Tflite.runModelOnFrame(
-        bytesList: cameraImage!.planes.map((plane) {
-          return plane.bytes;
-        }).toList(),
-        imageHeight: cameraImage!.height,
-        imageWidth: cameraImage!.width,
-        imageMean: 127.5,
-        imageStd: 127.5,
-        rotation: 90,
-        numResults: 2,
-        threshold: 0.1,
-        asynch: true,
-      );
-      prediction!.forEach((element) {
-        setState(() {
-          output = element['label'];
-        });
-      });
-    }
-  }
-
-  loadModel() async {
-    await Tflite.loadModel(
-        model: "assets/model/model.tflite", labels: "assets/model/label.txt");
-  }
-
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(children: [
-        Text(output,
-            style: const TextStyle(
-              color: Colors.white60,
-              backgroundColor: Colors.black38,
-            )),
-        const SizedBox(height: 10),
-        Padding(
-            padding: const EdgeInsets.all(10),
-            child: Container(
-              height: MediaQuery.of(context).size.height*0.7,
-              width: MediaQuery.of(context).size.width,
-              child: !controller!.value.isInitialized
-                  ? Container()
-                  : AspectRatio(
-                      aspectRatio: controller!.value.aspectRatio,
-                      child: CameraPreview(controller!),
-                    ),
-            ))
-      ]),
+      body: Container(
+        child: WebViewWidget(controller: _controller,)
+      ),
     );
   }
 }

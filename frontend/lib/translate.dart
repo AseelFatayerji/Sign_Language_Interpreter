@@ -9,14 +9,46 @@ class TranslationPage extends StatefulWidget {
 }
 
 class _TranslationPageState extends State<TranslationPage> {
-  final WebViewController _controller = WebViewController();
+  var loadingPercentage = 0;
+  late final WebViewController controller = WebViewController();
+
+  @override
+  void initState() {
+    super.initState();
+    controller ..setNavigationDelegate(NavigationDelegate(
+        onPageStarted: (url) {
+          setState(() {
+            loadingPercentage = 0;
+          });
+        },
+        onProgress: (progress) {
+          setState(() {
+            loadingPercentage = progress;
+          });
+        },
+        onPageFinished: (url) {
+          setState(() {
+            loadingPercentage = 100;
+          });
+        },
+      ))
+      ..loadRequest(
+        Uri.parse('https://flutter.dev'),
+      );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: WebViewWidget(controller: _controller,)
-      ),
+    return Stack(
+      children: [
+        WebViewWidget(
+          controller: controller,
+        ),
+        if (loadingPercentage < 100)
+          LinearProgressIndicator(
+            value: loadingPercentage / 100.0,
+          ),
+      ],
     );
   }
 }

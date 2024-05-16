@@ -9,7 +9,8 @@ class ModelUpdate extends StatefulWidget {
 }
 
 class _ModelUpdateState extends State<ModelUpdate> {
-  final WebViewController _controller = WebViewController()..loadHtmlString("""<!DOCTYPE html>
+  final WebViewController _controller = WebViewController()
+    ..loadHtmlString("""<!DOCTYPE html>
 <html>
 <head>
     <meta charset='utf-8'>
@@ -58,8 +59,9 @@ limitations under the License. -->
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: WebViewWidget(controller: _controller,)
-      ),
+          child: WebViewWidget(
+        controller: _controller,
+      )),
     );
   }
 }

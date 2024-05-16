@@ -27,7 +27,6 @@ class AdminPanelState extends State<AdminPanel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black38,
       body: Align(
           alignment: Alignment.bottomCenter,
           child: Stack(

@@ -7,7 +7,6 @@ class LanguagePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black38,
       body: Align(
           alignment: Alignment.bottomCenter,
           child: Container(
@@ -35,15 +34,14 @@ class LanguagePage extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
                   Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 30),
                     child: TextButton(
                       onPressed: () {},
                       style: TextButton.styleFrom(
                         backgroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 30.0, vertical: 12.0),
+                            horizontal: 40.0, vertical: 12.0),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
@@ -59,13 +57,12 @@ class LanguagePage extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 30),
                     child: TextButton(
                       onPressed: () {},
                       style: TextButton.styleFrom(
                         backgroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 30.0, vertical: 12.0),
+                            horizontal: 40.0, vertical: 12.0),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),

@@ -32,9 +32,8 @@ class ProfileScreenState extends State<ProfileScreen> {
       });
     }
   }
-  
-  @override
 
+  @override
   void initState() {
     super.initState();
     getUser();
@@ -42,7 +41,6 @@ class ProfileScreenState extends State<ProfileScreen> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black38,
       body: Align(
           alignment: Alignment.bottomCenter,
           child: Stack(
@@ -122,63 +120,65 @@ class ProfileScreenState extends State<ProfileScreen> {
                             const SizedBox(
                               height: 40,
                             ),
-                            Row(mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                              TextButton(
-                                onPressed: () {
-                                  // setState(() {
-                                  // });
-                                },
-                                style: TextButton.styleFrom(
-                                  backgroundColor:
-                                      const Color.fromARGB(255, 212, 113, 113),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 25.0, vertical: 10.0),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
+                            Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  TextButton(
+                                    onPressed: () {
+                                      // setState(() {
+                                      // });
+                                    },
+                                    style: TextButton.styleFrom(
+                                      backgroundColor: const Color.fromARGB(
+                                          255, 212, 113, 113),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 50.0, vertical: 10.0),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                    ),
+                                    child: const Text(
+                                      'Log out',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18.0,
+                                      ),
+                                    ),
                                   ),
-                                ),
-                                child: const Text(
-                                  'Log out',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18.0,
+                                  const SizedBox(
+                                    width: 40,
                                   ),
-                                ),
-                              ),
-                              const SizedBox(
-                              width: 40,
-                            ),
-                              TextButton(
-                                onPressed: () {
-                                  setState(() {
-                                    global.isLoggedIn = false;
-                                    global.email = "";
-                                    global.isAdmin = false;
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
-                                      return Navbar();
-                                    }));
-                                  });
-                                },
-                                style: TextButton.styleFrom(
-                                  backgroundColor:
-                                      const Color.fromARGB(255, 113, 212, 204),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 25.0, vertical: 10.0),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                ),
-                                child: const Text(
-                                  'Save Changes',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18.0,
-                                  ),
-                                ),
-                              )
-                            ])
+                                  TextButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        global.isLoggedIn = false;
+                                        global.email = "";
+                                        global.isAdmin = false;
+                                        Navigator.push(context,
+                                            MaterialPageRoute(
+                                                builder: (context) {
+                                          return Navbar();
+                                        }));
+                                      });
+                                    },
+                                    style: TextButton.styleFrom(
+                                      backgroundColor: const Color.fromARGB(
+                                          255, 113, 212, 204),
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 25.0, vertical: 10.0),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(8),
+                                      ),
+                                    ),
+                                    child: const Text(
+                                      'Save Changes',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18.0,
+                                      ),
+                                    ),
+                                  )
+                                ])
                           ],
                         ),
                       ),

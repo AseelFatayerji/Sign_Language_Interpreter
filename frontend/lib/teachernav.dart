@@ -24,7 +24,7 @@ class _TeachNavState extends State<TeachNav> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 37, 35, 38),
+      backgroundColor: Color.fromARGB(235, 45, 45, 45),
         iconTheme: IconThemeData(color: Colors.white),
       ),
       drawer: Drawer(

@@ -10,7 +10,6 @@ os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 import tensorflow as tf
 from tensorflow.keras.layers import DepthwiseConv2D # type: ignore
 from tensorflow.keras.models import load_model # type: ignore
-import numpy as np
 
 # Step 1: Define a custom DepthwiseConv2D layer
 class CustomDepthwiseConv2D(DepthwiseConv2D):
@@ -38,7 +37,7 @@ detect = HandDetector(maxHands=1)
 classify = Classifier(modelPath="frontend/model/keras_model.h5", labelsPath="frontend/model/labels.txt")
 labels = ['A','B','C']
 offset = 20
-image_size = 400
+image_size = 224
 
 while cap.isOpened():
     success, image = cap.read()
@@ -62,15 +61,17 @@ while cap.isOpened():
           imgWhite[:, wGap:wCal+wGap] = imgResize      
           
         # Make a prediction
-          input_data_resized = tf.image.resize(imgWhite, (224, 224))
-          predictions = model.predict(input_data_resized)
+          predictions, index = classify.getPrediction(imgWhite)
           print(predictions)
         else:
           k = image_size / rw 
           hCal = math.ceil(rh * k)
           hGap = math.ceil((image_size - hCal)/2)
           imgResize = cv2.resize(imgRight,(image_size,hCal))
-          imgWhite[hGap:hCal+hGap,:] = imgResize          
+          imgWhite[hGap:hCal+hGap,:] = imgResize     
+
+          predictions, index = classify.getPrediction(imgWhite)
+          print(predictions)     
     
         cv2.imshow('white bgs', imgWhite) 
         cv2.imshow('MediaPipe Hands', image)  

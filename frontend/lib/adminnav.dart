@@ -28,8 +28,7 @@ class _AdminNavState extends State<AdminNav> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(235, 45, 45, 45),
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(color: Color.fromARGB(255, 113, 212, 204),),
       ),
       drawer: Drawer(
           backgroundColor: Colors.white,

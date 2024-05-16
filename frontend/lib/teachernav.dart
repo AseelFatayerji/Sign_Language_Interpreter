@@ -12,8 +12,8 @@ class TeachNav extends StatefulWidget {
 
 class _TeachNavState extends State<TeachNav> {
   int _selectedIndex = 1;
-  final List<Widget> _screens = <Widget>[    
-    const HomePage(),    
+  final List<Widget> _screens = <Widget>[
+    const HomePage(),
     ProfileScreen(),
     ModelUpdate(),
     const LanguagePage(),
@@ -24,8 +24,9 @@ class _TeachNavState extends State<TeachNav> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      backgroundColor: Color.fromARGB(235, 45, 45, 45),
-        iconTheme: IconThemeData(color: Colors.white),
+        iconTheme: IconThemeData(
+          color: Color.fromARGB(255, 113, 212, 204),
+        ),
       ),
       drawer: Drawer(
           backgroundColor: Colors.white,
@@ -75,7 +76,6 @@ class _TeachNavState extends State<TeachNav> {
                     _selectedIndex = 3;
                   });
                 },
-                
               ),
               ListTile(
                 leading: const Icon(

@@ -47,7 +47,7 @@ class _ModelUpdateState extends State<ModelUpdate> {
     debugPrint(image);
     // List<int> imageBytes = await image.readAsBytes();
     // final resp =
-    //     await http.post(Uri.parse('http://192.168.133.13:8000/translate'),body: );
+    //     await http.post(Uri.parse('http://${global.ipv4}:8000/translate'),body: );
     // if (resp.statusCode == 200) {
     //   setState(() {
     //     final Map<String, dynamic> json = jsonDecode(resp.body);

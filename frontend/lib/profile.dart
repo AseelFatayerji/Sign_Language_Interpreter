@@ -24,7 +24,6 @@ class ProfileScreenState extends State<ProfileScreen> {
         'http://${global.ipv4}:3001/user/${global.email}/${global.token}'));
     if (resp.statusCode == 200) {
       final List<dynamic> json = jsonDecode(resp.body);
-      debugPrint(json[0]['name']);
       setState(() {
         userName = json[0]['name'];
         userEmail = json[0]['email'];

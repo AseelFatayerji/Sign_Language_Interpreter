@@ -1,6 +1,8 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:http/http.dart' as http;
 import 'global.dart' as global;
 
@@ -12,14 +14,19 @@ class UserList extends StatefulWidget {
 }
 
 class _UserListState extends State<UserList> {
-  var userList = [];
-    Future<void> getUsers() async {
+  List<Widget> userList = [];
+  Future<void> getUsers() async {
     final resp = await http
         .get(Uri.parse('http://${global.ipv4}:3001/user/${global.token}'));
+
     if (resp.statusCode == 200) {
       final List<dynamic> json = jsonDecode(resp.body);
-      debugPrint(json.toString());
-      userList = json;
+      for (var info in json) {
+        Widget user = Column(
+                  children: [Icon(Icons.person, size: 50,color: Color.fromARGB(255, 113, 212, 204),), Text(info['name'])],
+                );
+        userList.add(user);
+      }
     }
   }
 
@@ -50,13 +57,12 @@ class _UserListState extends State<UserList> {
                     ),
                     border: Border.all(color: Colors.transparent),
                   ),
-                  child: const Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  child: Column(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 50,
                       ),
-                      Text(
+                      const Text(
                         'Users',
                         style: TextStyle(
                           color: Colors.black,
@@ -64,10 +70,13 @@ class _UserListState extends State<UserList> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(
-                        height: 100,
+                      const SizedBox(
+                        height: 20,
                       ),
-                      
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: userList,
+                      )
                     ],
                   ),
                 ),

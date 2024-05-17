@@ -338,16 +338,25 @@ class _LanguagePageState extends State<LanguagePage> {
                         ),
                       ),
                       Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 40.0),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
                         child: PopupMenuButton<String>(
-                          icon: Icon(Icons.translate, color: Colors.black, size: 18,),
+                          icon: const Icon(
+                            Icons.translate,
+                            color: Colors.black,
+                            size: 18,
+                          ),
                           onSelected: (String value) {
                             int index = langugaes.indexOf(value);
                             global.langugae = codes[index];
                             debugPrint(global.langugae);
                           },
                           itemBuilder: (BuildContext context) {
-                            return langugaes
-                                .map((String choice) {
+                            return langugaes.map((String choice) {
                               return PopupMenuItem<String>(
                                 value: choice,
                                 child: Text(choice),
@@ -356,7 +365,6 @@ class _LanguagePageState extends State<LanguagePage> {
                           },
                         ),
                       ),
-                      
                     ])
               ],
             ),

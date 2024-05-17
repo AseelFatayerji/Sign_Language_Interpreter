@@ -3,9 +3,8 @@ const { getUser, editUser, deleteUser, getAll } = require("../controllers/user_c
 
 const router = express.Router();
 
-router.get("/", getAll);
-router.get("/:email", getUser);
-router.post("/:email/:item/:value", editUser);
+router.get("/:token", getAll);
+router.get("/:email/:token", getUser);
+router.post("/:email/:item/:value/:token", editUser);
 
-router.delete("/:email",deleteUser);
 module.exports = router;

@@ -75,7 +75,7 @@ async def root(image: UploadFile = File(...)):
           
           predictions, index = classify.getPrediction(imgWhite)
           
-          return{"test":predict[index]}
+          return{"prediction":predict[index]}
         
         else:
           k = image_size / rw 
@@ -86,4 +86,4 @@ async def root(image: UploadFile = File(...)):
 
           predictions, index = classify.getPrediction(imgWhite)
           
-          return{"test":predict[index]}
+          return{"prediction":predict[index]}

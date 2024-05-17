@@ -24,11 +24,12 @@ class LoginPageState extends State<LoginPage> {
         'http://${global.ipv4}:3001/auth/${_email.text}/${_password.text}'));
     if (resp.statusCode == 200) {
       final Map<String, dynamic> json = jsonDecode(resp.body);
-      final token = await http.get(Uri.parse(
-          'http://192.168.133.13:3001/verify/${json['user']['token']}'));
-      if (token.statusCode == 200) {
+      final token = await http.get(Uri.parse( 
+          'http://${global.ipv4}:3001/verify/${json['token']}'));
+          
+      if (token.statusCode == 201) {
         setState(() {
-          global.token = json['user']['token'];
+          global.token = json['token'];
           global.isLoggedIn = true;
           global.email = json['user']['email'];
           global.isAdmin = (json['user']['isAdmin'] == 1) ? true : false;

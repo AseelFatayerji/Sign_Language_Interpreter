@@ -39,7 +39,7 @@ class CustomDepthwiseConv2D(DepthwiseConv2D):
 tf.keras.utils.get_custom_objects().update({'DepthwiseConv2D': CustomDepthwiseConv2D}) # type: ignore
 
 model: tf.keras.Model = load_model(file_path, custom_objects={'DepthwiseConv2D': CustomDepthwiseConv2D}) # type: ignore
-detect = HandDetector(maxHands=1,detectionCon=0.8)
+detect = HandDetector(maxHands=2,detectionCon=0.8)
 classify = Classifier(modelPath=file_path, labelsPath=labels)
 
 app = FastAPI()
@@ -47,13 +47,14 @@ app = FastAPI()
 
 async def root(image: UploadFile = File(...)):
    offset = 20
-   image_size = 400
+   image_size = 200
    content = await image.read()
    nparr = np.frombuffer(content, np.uint8)
    image_data = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
    hands, images = detect.findHands(image_data)
    
    if hands:
+     
       for hand in hands:
         x, y, w, h = hand['bbox']
         imgWhite = np.ones((image_size,image_size,3),np.uint8)*255
@@ -80,3 +81,6 @@ async def root(image: UploadFile = File(...)):
           predictions, index = classify.getPrediction(imgWhite)
           
           return{"prediction":predict[index]}
+      else:
+        return{'prediction':'two hands'}
+ 

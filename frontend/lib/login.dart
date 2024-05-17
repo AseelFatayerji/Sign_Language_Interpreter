@@ -28,6 +28,7 @@ class LoginPageState extends State<LoginPage> {
           'http://192.168.133.13:3001/verify/${json['user']['token']}'));
       if (token.statusCode == 200) {
         setState(() {
+          global.token = json['user']['token'];
           global.isLoggedIn = true;
           global.email = json['user']['email'];
           global.isAdmin = (json['user']['isAdmin'] == 1) ? true : false;

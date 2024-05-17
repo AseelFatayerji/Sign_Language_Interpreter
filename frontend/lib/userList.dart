@@ -1,9 +1,32 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
 
-class UserList extends StatelessWidget {
-  const UserList({
-    Key? key,
-  }) : super(key: key);
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'global.dart' as global;
+
+class UserList extends StatefulWidget {
+  const UserList({super.key});
+
+  @override
+  State<UserList> createState() => _UserListState();
+}
+
+class _UserListState extends State<UserList> {
+    Future<void> getUsers() async {
+    final resp = await http
+        .get(Uri.parse('http://192.168.133.13:3001/user/${global.token}'));
+    if (resp.statusCode == 200) {
+      final List<dynamic> json = jsonDecode(resp.body);
+      debugPrint(json.toString());
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUsers();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

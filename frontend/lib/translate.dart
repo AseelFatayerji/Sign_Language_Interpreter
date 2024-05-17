@@ -59,10 +59,21 @@ class _TranslationPageState extends State<TranslationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
           output,
           style: TextStyle(fontSize: 16, color: Colors.black),
+        ),
+        Container(
+          height: MediaQuery.of(context).size.height * 0.7,
+          width: MediaQuery.of(context).size.width,
+          child: !controller!.value.isInitialized
+              ? Container()
+              : AspectRatio(
+                  aspectRatio: controller!.value.aspectRatio,
+                  child: CameraPreview(controller!),
+                ),
         )
       ],
     ));

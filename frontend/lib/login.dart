@@ -24,19 +24,24 @@ class LoginPageState extends State<LoginPage> {
         'http://192.168.133.13:3001/auth/${_email.text}/${_password.text}'));
     if (resp.statusCode == 200) {
       final Map<String, dynamic> json = jsonDecode(resp.body);
-      // debugPrint(json['user']['email']);
-      setState(() {
-        global.isLoggedIn = true;
-        global.email = json['user']['email'];
-        global.isAdmin = (json['user']['isAdmin'] == 1) ? true : false;
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          if (global.isAdmin) {
-            return AdminNav();
-          } else {
-            return TeachNav();
-          }
-        }));
-      });
+      final token = await http.get(Uri.parse(
+          'http://192.168.133.13:3001/verify/${json['user']['token']}'));
+      if (token.statusCode == 200) {
+        setState(() {
+          global.isLoggedIn = true;
+          global.email = json['user']['email'];
+          global.isAdmin = (json['user']['isAdmin'] == 1) ? true : false;
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            if (global.isAdmin) {
+              return AdminNav();
+            } else {
+              return TeachNav();
+            }
+          }));
+        });
+      } else {
+        err = 'Invalid token';
+      }
     } else {
       setState(() {
         err = 'Incorrect email or password';
@@ -134,17 +139,18 @@ class LoginPageState extends State<LoginPage> {
                                         _passValidate ? "Required Feild" : null,
                                     isDense: true,
                                     prefixIcon: Container(
-                                    margin: const EdgeInsets.only(right: 10),
-                                    decoration: const BoxDecoration(
-                                      color: Color.fromARGB(255, 113, 212, 204),
-                                      borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(8.0),
-                                        bottomLeft: Radius.circular(8.0),
+                                      margin: const EdgeInsets.only(right: 10),
+                                      decoration: const BoxDecoration(
+                                        color:
+                                            Color.fromARGB(255, 113, 212, 204),
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(8.0),
+                                          bottomLeft: Radius.circular(8.0),
+                                        ),
                                       ),
+                                      child:
+                                          Icon(Icons.lock, color: Colors.white),
                                     ),
-                                    child:
-                                        Icon(Icons.lock, color: Colors.white),
-                                  ),
                                     contentPadding: const EdgeInsets.symmetric(
                                         horizontal: 5),
                                     enabledBorder: const OutlineInputBorder(

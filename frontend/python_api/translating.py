@@ -1,6 +1,3 @@
-
-from cProfile import label
-import io
 import cv2
 import numpy as np
 import math
@@ -8,15 +5,12 @@ import os
 import tensorflow as tf
 import cv2
 
-from PIL import Image
-
 from click import File
 
 from cvzone.HandTrackingModule import HandDetector
 from cvzone.ClassificationModule import Classifier
 
 from fastapi import FastAPI, File, UploadFile
-from fastapi.responses import JSONResponse
 
 from tensorflow.keras.layers import DepthwiseConv2D # type: ignore
 from tensorflow.keras.models import load_model # type: ignore

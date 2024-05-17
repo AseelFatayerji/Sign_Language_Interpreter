@@ -7,6 +7,8 @@ import 'package:frontend/main.dart';
 import 'package:http/http.dart' as http;
 import 'global.dart' as global;
 
+import 'package:translator/translator.dart';
+
 class TranslationPage extends StatefulWidget {
   const TranslationPage({super.key});
 
@@ -15,6 +17,7 @@ class TranslationPage extends StatefulWidget {
 }
 
 class _TranslationPageState extends State<TranslationPage> {
+  final translator = GoogleTranslator();
   CameraImage? cameraImage;
   CameraController? controller;
   String output = "Translation";
@@ -26,7 +29,7 @@ class _TranslationPageState extends State<TranslationPage> {
   }
 
   loadCamera() {
-    controller = CameraController(camera![0], ResolutionPreset.veryHigh);
+    controller = CameraController(camera!.first, ResolutionPreset.veryHigh);
     controller!.initialize().then((value) {
       if (!mounted) {
         return;
@@ -34,9 +37,9 @@ class _TranslationPageState extends State<TranslationPage> {
         setState(() {
           controller!.startImageStream((ImageStream) {
             cameraImage = ImageStream;
-            Timer.periodic(Duration(seconds: 1), (Timer t) {
-              getPredictions(cameraImage);
-            });
+            // Timer.periodic(Duration(seconds: 1), (Timer t) {
+            //   debugPrint("hi");
+            // });
           });
         });
       }
@@ -52,6 +55,10 @@ class _TranslationPageState extends State<TranslationPage> {
     //   setState(() {
     //     final Map<String, dynamic> json = jsonDecode(resp.body);
     //     debugPrint(json.toString());
+    // translator
+    //   .translate(json, to: global.language)
+    //   .then((result) {
+      // output = result
     //   });
     // }
   }

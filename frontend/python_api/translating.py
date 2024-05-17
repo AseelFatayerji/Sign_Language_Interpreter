@@ -54,33 +54,33 @@ async def root(image: UploadFile = File(...)):
    hands, images = detect.findHands(image_data)
    
    if hands:
-     
-      for hand in hands:
-        x, y, w, h = hand['bbox']
-        imgWhite = np.ones((image_size,image_size,3),np.uint8)*255
-        imgRight = images[y-offset:y+h+offset, x-offset:x +w+offset]
-        ratio = h / w
-        if ratio > 1:
-          k = image_size / h 
-          wCal = math.ceil(w * k)
-          wGap = math.ceil((image_size - wCal)/2)
-          imgResize = cv2.resize(imgRight,(wCal,image_size))
-          imgWhite[:, wGap:wCal+wGap] = imgResize      
+     if len(hands) == 1:
+        for hand in hands:
+          x, y, w, h = hand['bbox']
+          imgWhite = np.ones((image_size,image_size,3),np.uint8)*255
+          imgRight = images[y-offset:y+h+offset, x-offset:x +w+offset]
+          ratio = h / w
+          if ratio > 1:
+            k = image_size / h 
+            wCal = math.ceil(w * k)
+            wGap = math.ceil((image_size - wCal)/2)
+            imgResize = cv2.resize(imgRight,(wCal,image_size))
+            imgWhite[:, wGap:wCal+wGap] = imgResize      
           
-          predictions, index = classify.getPrediction(imgWhite)
+            predictions, index = classify.getPrediction(imgWhite)
           
-          return{"prediction":predict[index]}
+            return{"prediction":predict[index]}
         
-        else:
-          k = image_size / w 
-          hCal = math.ceil(h * k)
-          hGap = math.ceil((image_size - hCal)/2)
-          imgResize = cv2.resize(imgRight,(image_size,hCal))
-          imgWhite[hGap:hCal+hGap,:] = imgResize     
+          else:
+            k = image_size / w 
+            hCal = math.ceil(h * k)
+            hGap = math.ceil((image_size - hCal)/2)
+            imgResize = cv2.resize(imgRight,(image_size,hCal))
+            imgWhite[hGap:hCal+hGap,:] = imgResize     
 
-          predictions, index = classify.getPrediction(imgWhite)
+            predictions, index = classify.getPrediction(imgWhite)
           
-          return{"prediction":predict[index]}
-      else:
+            return{"prediction":predict[index]}
+     else:
         return{'prediction':'two hands'}
  

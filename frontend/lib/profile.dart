@@ -20,8 +20,8 @@ class ProfileScreenState extends State<ProfileScreen> {
   var userPass = "";
 
   Future<void> getUser() async {
-    final resp = await http
-        .get(Uri.parse('http://${global.ipv4}:3001/user/${global.email}/${global.token}'));
+    final resp = await http.get(Uri.parse(
+        'http://${global.ipv4}:3001/user/${global.email}/${global.token}'));
     if (resp.statusCode == 200) {
       final List<dynamic> json = jsonDecode(resp.body);
       debugPrint(json[0]['name']);
@@ -80,13 +80,10 @@ class ProfileScreenState extends State<ProfileScreen> {
                             TextFormField(
                               controller: _email,
                               decoration: InputDecoration(
-                                  labelText: userEmail,
-                                  contentPadding:
-                                      const EdgeInsets.symmetric(horizontal: 5),
-                                  enabledBorder: const OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(8)),
-                                  )),
+                                labelText: userEmail,
+                                contentPadding:
+                                    const EdgeInsets.symmetric(horizontal: 5),
+                              ),
                             ),
                             const SizedBox(
                               height: 20,
@@ -94,13 +91,10 @@ class ProfileScreenState extends State<ProfileScreen> {
                             TextFormField(
                               controller: _name,
                               decoration: InputDecoration(
-                                  labelText: userName,
-                                  contentPadding:
-                                      const EdgeInsets.symmetric(horizontal: 5),
-                                  enabledBorder: const OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(8)),
-                                  )),
+                                labelText: userName,
+                                contentPadding:
+                                    const EdgeInsets.symmetric(horizontal: 5),
+                              ),
                             ),
                             const SizedBox(
                               height: 20,
@@ -109,13 +103,10 @@ class ProfileScreenState extends State<ProfileScreen> {
                               controller: _pass,
                               obscureText: true,
                               decoration: const InputDecoration(
-                                  labelText: "Unchanged Password",
-                                  contentPadding:
-                                      EdgeInsets.symmetric(horizontal: 5),
-                                  enabledBorder: OutlineInputBorder(
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(8)),
-                                  )),
+                                labelText: "Unchanged Password",
+                                contentPadding:
+                                    EdgeInsets.symmetric(horizontal: 5),
+                              ),
                             ),
                             const SizedBox(
                               height: 40,

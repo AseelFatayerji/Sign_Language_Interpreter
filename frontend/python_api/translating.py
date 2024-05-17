@@ -82,5 +82,29 @@ async def root(image: UploadFile = File(...)):
           
             return{"prediction":predict[index]}
      else:
-        return{'prediction':'two hands'}
+          x1, y1, w1, h1 = hands[0]['bbox']
+          x2, y2, w2, h2 = hands[1]['bbox']
+
+          min_x = min(x1, x2)
+          min_y = min(y1, y2)
+          max_x = max(x1 + w1, x2 + w2)
+          max_y = max(y1 + h1, y2 + h2)
+
+          cropped_width = max_x - min_x + 40  
+          cropped_height = max_y - min_y + 40 
+
+
+          scale_factor = max(1, max(cropped_width / 400, cropped_height / 400))
+
+          cropped_hands_resized = cv2.resize(images[min_y:max_y, min_x:max_x], None, fx=1/scale_factor, fy=1/scale_factor)
+
+          background = np.ones((400, 400, 3), dtype=np.uint8) * 255
+
+          offset_x = int((400 - cropped_hands_resized.shape[1]) / 2)
+          offset_y = int((400 - cropped_hands_resized.shape[0]) / 2)
+
+          background[offset_y:offset_y+cropped_hands_resized.shape[0], offset_x:offset_x+cropped_hands_resized.shape[1]] = cropped_hands_resized
+          predictions, index = classify.getPrediction(background)
+          
+          return{"prediction":predict[index]}
  

@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:frontend/main.dart';
 import 'package:http/http.dart' as http;
 import 'global.dart' as global;
@@ -58,22 +59,18 @@ class _TranslationPageState extends State<TranslationPage> {
     // translator
     //   .translate(json, to: global.language)
     //   .then((result) {
-      // output = result
+    // output = result
     //   });
     // }
   }
 
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+        body: Stack(
+      alignment: Alignment.topCenter,
       children: [
-        Text(
-          output,
-          style: TextStyle(fontSize: 16, color: Colors.black),
-        ),
         Container(
-          height: MediaQuery.of(context).size.height * 0.7,
+          height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: !controller!.value.isInitialized
               ? Container()
@@ -81,6 +78,18 @@ class _TranslationPageState extends State<TranslationPage> {
                   aspectRatio: controller!.value.aspectRatio,
                   child: CameraPreview(controller!),
                 ),
+        ),
+        Container(
+          padding: const EdgeInsets.all(5),
+          decoration: BoxDecoration(
+              color: Colors.white60, borderRadius: BorderRadius.circular(5)),
+          child: Text(
+            output,
+            style: const TextStyle(
+              fontSize: 18,
+              color: Colors.black,
+            ),
+          ),
         )
       ],
     ));

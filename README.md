@@ -4,10 +4,11 @@
 
 <!-- project philosophy -->
 <img src="./readme/title2.svg"/>
+img src="./readme/title2.svg"/>
 
->This mobile application enables users to upload files for sign language analysis or to receive real-time interpretation, simplifying the process of learning sign language.
->
-> Silent Learning is an app that helps people learn sign language. It gives feedback to help learners improve. There are two parts: one for students to learn and one for teachers to add new signs, which keeps the app's sign language collection fresh and full.
+>This mobile application enables users to receive real-time interpretation, simplifying the process of learning sign language and bridging the gap between verbal and non-verbal communitaion.
+> 
+>Silent Learning is an app that helps people learn sign language. It gives feedback to help learners improve. There are two parts: one for students to learn and one for teachers to add new signs, which keeps the app's sign language collection fresh and full.
 
 
 ### User Stories
@@ -21,9 +22,9 @@
 
 ###  Silent Learning is built using the following technologies:
 
-- This project uses the Mediapipe and Tensorflow integarted with Flutter to create a wireframe that tracks the user's hand and body movements to correctly interpret the signs being done.
+- This project uses the [Mediapipe](https://mediapipe.readthedocs.io/) and [Tensorflow](https://www.tensorflow.org/api_docs) integarted in a Python API to create a wireframe that tracks the user's hand and displays the prediction in the [Flutter](https://docs.flutter.dev/) UI.
 - For persistent storage (database), the app uses the MongoDB package which allows the app to connect to a database containing all the users.
-- The Tensorflow package comes equiped with Keras which allows us to load in the models and update them without the need for a deticated databse.
+- The Tensorflow package comes equiped with Keras which allows us to load in the models and update them without the need for a deticated database.
 
 <br><br>
 <!-- UI UX -->
@@ -36,9 +37,9 @@
 
 
 ### Mockups
-| Home screen  | Teacher Screen | Translating Screen | Language Screen |
-| ---| ---| ---| ---|
-| ![Landing](./readme/images/Home%20screen.png) | ![fsdaf](./readme/images/Teaching%20screen.png) | ![fsdaf](./readme/images/Learning%20Screen.png) |![fsdaf](./readme/images/Language%20screen.png) |
+| Home screen  | Opening Screen | Translating Screen |
+| ---| ---| ---|
+| ![Landing](./readme/images/Home%20screen.png) | ![fsdaf](./readme/images/Openning%20Screen.png) | ![fsdaf](./readme/images/Learning%20Screen.png) |
 
 <br><br>
 
@@ -58,12 +59,14 @@
 
 
 ### User Screens (Mobile)
-| Home screen  | Teacher Screen | Translating Screen | Loading Screen | Language Selection Secreen |
+| Home screen  | Translating Screen | Loading Screen | Language Selection Secreen | Openning Screen | 
 | ---| ---| ---| ---| ---|
-| ![Landing](./readme/images/Home%20screen.png) | ![fsdaf](./readme/images/Teaching%20screen.png) | ![fsdaf](./readme/images/Learning%20Screen.png) | ![fsdaf](./readme/images/Loading%20Screen.png) | ![fsdaf](./readme/images/Language%20screen.png) |
-| Login screen  | Profile | Admin Screen | User List Screen | Openning Screen | 
+| ![Landing](./readme/images/Home%20screen.png) | ![fsdaf](./readme/images/Learning%20Screen.png) | ![fsdaf](./readme/images/Loading%20Screen.png) | ![fsdaf](./readme/images/Language%20screen.png) |
+
+### Admin/Teacher Screens (Mobile)
+| Login screen  | Profile | Admin Screen | User List Screen | Teaching Screen | 
 | ---| ---| ---| ---| ---|
-| ![Landing](./readme/images/Login.png) | ![fsdaf](./readme/images/profile.png) | ![fsdaf](./readme/images/Admin.png) |![fsdaf](./readme/images/User%20list.png) | ![fsdaf](./readme/images/Openning%20Screen.png) | 
+| ![Landing](./readme/images/Login.png) | ![fsdaf](./readme/images/profile.png) | ![fsdaf](./readme/images/Admin.png) |![fsdaf](./readme/images/User%20list.png) | ![fsdaf](./readme/images/Teaching%20screen.png) | 
 
 
 <br><br>

@@ -338,8 +338,7 @@ class _LanguagePageState extends State<LanguagePage> {
                         ),
                       ),
                       Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 40.0),
+                        padding: const EdgeInsets.symmetric(horizontal: 40.0),
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(8),
@@ -365,7 +364,10 @@ class _LanguagePageState extends State<LanguagePage> {
                           },
                         ),
                       ),
-                    ])
+                    ]),
+                const SizedBox(
+                  height: 80,
+                )
               ],
             ),
           )),

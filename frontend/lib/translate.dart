@@ -1,13 +1,16 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/main.dart';
-import 'package:http/http.dart' as http;
-import 'global.dart' as global;
+import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:translator/translator.dart';
+
+import 'package:http/http.dart' as http;
+import 'package:image/image.dart' as img;
+import 'global.dart' as global;
 
 class TranslationPage extends StatefulWidget {
   @override
@@ -16,7 +19,6 @@ class TranslationPage extends StatefulWidget {
 
 class TranslationPageState extends State<TranslationPage> {
   final translator = GoogleTranslator();
-  late Future<void> _initializeControllerFuture;
   late Timer time;
   var btn = "Start";
 
@@ -37,50 +39,52 @@ class TranslationPageState extends State<TranslationPage> {
   }
 
   loadCamera() {
-    debugPrint("test");
     controller = CameraController(camera![1], ResolutionPreset.veryHigh);
-    _initializeControllerFuture = controller!.initialize();
+    controller!.initialize();
+  }
+
+  Future<List<int>> _convertToJpeg(CameraImage image) async {
+    List<int> bytes = await FlutterImageCompress.compressWithList(
+      image.planes[0].bytes,
+      minHeight: image.height,
+      minWidth: image.width,
+      quality: 90,
+    );
+    return bytes;
   }
 
   startTimer() {
-    debugPrint("start");
     setState(() {
-      debugPrint("hi");
       if (btn == "Start") {
         btn = "Stop";
-        const Duration interval = Duration(seconds: 1);
-        time = Timer.periodic(interval, (Timer t) async {
-          await takePic();
+        controller!.startImageStream((images) async {
+          List<int> jpegData = await _convertToJpeg(images);
+          getPredictions(jpegData);
         });
       } else {
         btn = "Start";
-        time.cancel();
+        controller!.stopImageStream();
       }
     });
   }
 
-  takePic() async {
-    final XFile imageFile = await controller!.takePicture();
-    File image = File(imageFile.path);
-    getPredictions(image);
-  }
-
-  getPredictions(File image) async {
-    var request = http.MultipartRequest(
-        'POST', Uri.parse('http://${global.ipv4}:8000/translate'));
-    var file = await http.MultipartFile.fromPath('image', image.path);
-    request.files.add(file);
-    var response = await request.send();
-
-    if (response.statusCode == 200) {
+  getPredictions(image) async {
+    debugPrint("test");
+    var uri = Uri.parse('http://${global.ipv4}:8000/translate');
+    var request = http.MultipartRequest('POST', uri);
+    request.files.add(await http.MultipartFile.fromPath('image', image.path));
+    var resp = await request.send();
+    if (resp.statusCode == 200) {
       setState(() {
-        debugPrint(response.toString());
+        debugPrint("hi");
         // translator
         //   .translate(json, to: global.language)
         //   .then((result) {
         // output = result.text;
         //   });
       });
+    } else {
+      debugPrint(resp.statusCode.toString());
     }
   }
 
@@ -91,19 +95,8 @@ class TranslationPageState extends State<TranslationPage> {
       );
     }
     return Scaffold(
-        body: Stack(
-      alignment: Alignment.topCenter,
+        body: Column(
       children: [
-        Container(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: !controller!.value.isInitialized
-              ? Container()
-              : AspectRatio(
-                  aspectRatio: controller!.value.aspectRatio,
-                  child: CameraPreview(controller!),
-                ),
-        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -140,7 +133,17 @@ class TranslationPageState extends State<TranslationPage> {
               ),
             ),
           ],
-        )
+        ),
+        Container(
+          height: MediaQuery.of(context).size.height * 0.7,
+          width: MediaQuery.of(context).size.width,
+          child: !controller!.value.isInitialized
+              ? Container()
+              : AspectRatio(
+                  aspectRatio: controller!.value.aspectRatio,
+                  child: CameraPreview(controller!),
+                ),
+        ),
       ],
     ));
   }

@@ -1,10 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/widgets.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({
-    Key? key,
-  }) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  var titles = [
+    'Allow camera use',
+    'Stand in front of the camera with both hands visible',
+    'Change the selected language in the language section (Optional)',
+    'Click on the camera icon',
+    'Happy signing :)'
+  ];
+  var images = [
+    "assets/logo-transparent.png",
+    "assets/logo-transparent.png",
+    "assets/logo-transparent.png",
+    "assets/logo-transparent.png",
+    "assets/logo-transparent.png"
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,23 +60,17 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                       CarouselSlider(
-                          items: [
-                            'Allow camera use',
-                            'Stand in front of the camera with both hands visible',
-                            'Change the selected language in the language section (Optional)',
-                            'Click on the camera icon',
-                            'Happy signing :)'
-                          ].map((e) {
+                          items: titles.map((e) {
                             return Column(
                               children: [
                                 Container(
                                     width: MediaQuery.of(context).size.width,
-                                    child: const Image(
+                                    child: Image(
                                       alignment: Alignment.center,
                                       height: 150,
                                       width: 150,
-                                      image: AssetImage(
-                                          "assets/logo-transparent.png"),
+                                      image:
+                                          AssetImage(images[titles.indexOf(e)]),
                                     )),
                                 Text("$e")
                               ],

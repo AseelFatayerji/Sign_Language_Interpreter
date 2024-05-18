@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class TranslationPage extends StatefulWidget {
 
 class TranslationPageState extends State<TranslationPage> {
   final translator = GoogleTranslator();
+  late Future<void> _initializeControllerFuture;
   CameraImage? cameraImage;
   CameraController? controller;
   String output = "Translation";
@@ -22,49 +24,56 @@ class TranslationPageState extends State<TranslationPage> {
   @override
   void initState() {
     super.initState();
-      translator.translate(output, to: global.language)
-      .then((result) {
-        setState(() {
-          output = result.text;
-        });
+    translator.translate(output, to: global.language).then((result) {
+      setState(() {
+        output = result.text;
       });
+    });
 
     loadCamera();
   }
 
   loadCamera() {
     controller = CameraController(camera!.first, ResolutionPreset.veryHigh);
-    controller!.initialize().then((value) {
-      if (!mounted) {
-        return;
-      } else {
-        setState(() {
-          controller!.startImageStream((ImageStream) {
-            cameraImage = ImageStream;
-            // Timer.periodic(Duration(seconds: 1), (Timer t) {
-            //   debugPrint("hi");
-            // });
-          });
-        });
-      }
+    _initializeControllerFuture = controller!.initialize();
+  }
+
+  void startTimer() {
+    const Duration interval =
+        Duration(seconds: 1);
+    Timer.periodic(interval, (Timer t) {
+      takePic();
     });
   }
 
-  getPredictions(image) async {
-    debugPrint(image);
-    // List<int> imageBytes = await image.readAsBytes();
-    // final resp =
-    //     await http.post(Uri.parse('http://${global.ipv4}:8000/translate'),body: );
-    // if (resp.statusCode == 200) {
-    //   setState(() {
-    //     final Map<String, dynamic> json = jsonDecode(resp.body);
-    //     debugPrint(json.toString());
-    // translator
-    //   .translate(json, to: global.language)
-    //   .then((result) {
-    // output = result.text
-    //   });
-    // }
+  takePic() async {
+    await _initializeControllerFuture;
+    final XFile imageFile = await controller!.takePicture();
+    File image = File(imageFile.path);
+    getPredictions(image);
+  }
+
+  getPredictions(File image) async {
+
+    var request = http.MultipartRequest('POST', Uri.parse('http://${global.ipv4}:8000/translate'));
+
+    // Add the image to the request
+    var file = await http.MultipartFile.fromPath('image', image.path);
+    request.files.add(file);
+
+    // Send the request
+    var response = await request.send();
+
+    if (response.statusCode == 200) {
+      setState(() {
+        debugPrint(response.toString());
+        // translator
+        //   .translate(json, to: global.language)
+        //   .then((result) {
+        // output = result.text;
+        //   });
+      });
+    }
   }
 
   Widget build(BuildContext context) {

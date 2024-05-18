@@ -61,7 +61,7 @@ img src="./readme/title2.svg"/>
 ### User Screens (Mobile)
 | Home screen  | Translating Screen | Loading Screen | Language Selection Secreen | Openning Screen | 
 | ---| ---| ---| ---| ---|
-| ![Landing](./readme/images/Home%20screen.png) | ![fsdaf](./readme/images/Learning%20Screen.png) | ![fsdaf](./readme/images/Loading%20Screen.png) | ![fsdaf](./readme/images/Language%20screen.png) | ![fsdaf](./readme/images/Openning%20Screen.png.png) |
+| ![Landing](./readme/images/Home%20screen.png) | ![fsdaf](./readme/images/Learning%20Screen.png) | ![fsdaf](./readme/images/Loading%20Screen.png) | ![fsdaf](./readme/images/Language%20screen.png) | ![fsdaf](./readme/images/Openning%20Screen.png) |
 
 ### Admin/Teacher Screens (Mobile)
 | Login screen  | Profile | Admin Screen | User List Screen | Teaching Screen | 

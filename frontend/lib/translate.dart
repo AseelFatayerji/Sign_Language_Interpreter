@@ -24,9 +24,11 @@ class TranslationPageState extends State<TranslationPage> {
     super.initState();
       translator.translate(output, to: global.language)
       .then((result) {
-        output = result.text;
+        setState(() {
+          output = result.text;
+        });
       });
-      
+
     loadCamera();
   }
 

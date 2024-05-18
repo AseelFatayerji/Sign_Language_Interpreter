@@ -28,7 +28,7 @@ class _NavbarState extends State<Navbar> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      backgroundColor: Color.fromARGB(235, 45, 45, 45),
+        backgroundColor: const Color.fromARGB(255, 37, 35, 38),
       ),
       body: Center(
         child: _screens.elementAt(_selectedIndex),

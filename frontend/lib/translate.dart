@@ -62,7 +62,7 @@ class TranslationPageState extends State<TranslationPage> {
     // translator
     //   .translate(json, to: global.language)
     //   .then((result) {
-    // output = result
+    // output = result.text
     //   });
     // }
   }

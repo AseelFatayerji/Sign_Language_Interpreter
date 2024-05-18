@@ -53,14 +53,32 @@ class TranslationPageState extends State<TranslationPage> {
     setState(() {
       if (btn == "Start") {
         btn = "Stop";
-        controller!.startImageStream((images) async {
-          List<int> bytes = await Uint8List.fromList(images.planes[0].bytes);
+        controller!.startImageStream((images) {
+          _convertBGRA8888(images);
         });
       } else {
         btn = "Start";
         controller!.stopImageStream();
       }
     });
+  }
+
+  Future<img.Image?> _convertBGRA8888(CameraImage image) async {
+    try {
+      debugPrint(
+          "Plane Bytes Count: " + image.planes[0].bytes.length.toString());
+      img.Image jpg = img.Image.fromBytes(
+        width: image.width,
+        height: image.height,
+        bytes: image.planes[0].bytes.buffer,
+      );
+      return jpg;
+    } catch (ex) {
+      debugPrint(
+          "Error Occurred while Converting BGRA8888 formatted camera Image into img.Image: " +
+              ex.toString());
+      return null;
+    }
   }
 
   getPredictions(File image) async {

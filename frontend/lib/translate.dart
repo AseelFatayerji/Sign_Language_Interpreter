@@ -17,6 +17,9 @@ class TranslationPage extends StatefulWidget {
 class TranslationPageState extends State<TranslationPage> {
   final translator = GoogleTranslator();
   late Future<void> _initializeControllerFuture;
+  late Timer time;
+  var btn = "Start";
+
   CameraImage? cameraImage;
   CameraController? controller;
   String output = "Translation";
@@ -34,34 +37,39 @@ class TranslationPageState extends State<TranslationPage> {
   }
 
   loadCamera() {
-    controller = CameraController(camera!.first, ResolutionPreset.veryHigh);
+    debugPrint("test");
+    controller = CameraController(camera![1], ResolutionPreset.veryHigh);
     _initializeControllerFuture = controller!.initialize();
   }
 
-  void startTimer() {
-    const Duration interval =
-        Duration(seconds: 1);
-    Timer.periodic(interval, (Timer t) {
-      takePic();
+  startTimer() {
+    debugPrint("start");
+    setState(() {
+      debugPrint("hi");
+      if (btn == "Start") {
+        btn = "Stop";
+        const Duration interval = Duration(seconds: 1);
+        time = Timer.periodic(interval, (Timer t) async {
+          await takePic();
+        });
+      } else {
+        btn = "Start";
+        time.cancel();
+      }
     });
   }
 
   takePic() async {
-    await _initializeControllerFuture;
     final XFile imageFile = await controller!.takePicture();
     File image = File(imageFile.path);
     getPredictions(image);
   }
 
   getPredictions(File image) async {
-
-    var request = http.MultipartRequest('POST', Uri.parse('http://${global.ipv4}:8000/translate'));
-
-    // Add the image to the request
+    var request = http.MultipartRequest(
+        'POST', Uri.parse('http://${global.ipv4}:8000/translate'));
     var file = await http.MultipartFile.fromPath('image', image.path);
     request.files.add(file);
-
-    // Send the request
     var response = await request.send();
 
     if (response.statusCode == 200) {
@@ -77,6 +85,11 @@ class TranslationPageState extends State<TranslationPage> {
   }
 
   Widget build(BuildContext context) {
+    if (controller == null) {
+      return const Center(
+        child: CircularProgressIndicator(),
+      );
+    }
     return Scaffold(
         body: Stack(
       alignment: Alignment.topCenter,
@@ -91,17 +104,42 @@ class TranslationPageState extends State<TranslationPage> {
                   child: CameraPreview(controller!),
                 ),
         ),
-        Container(
-          padding: const EdgeInsets.all(5),
-          decoration: BoxDecoration(
-              color: Colors.white60, borderRadius: BorderRadius.circular(5)),
-          child: Text(
-            output,
-            style: const TextStyle(
-              fontSize: 18,
-              color: Colors.black,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Container(
+              padding: const EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                  color: Colors.white60,
+                  borderRadius: BorderRadius.circular(5)),
+              child: Text(
+                output,
+                style: const TextStyle(
+                  fontSize: 18,
+                  color: Colors.black,
+                ),
+              ),
             ),
-          ),
+            TextButton(
+              onPressed: () {
+                startTimer();
+              },
+              style: TextButton.styleFrom(
+                backgroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
+              child: Text(
+                btn,
+                style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 16.0,
+                ),
+              ),
+            ),
+          ],
         )
       ],
     ));

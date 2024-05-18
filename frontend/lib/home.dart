@@ -62,6 +62,7 @@ class _HomePageState extends State<HomePage> {
                       CarouselSlider(
                           items: titles.map((e) {
                             return Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Container(
                                     width: MediaQuery.of(context).size.width,
@@ -72,7 +73,10 @@ class _HomePageState extends State<HomePage> {
                                       image:
                                           AssetImage(images[titles.indexOf(e)]),
                                     )),
-                                Text("$e")
+                                Text(
+                                  e,
+                                  textAlign: TextAlign.center,
+                                )
                               ],
                             );
                           }).toList(),

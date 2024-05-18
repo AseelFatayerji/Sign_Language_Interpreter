@@ -146,7 +146,7 @@ class _LanguagePageState extends State<LanguagePage> {
     'yo',
     'zu',
   ];
-  final langugaes = [
+  final languages = [
     'Automatic',
     'Afrikaans',
     'Albanian',
@@ -350,12 +350,12 @@ class _LanguagePageState extends State<LanguagePage> {
                             size: 18,
                           ),
                           onSelected: (String value) {
-                            int index = langugaes.indexOf(value);
-                            global.langugae = codes[index];
-                            debugPrint(global.langugae);
+                            int index = languages.indexOf(value);
+                            global.language = codes[index];
+                            debugPrint(global.language);
                           },
                           itemBuilder: (BuildContext context) {
-                            return langugaes.map((String choice) {
+                            return languages.map((String choice) {
                               return PopupMenuItem<String>(
                                 value: choice,
                                 child: Text(choice),

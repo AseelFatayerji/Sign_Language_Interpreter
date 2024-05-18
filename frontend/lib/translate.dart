@@ -3,21 +3,17 @@ import 'dart:convert';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:frontend/main.dart';
 import 'package:http/http.dart' as http;
 import 'global.dart' as global;
-
 import 'package:translator/translator.dart';
 
 class TranslationPage extends StatefulWidget {
-  const TranslationPage({super.key});
-
   @override
-  State<TranslationPage> createState() => _TranslationPageState();
+  TranslationPageState createState() => TranslationPageState();
 }
 
-class _TranslationPageState extends State<TranslationPage> {
+class TranslationPageState extends State<TranslationPage> {
   final translator = GoogleTranslator();
   CameraImage? cameraImage;
   CameraController? controller;
@@ -26,6 +22,11 @@ class _TranslationPageState extends State<TranslationPage> {
   @override
   void initState() {
     super.initState();
+      translator.translate(output, to: global.language)
+      .then((result) {
+        output = result.text;
+      });
+      
     loadCamera();
   }
 

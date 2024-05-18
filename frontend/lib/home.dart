@@ -18,11 +18,11 @@ class _HomePageState extends State<HomePage> {
     'Happy signing :)'
   ];
   var images = [
-    "assets/logo-transparent.png",
-    "assets/logo-transparent.png",
-    "assets/logo-transparent.png",
-    "assets/logo-transparent.png",
-    "assets/logo-transparent.png"
+    "assets/1.png",
+    "assets/2.png",
+    "assets/3.png",
+    "assets/4.png",
+    "assets/5.png"
   ];
   @override
   Widget build(BuildContext context) {

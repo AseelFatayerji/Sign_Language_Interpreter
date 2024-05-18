@@ -38,19 +38,15 @@ class TranslationPageState extends State<TranslationPage> {
     loadCamera();
   }
 
+  @override
+  void dispose() {
+    controller!.dispose();
+    super.dispose();
+  }
+
   loadCamera() {
     controller = CameraController(camera![1], ResolutionPreset.veryHigh);
     controller!.initialize();
-  }
-
-  Future<List<int>> _convertToJpeg(CameraImage image) async {
-    List<int> bytes = await FlutterImageCompress.compressWithList(
-      image.planes[0].bytes,
-      minHeight: image.height,
-      minWidth: image.width,
-      quality: 90,
-    );
-    return bytes;
   }
 
   startTimer() {
@@ -58,8 +54,7 @@ class TranslationPageState extends State<TranslationPage> {
       if (btn == "Start") {
         btn = "Stop";
         controller!.startImageStream((images) async {
-          List<int> jpegData = await _convertToJpeg(images);
-          getPredictions(jpegData);
+          List<int> bytes = await Uint8List.fromList(images.planes[0].bytes);
         });
       } else {
         btn = "Start";
@@ -68,8 +63,7 @@ class TranslationPageState extends State<TranslationPage> {
     });
   }
 
-  getPredictions(image) async {
-    debugPrint("test");
+  getPredictions(File image) async {
     var uri = Uri.parse('http://${global.ipv4}:8000/translate');
     var request = http.MultipartRequest('POST', uri);
     request.files.add(await http.MultipartFile.fromPath('image', image.path));

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({
@@ -25,13 +26,13 @@ class HomePage extends StatelessWidget {
                     ),
                     border: Border.all(color: Colors.transparent),
                   ),
-                  child: const Column(
+                  child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 50,
                       ),
-                      Text(
+                      const Text(
                         'How to use',
                         style: TextStyle(
                           color: Colors.black,
@@ -39,15 +40,31 @@ class HomePage extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Text(
-                        '1. Allow camera use.\n2. Stand in front of the camera with both hands visible.\n3. Click on the camera icon.\n4. Happy signing :).\n5. Change the selected language in the language section (Optional).',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      SizedBox(
+                      CarouselSlider(
+                          items: [
+                            'Allow camera use',
+                            'Stand in front of the camera with both hands visible',
+                            'Change the selected language in the language section (Optional)',
+                            'Click on the camera icon',
+                            'Happy signing :)'
+                          ].map((e) {
+                            return Column(
+                              children: [
+                                Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    child: const Image(
+                                      alignment: Alignment.center,
+                                      height: 150,
+                                      width: 150,
+                                      image: AssetImage(
+                                          "assets/logo-transparent.png"),
+                                    )),
+                                Text("$e")
+                              ],
+                            );
+                          }).toList(),
+                          options: CarouselOptions(height: 200)),
+                      const SizedBox(
                         height: 100,
                       ),
                     ],

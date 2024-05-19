@@ -10,14 +10,14 @@ import 'package:translator/translator.dart';
 import 'package:http/http.dart' as http;
 import 'global.dart' as global;
 
-class ModulUpdate extends StatefulWidget {
-  const ModulUpdate({super.key});
+class ModelUpdate extends StatefulWidget {
+  const ModelUpdate({super.key});
 
   @override
   ModelState createState() => ModelState();
 }
 
-class ModelState extends State<ModulUpdate> {
+class ModelState extends State<ModelUpdate> {
   final translator = GoogleTranslator();
   late Timer timer;
   bool isCapturing = false;

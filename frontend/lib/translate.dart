@@ -38,6 +38,7 @@ class TranslationPageState extends State<TranslationPage> {
     loadCamera();
   }
 
+  @override
   void dispose() {
     controller!.dispose();
     timer.cancel();

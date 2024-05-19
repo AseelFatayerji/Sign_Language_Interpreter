@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                                   e,
                                   textAlign: TextAlign.center,
                                 ),
-                                Container(
+                                SizedBox(
                                     width: MediaQuery.of(context).size.width,
                                     child: Image(
                                       alignment: Alignment.center,

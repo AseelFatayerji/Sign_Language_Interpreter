@@ -37,7 +37,7 @@ class LoginPageState extends State<LoginPage> {
           global.isAdmin = (json['user']['isAdmin'] == 1) ? true : false;
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             if (global.isAdmin) {
-              return AdminNav();
+              return const AdminNav();
             } else {
               return const TeachNav();
             }

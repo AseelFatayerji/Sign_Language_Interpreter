@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
                       CarouselSlider(
                           items: titles.map((e) {
                             return Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
                                   e,

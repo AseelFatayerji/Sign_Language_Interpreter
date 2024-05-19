@@ -5,6 +5,8 @@ import 'translate.dart';
 import 'login.dart';
 
 class Navbar extends StatefulWidget {
+  const Navbar({super.key});
+
   @override
   _NavbarState createState() => _NavbarState();
 }

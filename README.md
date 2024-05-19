@@ -95,7 +95,14 @@ img src="./readme/title2.svg"/>
 
 ###  Precision in Development: Harnessing the Power of Unit Testing:
 
-- This project employs rigorous unit testing methodologies to ensure the reliability and accuracy of code components. By systematically evaluating individual units of the software, we guarantee a robust foundation, identifying and addressing potential issues early in the development process.
+- This project employs rigorous unit testing methodologies to ensure the reliability and accuracy of code components such as: 
+ 1. Gesture Recognition Accuracy: Test the accuracy of gesture recognition by providing various ASL signs and verifying that the app correctly identifies and translates them into words. This ensures that the app accurately interprets ASL gestures.
+
+ 2. Handling of Different Gestures: Test the app's ability to recognize a wide range of ASL gestures, including letters, numbers, common phrases, and more complex signs. Ensure that the app can accurately translate each gesture into the corresponding word or phrase.
+
+ 3. Handling of Ambiguous Gestures: Test the app's behavior when presented with ambiguous gestures that could represent multiple words or phrases. Verify that the app selects the most appropriate translation based on context or user input.
+
+ 4. Performance Testing: Assess the app's performance by measuring the time it takes to recognize and translate different ASL gestures. Ensure that the translation process is fast and responsive, even for complex or rapid gestures.
 
 <br><br>
 

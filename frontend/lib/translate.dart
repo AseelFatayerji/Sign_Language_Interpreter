@@ -38,6 +38,12 @@ class TranslationPageState extends State<TranslationPage> {
     loadCamera();
   }
 
+  void dispose() {
+    controller!.dispose();
+    timer.cancel();
+    super.dispose();
+  }
+
   loadCamera() {
     controller = CameraController(camera![1], ResolutionPreset.veryHigh);
     controller!.initialize();
@@ -50,24 +56,16 @@ class TranslationPageState extends State<TranslationPage> {
         timer = Timer.periodic(Duration(seconds: 3), (timer) async {
           if (!isCapturing) {
             try {
-              setState(() {
-                isCapturing = true;
-                return;
-              });
-              XFile imageFile = await controller!.takePicture();
-              await getPredictions(File(imageFile.path));
+              XFile? imageFile = await controller!.takePicture();
+               await getPredictions(File(imageFile.path));
             } catch (err) {
               debugPrint("Error capturing/sending image: $err");
-            } finally {
-              setState(() {
-                isCapturing = false;
-              });
             }
           }
         });
       } else {
         btn = "Start";
-        controller!.stopImageStream();
+        timer.cancel();
       }
     });
   }

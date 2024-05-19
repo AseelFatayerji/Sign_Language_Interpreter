@@ -63,7 +63,7 @@ class LoginPageState extends State<LoginPage> {
               clipBehavior: Clip.none,
               children: [
                 Container(
-                  height: 500,
+                  height: 300,
                   padding:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                   decoration: BoxDecoration(
@@ -206,7 +206,7 @@ class LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       const SizedBox(
-                        height: 100,
+                        height: 50,
                       ),
                     ],
                   ),

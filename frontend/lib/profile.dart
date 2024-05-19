@@ -118,8 +118,10 @@ class ProfileScreenState extends State<ProfileScreen> {
                                 children: [
                                   TextButton(
                                     onPressed: () {
-                                      // setState(() {
-                                      // });
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return const Navbar();
+                                      }));
                                     },
                                     style: TextButton.styleFrom(
                                       backgroundColor: const Color.fromARGB(

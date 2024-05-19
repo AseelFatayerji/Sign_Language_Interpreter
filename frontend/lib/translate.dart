@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-import 'dart:typed_data';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
@@ -8,10 +7,11 @@ import 'package:frontend/main.dart';
 import 'package:translator/translator.dart';
 
 import 'package:http/http.dart' as http;
-import 'package:image/image.dart' as img;
 import 'global.dart' as global;
 
 class TranslationPage extends StatefulWidget {
+  const TranslationPage({super.key});
+
   @override
   TranslationPageState createState() => TranslationPageState();
 }
@@ -45,29 +45,33 @@ class TranslationPageState extends State<TranslationPage> {
   }
 
   loadCamera() {
-    controller = CameraController(camera![1], ResolutionPreset.veryHigh);
+    controller = CameraController(camera!.first, ResolutionPreset.veryHigh);
     controller!.initialize();
   }
 
   startTimer() {
-    setState(() {
-      if (btn == "Start") {
+    if (btn == "Start") {
+      setState(() {
         btn = "Stop";
-        timer = Timer.periodic(Duration(seconds: 3), (timer) async {
-          if (!isCapturing) {
-            try {
-              XFile? imageFile = await controller!.takePicture();
-               await getPredictions(File(imageFile.path));
-            } catch (err) {
-              debugPrint("Error capturing/sending image: $err");
-            }
+        return;
+      });
+      timer = Timer.periodic(const Duration(seconds: 3), (timer) async {
+        if (!isCapturing) {
+          try {
+            XFile? imageFile = await controller!.takePicture();
+            await getPredictions(File(imageFile.path));
+          } catch (err) {
+            debugPrint("Error capturing/sending image: $err");
           }
-        });
-      } else {
+        }
+      });
+    } else {
+      setState(() {
         btn = "Start";
-        timer.cancel();
-      }
-    });
+        return;
+      });
+      timer.cancel();
+    }
   }
 
   getPredictions(File imageFile) async {

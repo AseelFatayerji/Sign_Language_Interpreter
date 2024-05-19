@@ -40,6 +40,7 @@ class ProfileScreenState extends State<ProfileScreen> {
     getUser();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Align(

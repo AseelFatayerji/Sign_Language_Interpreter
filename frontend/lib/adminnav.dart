@@ -8,6 +8,8 @@ import 'userList.dart';
 import 'admin.dart';
 
 class AdminNav extends StatefulWidget {
+  const AdminNav({super.key});
+
   @override
   _AdminNavState createState() => _AdminNavState();
 }

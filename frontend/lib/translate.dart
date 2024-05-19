@@ -76,14 +76,14 @@ class TranslationPageState extends State<TranslationPage> {
   }
 
   getPredictions(File imageFile) async {
-    var apiUrl = Uri.parse('http://${global.ipv4}:8000/translate');
+    var apiUrl = Uri.parse('http://${global.ipv4}:3001/translate');
     var request = http.MultipartRequest('POST', apiUrl);
     request.files
         .add(await http.MultipartFile.fromPath('image', imageFile.path));
 
     var response = await request.send();
     if (response.statusCode == 200) {
-      debugPrint("Image uploaded successfully!");
+      debugPrint(response.toString());
     } else {
       debugPrint("Failed to upload image. Error: ${response.reasonPhrase}");
     }

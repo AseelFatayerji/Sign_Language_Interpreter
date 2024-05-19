@@ -118,6 +118,10 @@ class ProfileScreenState extends State<ProfileScreen> {
                                 children: [
                                   TextButton(
                                     onPressed: () {
+                                      global.token = "";
+                                      global.isLoggedIn = false;
+                                      global.email = "";
+                                      global.isAdmin = false;
                                       Navigator.push(context,
                                           MaterialPageRoute(builder: (context) {
                                         return const Navbar();

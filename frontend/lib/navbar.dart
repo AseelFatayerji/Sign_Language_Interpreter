@@ -16,7 +16,7 @@ class NavbarState extends State<Navbar> {
   final List<Widget> _screens = <Widget>[
     const LanguagePage(),
     const HomePage(),
-    TranslationPage(),
+    const TranslationPage(),
     LoginPage(),
   ];
 

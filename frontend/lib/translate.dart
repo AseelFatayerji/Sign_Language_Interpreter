@@ -93,6 +93,7 @@ class TranslationPageState extends State<TranslationPage> {
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     if (controller == null) {
       return const Center(

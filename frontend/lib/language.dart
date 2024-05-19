@@ -322,7 +322,7 @@ class _LanguagePageState extends State<LanguagePage> {
                         style: TextButton.styleFrom(
                           backgroundColor: Colors.white,
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 40.0, vertical: 12.0),
+                              horizontal: 40.0, vertical: 16.0),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8),
                           ),

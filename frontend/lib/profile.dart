@@ -5,6 +5,8 @@ import 'global.dart' as global;
 import 'navbar.dart';
 
 class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
+
   @override
   ProfileScreenState createState() => ProfileScreenState();
 }

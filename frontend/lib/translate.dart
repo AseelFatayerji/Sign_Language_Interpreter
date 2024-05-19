@@ -117,7 +117,7 @@ class TranslationPageState extends State<TranslationPage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
-              padding: const EdgeInsets.all(5),
+              padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
               decoration: BoxDecoration(
                   color: Colors.white60,
                   borderRadius: BorderRadius.circular(5)),
@@ -135,7 +135,7 @@ class TranslationPageState extends State<TranslationPage> {
               },
               style: TextButton.styleFrom(
                 backgroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 14),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),

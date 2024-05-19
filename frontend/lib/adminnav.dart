@@ -11,10 +11,10 @@ class AdminNav extends StatefulWidget {
   const AdminNav({super.key});
 
   @override
-  _AdminNavState createState() => _AdminNavState();
+  AdminNavState createState() => AdminNavState();
 }
 
-class _AdminNavState extends State<AdminNav> {
+class AdminNavState extends State<AdminNav> {
   int _selectedIndex = 1;
   final List<Widget> _screens = <Widget>[
     const HomePage(),

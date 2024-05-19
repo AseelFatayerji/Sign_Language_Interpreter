@@ -46,7 +46,7 @@ class TranslationPageState extends State<TranslationPage> {
   }
 
   loadCamera() {
-    controller = CameraController(camera!.first, ResolutionPreset.veryHigh);
+    controller = CameraController(camera!.last, ResolutionPreset.veryHigh);
     controller!.initialize();
   }
 
@@ -117,7 +117,7 @@ class TranslationPageState extends State<TranslationPage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6),
               decoration: BoxDecoration(
                   color: Colors.white60,
                   borderRadius: BorderRadius.circular(5)),
@@ -135,7 +135,7 @@ class TranslationPageState extends State<TranslationPage> {
               },
               style: TextButton.styleFrom(
                 backgroundColor: const Color.fromARGB(255, 113, 212, 204),
-                padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 14),
+                padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 2),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),

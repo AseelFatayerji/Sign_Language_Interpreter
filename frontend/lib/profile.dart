@@ -125,7 +125,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                                       backgroundColor: const Color.fromARGB(
                                           255, 212, 113, 113),
                                       padding: const EdgeInsets.symmetric(
-                                          horizontal: 50.0, vertical: 10.0),
+                                          horizontal: 35.0, vertical: 10.0),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(8),
                                       ),
@@ -158,7 +158,7 @@ class ProfileScreenState extends State<ProfileScreen> {
                                       backgroundColor: const Color.fromARGB(
                                           255, 113, 212, 204),
                                       padding: const EdgeInsets.symmetric(
-                                          horizontal: 25.0, vertical: 10.0),
+                                          horizontal: 10.0, vertical: 10.0),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(8),
                                       ),

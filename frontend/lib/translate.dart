@@ -60,7 +60,8 @@ class TranslationPageState extends State<TranslationPage> {
         if (!isCapturing) {
           try {
             XFile? imageFile = await controller!.takePicture();
-            await getPredictions(File(imageFile.path));
+            debugPrint("got image");
+            //await getPredictions(File(imageFile.path));
           } catch (err) {
             debugPrint("Error capturing/sending image: $err");
           }
@@ -81,7 +82,7 @@ class TranslationPageState extends State<TranslationPage> {
       var request = http.MultipartRequest('POST', apiUrl);
       request.files
           .add(await http.MultipartFile.fromPath('image', imageFile.path));
-      var response = await request.send().timeout(Durations.long2);
+      var response = await request.send();
 
       if (response.statusCode == 200) {
         debugPrint("Image uploaded successfully!");

@@ -4,7 +4,7 @@ import math
 import os
 import tensorflow as tf
 import cv2
-
+import time
 from typing import List
 from click import File
 
@@ -41,13 +41,14 @@ tf.keras.utils.get_custom_objects().update({'DepthwiseConv2D': CustomDepthwiseCo
 
 model: tf.keras.Model = load_model(file_path, custom_objects={'DepthwiseConv2D': CustomDepthwiseConv2D}) # type: ignore
 detect = HandDetector(maxHands=1,detectionCon=0.8)
-classify = Classifier(modelPath=file_path, labelsPath=labels)
 
 app = FastAPI()
 @app.post('/oneHand',)
-async def root(data:str,images: List[UploadFile] = File(...)):
-   folder = 'frontend/data/letters/'+data
+async def update(label:str,images: List[UploadFile] = File(...)):
+   folder = 'frontend/data/letters/'+label
    offset = 20
+   newData = []
+   new_label = ""
    image_size = 400
    for image in images:
       content = await image.read()
@@ -67,11 +68,10 @@ async def root(data:str,images: List[UploadFile] = File(...)):
             wCal = math.ceil(w * k)
             wGap = math.ceil((image_size - wCal)/2)
             imgResize = cv2.resize(imgRight,(wCal,image_size))
-            imgWhite[:, wGap:wCal+wGap] = imgResize      
-          
-            predictions, index = classify.getPrediction(imgWhite)
-          
-            return{"prediction":predict[index]}
+            imgWhite[:, wGap:wCal+wGap] = imgResize  
+            cv2.imwrite(f'{folder}/Image_{time.time()}.jpg', imgWhite)   
+            new_label = (str(len(lines))+" " + label) 
+            newData.append(imgWhite)
         
           else:
             k = image_size / w 
@@ -79,12 +79,11 @@ async def root(data:str,images: List[UploadFile] = File(...)):
             hGap = math.ceil((image_size - hCal)/2)
             imgResize = cv2.resize(imgRight,(image_size,hCal))
             imgWhite[hGap:hCal+hGap,:] = imgResize     
-
-            predictions, index = classify.getPrediction(imgWhite)
-          
-            return{"prediction":predict[index]}
-    # key = cv2.waitKey(1)
-    #     if key == ord('s'):
-    #       count += 1
-    #       cv2.imwrite(f'{folder}/Image_{time.time()}.jpg', imgWhite)
-    #       print(count)
+            new_label = (str(len(lines))+" " + label) 
+            newData.append(imgWhite)
+            
+   with open('model/labels.txt', 'r') as file:
+      file.write(new_label+"\n")
+   set_labels = np.array([label]*len(newData))
+   history = model.fit(newData,set_labels, epochs=5)
+   history.save(file_path)

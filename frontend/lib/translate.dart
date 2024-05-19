@@ -60,8 +60,7 @@ class TranslationPageState extends State<TranslationPage> {
         if (!isCapturing) {
           try {
             XFile? imageFile = await controller!.takePicture();
-            debugPrint("got image");
-            //await getPredictions(File(imageFile.path));
+            getPredictions(File(imageFile.path));
           } catch (err) {
             debugPrint("Error capturing/sending image: $err");
           }
@@ -78,19 +77,14 @@ class TranslationPageState extends State<TranslationPage> {
 
   getPredictions(File imageFile) async {
     var apiUrl = Uri.parse('http://${global.ipv4}:8000/translate');
-    try {
-      var request = http.MultipartRequest('POST', apiUrl);
-      request.files
-          .add(await http.MultipartFile.fromPath('image', imageFile.path));
-      var response = await request.send();
-
-      if (response.statusCode == 200) {
-        debugPrint("Image uploaded successfully!");
-      } else {
-        debugPrint("Failed to upload image. Error: ${response.reasonPhrase}");
-      }
-    } catch (err) {
-      debugPrint("Error sending image: $err");
+    var request = http.MultipartRequest('POST', apiUrl);
+    request.files
+        .add(await http.MultipartFile.fromPath('image', imageFile.path));
+    var response = await request.send();
+    if (response.statusCode == 200) {
+      debugPrint("Image uploaded successfully!");
+    } else {
+      debugPrint("Failed to upload image. Error: ${response.reasonPhrase}");
     }
   }
 
@@ -118,7 +112,8 @@ class TranslationPageState extends State<TranslationPage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6),
               decoration: BoxDecoration(
                   color: Colors.white60,
                   borderRadius: BorderRadius.circular(5)),
@@ -136,7 +131,8 @@ class TranslationPageState extends State<TranslationPage> {
               },
               style: TextButton.styleFrom(
                 backgroundColor: const Color.fromARGB(255, 113, 212, 204),
-                padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 2),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 40.0, vertical: 2),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),

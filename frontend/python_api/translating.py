@@ -4,7 +4,9 @@ import math
 import os
 import tensorflow as tf
 import cv2
+import time
 
+from typing import List
 from click import File
 
 from cvzone.HandTrackingModule import HandDetector
@@ -39,13 +41,14 @@ class CustomDepthwiseConv2D(DepthwiseConv2D):
 tf.keras.utils.get_custom_objects().update({'DepthwiseConv2D': CustomDepthwiseConv2D}) # type: ignore
 
 model: tf.keras.Model = load_model(file_path, custom_objects={'DepthwiseConv2D': CustomDepthwiseConv2D}) # type: ignore
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 detect = HandDetector(maxHands=2,detectionCon=0.8)
 classify = Classifier(modelPath=file_path, labelsPath=labels)
 
 app = FastAPI()
-@app.post('/translate',)
+@app.post('/translate')
 
-async def root(image: UploadFile = File(...)):
+async def tanslate(image: UploadFile = File(...)):
    offset = 20
    image_size = 200
    content = await image.read()
@@ -107,4 +110,48 @@ async def root(image: UploadFile = File(...)):
           predictions, index = classify.getPrediction(background)
           
           return{"prediction":predict[index]}
- 
+        
+@app.post('/oneHand')
+async def update(label:str,images: List[UploadFile] = File(...)):
+   folder = 'frontend/data/letters/'+label
+   offset = 20
+   newData = []
+   new_label = (str(len(lines))+" " + label + "\n")
+   image_size = 400
+   for image in images:
+      content = await image.read()
+      nparr = np.frombuffer(content, np.uint8)
+      image_data = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+      newData.append(image_data)
+      # hands, new_image = detect.findHands(image_data)
+   
+      # if hands:
+      #   for hand in hands:
+        
+      #     x, y, w, h = hand['bbox']
+      #     imgWhite = np.ones((image_size,image_size,3),np.uint8)*255
+      #     imgRight = new_image[y-offset:y+h+offset, x-offset:x +w+offset]
+      #     ratio = h / w
+      #     if ratio > 1:
+      #       k = image_size / h 
+      #       wCal = math.ceil(w * k)
+      #       wGap = math.ceil((image_size - wCal)/2)
+      #       imgResize = cv2.resize(imgRight,(wCal,image_size))
+      #       imgWhite[:, wGap:wCal+wGap] = imgResize  
+      #       cv2.imwrite(f'{folder}/Image_{time.time()}.jpg', imgWhite) \
+      #       newData.append(imgWhite)
+        
+      #     else:
+      #       k = image_size / w 
+      #       hCal = math.ceil(h * k)
+      #       hGap = math.ceil((image_size - hCal)/2)
+      #       imgResize = cv2.resize(imgRight,(image_size,hCal))
+      #       imgWhite[hGap:hCal+hGap,:] = imgResize     
+      #       newData.append(imgWhite)
+            
+   with open('model/labels.txt', 'a') as file:
+      file.write(new_label)
+   set_labels = np.array([label]*len(newData))
+   history = model.fit(newData,set_labels, epochs=5)
+   history.save(file_path)
+   return{"model saved"}

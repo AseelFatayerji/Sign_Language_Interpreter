@@ -17,7 +17,7 @@ class _TeachNavState extends State<TeachNav> {
     ProfileScreen(),
     const ModelUpdate(),
     const LanguagePage(),
-    TranslationPage(),
+    const TranslationPage(),
   ];
 
   @override

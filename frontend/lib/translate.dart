@@ -19,7 +19,7 @@ class TranslationPage extends StatefulWidget {
 
 class TranslationPageState extends State<TranslationPage> {
   final translator = GoogleTranslator();
-  late Timer time;
+  late Timer timer;
   var btn = "Start";
 
   CameraImage? cameraImage;
@@ -53,8 +53,13 @@ class TranslationPageState extends State<TranslationPage> {
     setState(() {
       if (btn == "Start") {
         btn = "Stop";
-        controller!.startImageStream((images) {
-          _convertBGRA8888(images);
+        timer = Timer.periodic(Duration(seconds: 3), (timer) async {
+          try {
+            XFile imageFile = await controller!.takePicture();
+            await getPredictions(File(imageFile.path));
+          } catch (e) {
+            debugPrint("Error capturing/sending image: $e");
+          }
         });
       } else {
         btn = "Start";
@@ -63,40 +68,21 @@ class TranslationPageState extends State<TranslationPage> {
     });
   }
 
-  Future<img.Image?> _convertBGRA8888(CameraImage image) async {
+  getPredictions(File imageFile) async {
+    var apiUrl = Uri.parse('http://${global.ipv4}:8000/translate');
     try {
-      debugPrint(
-          "Plane Bytes Count: " + image.planes[0].bytes.length.toString());
-      img.Image jpg = img.Image.fromBytes(
-        width: image.width,
-        height: image.height,
-        bytes: image.planes[0].bytes.buffer,
-      );
-      return jpg;
-    } catch (ex) {
-      debugPrint(
-          "Error Occurred while Converting BGRA8888 formatted camera Image into img.Image: " +
-              ex.toString());
-      return null;
-    }
-  }
+      var request = http.MultipartRequest('POST', apiUrl);
+      request.files
+          .add(await http.MultipartFile.fromPath('image', imageFile.path));
+      var response = await request.send();
 
-  getPredictions(File image) async {
-    var uri = Uri.parse('http://${global.ipv4}:8000/translate');
-    var request = http.MultipartRequest('POST', uri);
-    request.files.add(await http.MultipartFile.fromPath('image', image.path));
-    var resp = await request.send();
-    if (resp.statusCode == 200) {
-      setState(() {
-        debugPrint("hi");
-        // translator
-        //   .translate(json, to: global.language)
-        //   .then((result) {
-        // output = result.text;
-        //   });
-      });
-    } else {
-      debugPrint(resp.statusCode.toString());
+      if (response.statusCode == 200) {
+        debugPrint("Image uploaded successfully!");
+      } else {
+        debugPrint("Failed to upload image. Error: ${response.reasonPhrase}");
+      }
+    } catch (err) {
+      debugPrint("Error sending image: $err");
     }
   }
 
@@ -107,8 +93,18 @@ class TranslationPageState extends State<TranslationPage> {
       );
     }
     return Scaffold(
-        body: Column(
+        body: Stack(
       children: [
+        Container(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: !controller!.value.isInitialized
+              ? Container()
+              : AspectRatio(
+                  aspectRatio: controller!.value.aspectRatio,
+                  child: CameraPreview(controller!),
+                ),
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -145,16 +141,6 @@ class TranslationPageState extends State<TranslationPage> {
               ),
             ),
           ],
-        ),
-        Container(
-          height: MediaQuery.of(context).size.height * 0.7,
-          width: MediaQuery.of(context).size.width,
-          child: !controller!.value.isInitialized
-              ? Container()
-              : AspectRatio(
-                  aspectRatio: controller!.value.aspectRatio,
-                  child: CameraPreview(controller!),
-                ),
         ),
       ],
     ));

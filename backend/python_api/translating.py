@@ -126,10 +126,10 @@ async def tanslate(image: str = Form(...)):
 #    new_label = (str(len(lines))+" " + label + "\n")
 #    image_size = 400
 #    for image in images:
-#       content = await image.read()
-#       nparr = np.frombuffer(content, np.uint8)
-#       image_data = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-#       hands, new_image = detect.findHands(image_data)
+#       image_data = base64.b64decode(image)
+        # nparr = np.frombuffer(image_data, np.uint8)
+        # img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+        # hands, images = detect.findHands(img)
    
 #       if hands:
 #         for hand in hands:

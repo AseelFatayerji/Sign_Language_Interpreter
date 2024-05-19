@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:camera/camera.dart';
@@ -18,6 +17,8 @@ class ModelUpdate extends StatefulWidget {
 }
 
 class ModelState extends State<ModelUpdate> {
+  final TextEditingController _word = TextEditingController();
+  bool _wordValidate = false;
   final translator = GoogleTranslator();
   late Timer timer;
   bool isCapturing = false;
@@ -25,7 +26,7 @@ class ModelState extends State<ModelUpdate> {
 
   CameraImage? cameraImage;
   CameraController? controller;
-  String output = "Translation";
+  String output = "";
 
   @override
   void initState() {
@@ -89,8 +90,8 @@ class ModelState extends State<ModelUpdate> {
     if (response.statusCode == 200) {
       setState(() {
         setState(() {
-            output = "Upload Successful";
-          });
+          output = "Upload Successful";
+        });
       });
     } else {
       debugPrint("Failed to upload image. Error: ${response.reasonPhrase}");
@@ -105,34 +106,37 @@ class ModelState extends State<ModelUpdate> {
       );
     }
     return Scaffold(
-        body: Stack(
+        body: Column(
       children: [
-        SizedBox(
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          child: !controller!.value.isInitialized
-              ? Container()
-              : AspectRatio(
-                  aspectRatio: controller!.value.aspectRatio,
-                  child: CameraPreview(controller!),
-                ),
-        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 10.0, vertical: 6),
-              decoration: BoxDecoration(
-                  color: Colors.white60,
-                  borderRadius: BorderRadius.circular(5)),
-              child: Text(
-                output,
-                style: const TextStyle(
-                  fontSize: 18,
-                  color: Colors.black,
-                ),
-              ),
+            TextFormField(
+              controller: _word,
+              textAlignVertical: TextAlignVertical.center,
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: 'word/letter/number',
+                  alignLabelWithHint: true,
+                  errorText: _wordValidate ? "Required Feild" : null,
+                  isDense: true,
+                  prefixIcon: Container(
+                    margin: const EdgeInsets.only(right: 10),
+                    decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 113, 212, 204),
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(8.0),
+                        bottomLeft: Radius.circular(8.0),
+                      ),
+                    ),
+                    child: const Icon(Icons.email, color: Colors.white),
+                  ),
+                  contentPadding: const EdgeInsets.only(left: 10),
+                  enabledBorder: const OutlineInputBorder(
+                    borderSide: BorderSide(
+                        color: Color.fromARGB(255, 113, 212, 204), width: 2),
+                    borderRadius: BorderRadius.all(Radius.circular(8)),
+                  )),
             ),
             TextButton(
               onPressed: () {
@@ -155,6 +159,16 @@ class ModelState extends State<ModelUpdate> {
               ),
             ),
           ],
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          child: !controller!.value.isInitialized
+              ? Container()
+              : AspectRatio(
+                  aspectRatio: controller!.value.aspectRatio,
+                  child: CameraPreview(controller!),
+                ),
         ),
       ],
     ));

@@ -37,7 +37,7 @@ class LoginPageState extends State<LoginPage> {
             if (global.isAdmin) {
               return AdminNav();
             } else {
-              return TeachNav();
+              return const TeachNav();
             }
           }));
         });

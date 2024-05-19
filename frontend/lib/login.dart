@@ -24,9 +24,9 @@ class LoginPageState extends State<LoginPage> {
         'http://${global.ipv4}:3001/auth/${_email.text}/${_password.text}'));
     if (resp.statusCode == 200) {
       final Map<String, dynamic> json = jsonDecode(resp.body);
-      final token = await http.get(Uri.parse( 
-          'http://${global.ipv4}:3001/verify/${json['token']}'));
-          
+      final token = await http
+          .get(Uri.parse('http://${global.ipv4}:3001/verify/${json['token']}'));
+
       if (token.statusCode == 201) {
         setState(() {
           global.token = json['token'];
@@ -111,8 +111,8 @@ class LoginPageState extends State<LoginPage> {
                                         bottomLeft: Radius.circular(8.0),
                                       ),
                                     ),
-                                    child:const
-                                        Icon(Icons.email, color: Colors.white),
+                                    child: const Icon(Icons.email,
+                                        color: Colors.white),
                                   ),
                                   contentPadding:
                                       const EdgeInsets.only(left: 10),
@@ -150,8 +150,8 @@ class LoginPageState extends State<LoginPage> {
                                           bottomLeft: Radius.circular(8.0),
                                         ),
                                       ),
-                                      child:const 
-                                          Icon(Icons.lock, color: Colors.white),
+                                      child: const Icon(Icons.lock,
+                                          color: Colors.white),
                                     ),
                                     contentPadding: const EdgeInsets.symmetric(
                                         horizontal: 5),

@@ -5,7 +5,6 @@ import 'dart:typed_data';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/main.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:translator/translator.dart';
 
 import 'package:http/http.dart' as http;
@@ -20,6 +19,7 @@ class TranslationPage extends StatefulWidget {
 class TranslationPageState extends State<TranslationPage> {
   final translator = GoogleTranslator();
   late Timer timer;
+  bool isCapturing = false;
   var btn = "Start";
 
   CameraImage? cameraImage;
@@ -38,12 +38,6 @@ class TranslationPageState extends State<TranslationPage> {
     loadCamera();
   }
 
-  @override
-  void dispose() {
-    controller!.dispose();
-    super.dispose();
-  }
-
   loadCamera() {
     controller = CameraController(camera![1], ResolutionPreset.veryHigh);
     controller!.initialize();
@@ -54,11 +48,21 @@ class TranslationPageState extends State<TranslationPage> {
       if (btn == "Start") {
         btn = "Stop";
         timer = Timer.periodic(Duration(seconds: 3), (timer) async {
-          try {
-            XFile imageFile = await controller!.takePicture();
-            await getPredictions(File(imageFile.path));
-          } catch (e) {
-            debugPrint("Error capturing/sending image: $e");
+          if (!isCapturing) {
+            try {
+              setState(() {
+                isCapturing = true;
+                return;
+              });
+              XFile imageFile = await controller!.takePicture();
+              await getPredictions(File(imageFile.path));
+            } catch (err) {
+              debugPrint("Error capturing/sending image: $err");
+            } finally {
+              setState(() {
+                isCapturing = false;
+              });
+            }
           }
         });
       } else {

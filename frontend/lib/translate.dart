@@ -103,7 +103,7 @@ class TranslationPageState extends State<TranslationPage> {
     return Scaffold(
         body: Stack(
       children: [
-        Container(
+        SizedBox(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           child: !controller!.value.isInitialized

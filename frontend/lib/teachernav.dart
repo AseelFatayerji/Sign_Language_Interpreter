@@ -6,11 +6,13 @@ import 'teaching.dart';
 import 'profile.dart';
 
 class TeachNav extends StatefulWidget {
+  const TeachNav({super.key});
+
   @override
-  _TeachNavState createState() => _TeachNavState();
+  TeachNavState createState() => TeachNavState();
 }
 
-class _TeachNavState extends State<TeachNav> {
+class TeachNavState extends State<TeachNav> {
   int _selectedIndex = 1;
   final List<Widget> _screens = <Widget>[
     const HomePage(),

@@ -77,7 +77,7 @@ img src="./readme/title2.svg"/>
 
 ###  Mastering AI Interaction: Unveiling the Power of Prompt Engineering:
 
-- This project uses advanced prompt engineering techniques to optimize the interaction with natural language processing models. By skillfully crafting input instructions, we tailor the behavior of the models to achieve precise and efficient language understanding and generation for various tasks and preferences.
+- This project employs sophisticated prompt engineering methods to enhance the interaction with natural language processing models. We used these prompts in data collection in order to collect a diverse dataset of ASL gesture examples along with their corresponding word translations. This dataset should cover a wide range of ASL signs, including letters, numbers, common phrases, and more complex signs.
 
 <br><br>
 

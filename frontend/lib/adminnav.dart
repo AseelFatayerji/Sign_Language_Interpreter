@@ -23,7 +23,7 @@ class AdminNavState extends State<AdminNav> {
     const UserList(),
     const ModelUpdate(),
     const LanguagePage(),
-    TranslationPage(),
+    const TranslationPage(),
   ];
 
   @override

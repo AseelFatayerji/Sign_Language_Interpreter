@@ -62,28 +62,25 @@ class _HomePageState extends State<HomePage> {
                       CarouselSlider(
                           items: titles.map((e) {
                             return Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Text(
                                   e,
                                   textAlign: TextAlign.center,
                                 ),
-                                const SizedBox(
-                                  height: 40,
-                                ),
                                 Container(
                                     width: MediaQuery.of(context).size.width,
                                     child: Image(
                                       alignment: Alignment.center,
-                                      height: 200,
-                                      width: 200,
+                                      height: 300,
+                                      width: 300,
                                       image:
                                           AssetImage(images[titles.indexOf(e)]),
                                     )),
                               ],
                             );
                           }).toList(),
-                          options: CarouselOptions(height: 300)),
+                          options: CarouselOptions(height: 350)),
                     ],
                   ),
                 ),

@@ -19,7 +19,7 @@ class AdminNavState extends State<AdminNav> {
   final List<Widget> _screens = <Widget>[
     const HomePage(),
     AdminPanel(),
-    ProfileScreen(),
+    const ProfileScreen(),
     UserList(),
     ModelUpdate(),
     const LanguagePage(),

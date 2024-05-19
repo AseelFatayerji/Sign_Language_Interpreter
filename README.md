@@ -86,7 +86,7 @@ img src="./readme/title2.svg"/>
 
 ###  Efficient AI Deployment: Unleashing the Potential with AWS Integration:
 
-- This project leverages AWS deployment strategies to seamlessly integrate and deploy natural language processing models. With a focus on scalability, reliability, and performance, we ensure that AI applications powered by these models deliver robust and responsive solutions for diverse use cases.
+- The backend and machine learning APIs are hosted on Amazon Web Services (AWS) for reliable and fast responses. Leveraging AWS's infrastructure ensures high reliability, low latency, and scalability, providing a seamless experience for users worldwide
 
 <br><br>
 

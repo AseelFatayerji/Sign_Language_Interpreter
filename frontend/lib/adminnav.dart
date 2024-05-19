@@ -20,7 +20,7 @@ class AdminNavState extends State<AdminNav> {
     const HomePage(),
     AdminPanel(),
     const ProfileScreen(),
-    UserList(),
+    const UserList(),
     ModelUpdate(),
     const LanguagePage(),
     TranslationPage(),

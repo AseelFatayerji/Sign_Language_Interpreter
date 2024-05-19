@@ -49,13 +49,9 @@ while cap.isOpened():
         cv2.imshow('white bgs', imgWhite) 
         cv2.imshow('MediaPipe Hands', image)  
     
-        count = 0
-        cv2.waitKey(1)
-        time.sleep(4)
-        while count != 200:
-              count += 1
-              cv2.imwrite(f'{folder}/Image_{time.time()}.jpg', imgWhite)
-              print(count)
-              time.sleep(0.5)
-    
+        key = cv2.waitKey(1)
+        if key == ord('s'):
+          count += 1
+          cv2.imwrite(f'{folder}/Image_{time.time()}.jpg', imgWhite)
+          print(count)
 cap.release()

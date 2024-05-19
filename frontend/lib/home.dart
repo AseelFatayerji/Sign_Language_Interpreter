@@ -46,10 +46,10 @@ class _HomePageState extends State<HomePage> {
                     border: Border.all(color: Colors.transparent),
                   ),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       const SizedBox(
-                        height: 50,
+                        height: 20,
                       ),
                       const Text(
                         'How to use',
@@ -64,26 +64,26 @@ class _HomePageState extends State<HomePage> {
                             return Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
+                                Text(
+                                  e,
+                                  textAlign: TextAlign.center,
+                                ),
+                                const SizedBox(
+                                  height: 40,
+                                ),
                                 Container(
                                     width: MediaQuery.of(context).size.width,
                                     child: Image(
                                       alignment: Alignment.center,
-                                      height: 150,
-                                      width: 150,
+                                      height: 200,
+                                      width: 200,
                                       image:
                                           AssetImage(images[titles.indexOf(e)]),
                                     )),
-                                Text(
-                                  e,
-                                  textAlign: TextAlign.center,
-                                )
                               ],
                             );
                           }).toList(),
-                          options: CarouselOptions(height: 200)),
-                      const SizedBox(
-                        height: 100,
-                      ),
+                          options: CarouselOptions(height: 300)),
                     ],
                   ),
                 ),

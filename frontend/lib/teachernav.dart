@@ -15,7 +15,7 @@ class _TeachNavState extends State<TeachNav> {
   final List<Widget> _screens = <Widget>[
     const HomePage(),
     ProfileScreen(),
-    ModelUpdate(),
+    const ModelUpdate(),
     const LanguagePage(),
     TranslationPage(),
   ];

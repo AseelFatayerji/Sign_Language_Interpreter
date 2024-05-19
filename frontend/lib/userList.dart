@@ -22,7 +22,7 @@ class _UserListState extends State<UserList> {
       final List<dynamic> json = jsonDecode(resp.body);
       for (var info in json) {
         Widget user = Column(
-                  children: [Icon(Icons.person, size: 50,color: Color.fromARGB(255, 113, 212, 204),), Text(info['name'])],
+                  children: [const Icon(Icons.person, size: 50,color: Color.fromARGB(255, 113, 212, 204),), Text(info['name'])],
                 );
         userList.add(user);
       }

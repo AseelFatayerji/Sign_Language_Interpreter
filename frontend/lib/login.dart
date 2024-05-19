@@ -150,7 +150,7 @@ class LoginPageState extends State<LoginPage> {
                                           bottomLeft: Radius.circular(8.0),
                                         ),
                                       ),
-                                      child:
+                                      child:const 
                                           Icon(Icons.lock, color: Colors.white),
                                     ),
                                     contentPadding: const EdgeInsets.symmetric(

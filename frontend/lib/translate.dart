@@ -81,7 +81,7 @@ class TranslationPageState extends State<TranslationPage> {
       var request = http.MultipartRequest('POST', apiUrl);
       request.files
           .add(await http.MultipartFile.fromPath('image', imageFile.path));
-      var response = await request.send();
+      var response = await request.send().timeout(Durations.long2);
 
       if (response.statusCode == 200) {
         debugPrint("Image uploaded successfully!");

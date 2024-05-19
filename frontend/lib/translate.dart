@@ -143,7 +143,7 @@ class TranslationPageState extends State<TranslationPage> {
               child: Text(
                 btn,
                 style: const TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontSize: 16.0,
                 ),
               ),

@@ -18,18 +18,17 @@ app.use("/user", userRouter);
 app.use("/auth", authRouter);
 app.use("/verify", protected);
 app.post('/translate', mul.single("image"), async (req, res) => {
-  // const image = req.file;
   const image = req.file.buffer.toString("base64");
   const form = new FormData();
   form.append("image", image);
   try {
-    const send = await axios.post(`http://localhost:8000/translate?image=${image}`,);
-    console.log(send.data);
+    const predict = await axios.post(`http://localhost:8000/translate`, form, { headers: { "Content-Type": "multipart/form-data" } });
+    console.log(predict.data)
+    res.status(200).json(predict.data)
   }
   catch (err) {
     console.log(err.response?.data ?? err.message)
   }
-  res.status(200).send('successful');
 });
 
 app.listen(3001, () => {

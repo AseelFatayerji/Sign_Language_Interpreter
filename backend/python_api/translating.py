@@ -1,4 +1,3 @@
-import binascii
 import cv2
 import numpy as np
 import math
@@ -17,7 +16,7 @@ from click import File
 from cvzone.HandTrackingModule import HandDetector
 from cvzone.ClassificationModule import Classifier
 
-from fastapi import FastAPI, File, UploadFile
+from fastapi import FastAPI, File, Form, UploadFile
 
 from tensorflow.keras.layers import DepthwiseConv2D # type: ignore
 from tensorflow.keras.models import load_model # type: ignore
@@ -46,128 +45,119 @@ class CustomDepthwiseConv2D(DepthwiseConv2D):
 
 tf.keras.utils.get_custom_objects().update({'DepthwiseConv2D': CustomDepthwiseConv2D}) # type: ignore
 
-model: tf.keras.Model = load_model(file_path, custom_objects={'DepthwiseConv2D': CustomDepthwiseConv2D}) # type: ignore
+model= tf.keras.models.load_model(file_path, custom_objects={'DepthwiseConv2D': CustomDepthwiseConv2D}) # type: ignore
+model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
 detect = HandDetector(maxHands=2,detectionCon=0.8)
 classify = Classifier(modelPath=file_path, labelsPath=labels)
-
-def decode_base64(base64_string):
-    # Add padding if necessary
-    missing_padding = len(base64_string) % 4
-    if missing_padding != 0:
-        base64_string += '=' * (4 - missing_padding)
-    # Decode the base64 string to bytes
-    try:
-        image_bytes = base64.b64decode(base64_string)
-        nparr = np.frombuffer(image_bytes, np.uint8)
-        temp = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-        return temp
-    except binascii.Error:
-        return None
+  
 app = FastAPI()
 @app.post('/translate')
 
-async def tanslate(image: str):
+async def tanslate(image: str = Form(...)):
    offset = 2
    image_size = 200
-   jpg =  decode_base64(image) 
-   hands, images = detect.findHands(jpg)
-   
-   if hands:
-     if len(hands) == 1:
-        for hand in hands:
-          x, y, w, h = hand['bbox']
-          imgWhite = np.ones((image_size,image_size,3),np.uint8)*255
-          imgRight = images[y-offset:y+h+offset, x-offset:x +w+offset]
-          ratio = h / w
-          if ratio > 1:
-            k = image_size / h 
-            wCal = math.ceil(w * k)
-            wGap = math.ceil((image_size - wCal)/2)
-            imgResize = cv2.resize(imgRight,(wCal,image_size))
-            imgWhite[:, wGap:wCal+wGap] = imgResize      
+   try:
+        image_data = base64.b64decode(image)
+        nparr = np.frombuffer(image_data, np.uint8)
+        img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+        hands, images = detect.findHands(img)
+        if hands:
+          if len(hands) == 1:
+            for hand in hands:
+              x, y, w, h = hand['bbox']
+              imgWhite = np.ones((image_size,image_size,3),np.uint8)*255
+              imgRight = images[y-offset:y+h+offset, x-offset:x +w+offset]
+              ratio = h / w
+              if ratio > 1:
+                k = image_size / h 
+                wCal = math.ceil(w * k)
+                wGap = math.ceil((image_size - wCal)/2)
+                imgResize = cv2.resize(imgRight,(wCal,image_size))
+                imgWhite[:, wGap:wCal+wGap] = imgResize      
+                _, index = classify.getPrediction(imgWhite)
           
-            predictions, index = classify.getPrediction(imgWhite)
-          
-            return{"prediction":predict[index]}
+                return{predict[index]}
         
+              else:
+                k = image_size / w 
+                hCal = math.ceil(h * k)
+                hGap = math.ceil((image_size - hCal)/2)
+                imgResize = cv2.resize(imgRight,(image_size,hCal))
+                imgWhite[hGap:hCal+hGap,:] = imgResize     
+                _, index = classify.getPrediction(imgWhite)
+                
+                return{predict[index]}
           else:
-            k = image_size / w 
-            hCal = math.ceil(h * k)
-            hGap = math.ceil((image_size - hCal)/2)
-            imgResize = cv2.resize(imgRight,(image_size,hCal))
-            imgWhite[hGap:hCal+hGap,:] = imgResize     
+              x1, y1, w1, h1 = hands[0]['bbox']
+              x2, y2, w2, h2 = hands[1]['bbox']
 
-            predictions, index = classify.getPrediction(imgWhite)
+              min_x = min(x1, x2)
+              min_y = min(y1, y2)
+              max_x = max(x1 + w1, x2 + w2)
+              max_y = max(y1 + h1, y2 + h2)
+
+              cropped_width = max_x - min_x + 40  
+              cropped_height = max_y - min_y + 40 
+
+
+              scale_factor = max(1, max(cropped_width / 400, cropped_height / 400))
+
+              cropped_hands_resized = cv2.resize(images[min_y:max_y, min_x:max_x], None, fx=1/scale_factor, fy=1/scale_factor)
+
+              background = np.ones((400, 400, 3), dtype=np.uint8) * 255
+
+              offset_x = int((400 - cropped_hands_resized.shape[1]) / 2)
+              offset_y = int((400 - cropped_hands_resized.shape[0]) / 2)
+
+              background[offset_y:offset_y+cropped_hands_resized.shape[0], offset_x:offset_x+cropped_hands_resized.shape[1]] = cropped_hands_resized
+              predictions, index = classify.getPrediction(background)
           
-            return{"prediction":predict[index]}
-     else:
-          x1, y1, w1, h1 = hands[0]['bbox']
-          x2, y2, w2, h2 = hands[1]['bbox']
-
-          min_x = min(x1, x2)
-          min_y = min(y1, y2)
-          max_x = max(x1 + w1, x2 + w2)
-          max_y = max(y1 + h1, y2 + h2)
-
-          cropped_width = max_x - min_x + 40  
-          cropped_height = max_y - min_y + 40 
-
-
-          scale_factor = max(1, max(cropped_width / 400, cropped_height / 400))
-
-          cropped_hands_resized = cv2.resize(images[min_y:max_y, min_x:max_x], None, fx=1/scale_factor, fy=1/scale_factor)
-
-          background = np.ones((400, 400, 3), dtype=np.uint8) * 255
-
-          offset_x = int((400 - cropped_hands_resized.shape[1]) / 2)
-          offset_y = int((400 - cropped_hands_resized.shape[0]) / 2)
-
-          background[offset_y:offset_y+cropped_hands_resized.shape[0], offset_x:offset_x+cropped_hands_resized.shape[1]] = cropped_hands_resized
-          predictions, index = classify.getPrediction(background)
-          
-          return{"prediction":predict[index]}
+              return{predict[index]}
+        else:
+           return{"No hands"}
+   except Exception as e:
+       return(f"Error decoding base64 string: {e}")
         
-@app.post('/oneHand')
-async def update(label:str,images: List[UploadFile] = File(...)):
-   folder = 'frontend/data/letters/'+label
-   offset = 20
-   newData = []
-   new_label = (str(len(lines))+" " + label + "\n")
-   image_size = 400
-   for image in images:
-      content = await image.read()
-      nparr = np.frombuffer(content, np.uint8)
-      image_data = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-      hands, new_image = detect.findHands(image_data)
+# @app.post('/oneHand')
+# async def update(label:str,images: List[UploadFile] = File(...)):
+#    folder = 'frontend/data/letters/'+label
+#    offset = 20
+#    newData = []
+#    new_label = (str(len(lines))+" " + label + "\n")
+#    image_size = 400
+#    for image in images:
+#       content = await image.read()
+#       nparr = np.frombuffer(content, np.uint8)
+#       image_data = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+#       hands, new_image = detect.findHands(image_data)
    
-      if hands:
-        for hand in hands:
+#       if hands:
+#         for hand in hands:
         
-          x, y, w, h = hand['bbox']
-          imgWhite = np.ones((image_size,image_size,3),np.uint8)*255
-          imgRight = new_image[y-offset:y+h+offset, x-offset:x +w+offset]
-          ratio = h / w
-          if ratio > 1:
-            k = image_size / h 
-            wCal = math.ceil(w * k)
-            wGap = math.ceil((image_size - wCal)/2)
-            imgResize = cv2.resize(imgRight,(wCal,image_size))
-            imgWhite[:, wGap:wCal+wGap] = imgResize  
-            cv2.imwrite(f'{folder}/Image_{time.time()}.jpg', imgWhite)
-            newData.append(imgWhite)
+#           x, y, w, h = hand['bbox']
+#           imgWhite = np.ones((image_size,image_size,3),np.uint8)*255
+#           imgRight = new_image[y-offset:y+h+offset, x-offset:x +w+offset]
+#           ratio = h / w
+#           if ratio > 1:
+#             k = image_size / h 
+#             wCal = math.ceil(w * k)
+#             wGap = math.ceil((image_size - wCal)/2)
+#             imgResize = cv2.resize(imgRight,(wCal,image_size))
+#             imgWhite[:, wGap:wCal+wGap] = imgResize  
+#             cv2.imwrite(f'{folder}/Image_{time.time()}.jpg', imgWhite)
+#             newData.append(imgWhite)
         
-          else:
-            k = image_size / w 
-            hCal = math.ceil(h * k)
-            hGap = math.ceil((image_size - hCal)/2)
-            imgResize = cv2.resize(imgRight,(image_size,hCal))
-            imgWhite[hGap:hCal+hGap,:] = imgResize     
-            newData.append(imgWhite)
+#           else:
+#             k = image_size / w 
+#             hCal = math.ceil(h * k)
+#             hGap = math.ceil((image_size - hCal)/2)
+#             imgResize = cv2.resize(imgRight,(image_size,hCal))
+#             imgWhite[hGap:hCal+hGap,:] = imgResize     
+#             newData.append(imgWhite)
             
-   with open('model/labels.txt', 'a') as file:
-      file.write(new_label)
-   set_labels = np.array([label]*len(newData))
-   model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy'])
-   history = model.fit(newData,set_labels, epochs=5)
-   history.save(file_path)
-   return{"model saved"}
+#    with open('model/labels.txt', 'a') as file:
+#       file.write(new_label)
+#    set_labels = np.array([label]*len(newData))
+#    history = model.fit(newData,set_labels, epochs=5)
+#    history.save(file_path)
+#    return{"model saved"}

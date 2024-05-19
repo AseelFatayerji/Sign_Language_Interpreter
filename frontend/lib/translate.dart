@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:camera/camera.dart';
@@ -78,12 +79,24 @@ class TranslationPageState extends State<TranslationPage> {
   getPredictions(File imageFile) async {
     var apiUrl = Uri.parse('http://${global.ipv4}:3001/translate');
     var request = http.MultipartRequest('POST', apiUrl);
-    request.files
-        .add(await http.MultipartFile.fromPath('image', imageFile.path));
-
+    request.files.add(
+      await http.MultipartFile.fromPath(
+        'image',
+        imageFile.path,
+      ),
+    );
     var response = await request.send();
     if (response.statusCode == 200) {
-      debugPrint(response.toString());
+      String responseBody = await response.stream.bytesToString();
+      List<dynamic> responseData = jsonDecode(responseBody);
+      debugPrint(responseData.first);
+      setState(() {
+        translator.translate(responseData.first, to: global.language).then((result) {
+          setState(() {
+            output = result.text;
+          });
+        });
+      });
     } else {
       debugPrint("Failed to upload image. Error: ${response.reasonPhrase}");
     }

@@ -7,6 +7,8 @@ import 'adminnav.dart';
 import 'teachernav.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
   LoginPageState createState() => LoginPageState();
 }

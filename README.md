@@ -42,7 +42,7 @@
 ### Mockups
 | Home screen  | Opening Screen | Translate Screen |
 | ---| ---| ---|
-| ![fsdaf](./readme/images/Home%20screen.png) | ![fsdaf](./readme/images/Openning%20Screen.png) | ![fsdaf](./readme/images/Learning%20screen.png) |
+| ![fsdaf](./readme/images/Home%20screen.png) | ![fsdaf](./readme/images/Openning%20Screen.png) | ![fsdaf](./readme/images/Learning%20Screen.png) |
 
 <br><br>
 

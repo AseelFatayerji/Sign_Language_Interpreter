@@ -37,9 +37,9 @@ img src="./readme/title2.svg"/>
 
 
 ### Mockups
-| Home screen  | Opening Screen | Language Screen |
+| Home screen  | Opening Screen | Translate Screen |
 | ---| ---| ---|
-| ![fsdaf](./readme/images/home.gif) | ![fsdaf](./readme/images/Openning%20Screen.png) | ![fsdaf](./readme/images/Language%20screen.png) |
+| ![fsdaf](./readme/images/home.gif) | ![fsdaf](./readme/images/Openning%20Screen.png) | ![fsdaf](./readme/images/Learning%20Screen.png) |
 
 <br><br>
 

@@ -3,7 +3,7 @@ const { getUser, editUser, deleteUser, getAll } = require("../controllers/user_c
 
 const router = express.Router();
 
-router.get("/", getAll);
+router.get("/:token", getAll);
 router.get("/:email/:token", getUser);
 router.post("/:email/:item/:value/:token", editUser);
 

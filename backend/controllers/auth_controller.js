@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user_model");
 
 const Login = async (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  // res.setHeader("Access-Control-Allow-Origin", "*");
   const { email, password } = req.params;
   try {
     const user = await User.findOne({ email });
@@ -12,7 +12,7 @@ const Login = async (req, res) => {
         const token = jwt.sign({ userId: user._id }, "your-secret-key", {
           expiresIn: "2h",
         });
-        return res.json({ user, token });
+        return res.status(200).json({ user, token });
       }
       return res.status(500).send("Internal server error");
     }

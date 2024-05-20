@@ -112,8 +112,8 @@ Below were the steps taken to deploy Silent Learning's backend to AWS according 
  4. Performance Testing: Assess the app's performance by measuring the time it takes to recognize and translate different ASL gestures. Ensure that the translation process is fast and responsive, even for complex or rapid gestures.
 
 <br><br>
-
-
+<img src="./readme/images/test.png"/>
+<br><br>
 <!-- How to run -->
 <img src="./readme/title10.svg"/>
 

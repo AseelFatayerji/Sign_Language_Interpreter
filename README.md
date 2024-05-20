@@ -131,9 +131,9 @@ Below were the steps taken to deploy Silent Learning's backend to AWS according 
     git clone <repository_url>
     2. Navigate to Project Directory: Move into the project directory:
     3. Running the App
-        Frontend Install Dependencies: Install the required dependencies for the project by running:
+        - Frontend Install Dependencies: Install the required dependencies for the project by running:
             flutter pub get
-        Backend Install Node module: Install the required dependencies for the project by running:
+        - Backend Install Node module: Install the required dependencies for the project by running:
             npm i
 - Run the backend: Navigate to Project Directory and run
             npm start

@@ -80,7 +80,9 @@
 
 ###  Mastering AI Interaction: Unveiling the Power of Prompt Engineering:
 
-- This project employs sophisticated prompt engineering methods to enhance the interaction with natural language processing models. We used these prompts in data collection in order to collect a diverse dataset of ASL gesture examples along with their corresponding word translations. This dataset should cover a wide range of ASL signs, including letters, numbers, common phrases, and more complex signs.
+- This project uses advanced prompt engineering techniques to optimize the interaction with natural language processing models. By skillfully crafting input instructions, we tailor the behavior of the models to achieve precise and efficient language understanding and generation for various tasks and preferences.
+
+In Silent Learning, Machine Learning is employed for image detection and gesture recognition, the machine is provided custom model based that all images are then processed according to the model to in order to maintaine ensure optimal recognition and reliable preditions.
 
 <br><br>
 
@@ -89,7 +91,9 @@
 
 ###  Efficient AI Deployment: Unleashing the Potential with AWS Integration:
 
-- The backend and machine learning APIs are hosted on Amazon Web Services (AWS) for reliable and fast responses. Leveraging AWS's infrastructure ensures high reliability, low latency, and scalability, providing a seamless experience for users worldwide
+- This project leverages AWS deployment strategies to seamlessly integrate and deploy natural language processing models. With a focus on scalability, reliability, and performance, we ensure that AI applications powered by these models deliver robust and responsive solutions for diverse use cases.
+
+Below were the steps taken to deploy Silent Learning's backend to AWS according to [The Step-by-Step Guide on medium.com](https://medium.com/@rajani103/deploying-nodejs-app-on-aws-ec2-instance-step-by-step-1b00f807cdce)
 
 <br><br>
 
@@ -118,8 +122,8 @@
 ### Prerequisites
 
 - Prerequisites
-    1. Flutter SDK: Ensure you have Flutter installed on your machine. If not, follow the installation instructions here.
-    2. Development Environment: Set up your preferred code editor or IDE with Flutter and Dart plugins installed.
+    - Flutter SDK: Ensure you have Flutter installed on your machine. If not, follow the installation instructions here.
+    - Development Environment: Set up your preferred code editor or IDE with Flutter and Dart plugins installed.
 
 ### Installation
 - Getting Started

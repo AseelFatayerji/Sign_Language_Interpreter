@@ -93,7 +93,7 @@ In Silent Learning, Machine Learning is employed for image detection and gesture
 
 - This project leverages AWS deployment strategies to seamlessly integrate and deploy natural language processing models. With a focus on scalability, reliability, and performance, we ensure that AI applications powered by these models deliver robust and responsive solutions for diverse use cases.
 
-Below were the steps taken to deploy Silent Learning's backend to AWS according to [The Step-by-Step Guide on medium.com](https://medium.com/@rajani103/deploying-nodejs-app-on-aws-ec2-instance-step-by-step-1b00f807cdce)
+Below were the steps taken to deploy Silent Learning's backend to AWS according to [The Step-by-Step Guide on dev.to](https://dev.to/drsimplegraffiti/from-code-to-the-cloud-a-step-by-step-guide-to-deploying-your-nodejs-app-on-aws-ec2-4300)
 
 <br><br>
 

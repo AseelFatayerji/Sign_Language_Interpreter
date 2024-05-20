@@ -4,7 +4,6 @@
 
 <!-- project philosophy -->
 <img src="./readme/title2.svg"/>
-img src="./readme/title2.svg"/>
 
 >This mobile application enables users to receive real-time interpretation, simplifying the process of learning sign language and bridging the gap between verbal and non-verbal communitaion.
 > 
@@ -13,7 +12,11 @@ img src="./readme/title2.svg"/>
 
 ### User Stories
 - As a user, I want to easily understand sign language so that I can accommodate those with hearing and speaking disabilities.
+
+### Teacher User Stores
 - As a registered teacher, I want to ensure that the app has the most up-to-date word bank so that anyone using the app can express themselves properly.
+
+### Admin User Stories
 - As a system admin, I want to manage teacher accounts so that I can ensure the smooth operation of the translation service and maintain data security.
 
 <br><br>
@@ -114,31 +117,31 @@ img src="./readme/title2.svg"/>
 
 ### Prerequisites
 
-Prerequisites
+- Prerequisites
     1. Flutter SDK: Ensure you have Flutter installed on your machine. If not, follow the installation instructions here.
     2. Development Environment: Set up your preferred code editor or IDE with Flutter and Dart plugins installed.
 
 ### Installation
-Getting Started
+- Getting Started
     1. Clone the Repository: Clone the repository containing the Flutter project from the provided GitHub link or using the command below:
     git clone <repository_url>
-    2.Navigate to Project Directory: Move into the project directory:
-    3.Running the App
+    2. Navigate to Project Directory: Move into the project directory:
+    3. Running the App
         Frontend Install Dependencies: Install the required dependencies for the project by running:
             flutter pub get
         Backend Install Node module: Install the required dependencies for the project by running:
             npm i
-Run the backend: Navigate to Project Directory and run
+- Run the backend: Navigate to Project Directory and run
             npm start
-Run the App: Launch the app on a connected device or emulator by executing:
+- Run the App: Launch the app on a connected device or emulator by executing:
         flutter run
     If you have multiple devices connected, specify the device using:   
         flutter run -d <device_id>
     Replace <device_id> with the ID of your desired device.
-Testing
+- Testing
     Unit Tests: Execute any available unit tests using:
         flutter test
-Build for Production
+- Build for Production
     Android: To build the app for Android, run:
         flutter build apk
 

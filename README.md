@@ -39,7 +39,7 @@ img src="./readme/title2.svg"/>
 ### Mockups
 | Home screen  | Opening Screen | Translate Screen |
 | ---| ---| ---|
-| ![fsdaf](./readme/images/home.gif) | ![fsdaf](./readme/images/Openning%20Screen.png) | ![fsdaf](./readme/images/Learning%20Screen.png) |
+| ![fsdaf](./readme/images/home.gif) | ![fsdaf](./readme/images/Openning%20Screen.png) | ![fsdaf](./readme/images/translate.gif) |
 
 <br><br>
 
@@ -61,7 +61,7 @@ img src="./readme/title2.svg"/>
 ### User Screens (Mobile)
 | Home screen  | Translating Screen |Language Selection Secreen | Openning Screen | 
 | ---| ---| ---| ---|
-| ![fsdaf](./readme/images/home.gif) | ![fsdaf](./readme/images/Learning%20Screen.png) | ![fsdaf](./readme/images/Language%20screen.png) | ![fsdaf](./readme/images/Openning%20Screen.png) |
+| ![fsdaf](./readme/images/home.gif) | ![fsdaf](./readme/images/Learning%20Screen.png) | ![fsdaf](./readme/images/translate.gif) | ![fsdaf](./readme/images/Openning%20Screen.png) |
 
 ### Admin/Teacher Screens (Mobile)
 | Profile | Admin Screen | User List Screen | Teaching Screen | 

@@ -39,7 +39,7 @@ img src="./readme/title2.svg"/>
 ### Mockups
 | Home screen  | Opening Screen | Language Screen |
 | ---| ---| ---|
-| ![Landing](./readme/images/home.mp4) | ![Landing](./readme/images/Openning%20Screen.png) | ![Landing](./readme/images/Language%20screen.png) |
+| ![Landing](./readme/images/home.gif) | ![Landing](./readme/images/Openning%20Screen.png) | ![Landing](./readme/images/Language%20screen.png) |
 
 <br><br>
 
@@ -61,7 +61,7 @@ img src="./readme/title2.svg"/>
 ### User Screens (Mobile)
 | Home screen  | Translating Screen |Language Selection Secreen | Openning Screen | 
 | ---| ---| ---| ---|
-| ![Landing](./readme/images/home.mp4) | ![Landing](./readme/images/Learning%20Screen.png) | ![Landing](./readme/images/Language%20screen.png) | ![Landing](./readme/images/Openning%20Screen.png) |
+| ![Landing](./readme/images/home.gif) | ![Landing](./readme/images/Learning%20Screen.png) | ![Landing](./readme/images/Language%20screen.png) | ![Landing](./readme/images/Openning%20Screen.png) |
 
 ### Admin/Teacher Screens (Mobile)
 | Profile | Admin Screen | User List Screen | Teaching Screen | 
